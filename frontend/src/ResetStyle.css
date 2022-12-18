@@ -1,0 +1,62 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+	v2.0 | 20110126
+	License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* 유노코딩에서 추천하는 추가 Reset 속성. */
+* {
+	/* 여백이나 테두리가 증가해도 컨텐츠의 크기는 변하지 않도록. */
+	box-sizing: border-box;
+
+	/* 검색창 등지에서 focus 상태가 되면 아웃라인이 작동하는 것을 제거. */
+	outline: none;
+}
+
+/* 개인적으로 추가한 CSS, HTML의 하위 자식 요소의 가로 길이가 부모 요소를 초과하였을 때, 초과한 부분을 자동으로 제거하는 속성 */
+html, body { 
+	overflow-x: hidden;	
+}
