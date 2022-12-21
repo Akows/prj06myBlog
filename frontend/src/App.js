@@ -8,6 +8,7 @@ import DailyRecord from './Pages/DailyRecord';
 import MyStudyRecord from './Pages/MyStudyRecord';
 import MyProject from './Pages/MyProject';
 import AppMenu from './Component/AppMenu';
+import Login from './Pages/Login';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/dailyrecord' element={<DailyRecord/>}/>
           <Route path='/mystudyrecord' element={<MyStudyRecord/>}/>
           <Route path='/myproject' element={<MyProject/>}/>
+          <Route path='/login' element={<Login/>}/>
         </Routes>
       </div>
     </BrowserRouter>

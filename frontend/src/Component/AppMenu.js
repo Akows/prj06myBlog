@@ -23,6 +23,12 @@ const AppMenu = () => {
                     메뉴 3
                 </Link>
             </div>
+
+            <div className='membermenubutton'>
+                <Link className='appmenuatag' to={'/login'}>
+                    관리자 로그인
+                </Link>
+            </div>
         </div>
     );
 };
