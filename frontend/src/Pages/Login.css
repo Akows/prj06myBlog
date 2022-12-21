@@ -55,6 +55,7 @@
         margin-top: 20px;
 
         background-color: #BEC8CF;
+        border: none;
         border-radius: 20px;
 
         display: flex;
@@ -74,7 +75,7 @@
         width: 100%;
     }
     .loginform {
-        width: 100%;
+        width: 90%;
     }
         .input {
             width: 90%;
