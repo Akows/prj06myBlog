@@ -3,10 +3,8 @@ import '../ResetStyle.css';
 
 import { useRef, useState } from 'react';
 
-
-
-
 import { initializeApp } from "firebase/app";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8RSSUpHwD6gU_Om4Iyjlk_JnduE_VzPQ",
@@ -18,6 +16,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+
+
+
 
 
 
@@ -45,12 +47,21 @@ const Login = () => {
             return;
         }
 
-        console.log(inputData.ID);
-        console.log(inputData.PWD);
+        const auth = getAuth();
 
-        console.log(app);
+        createUserWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log('회원가입 완료');
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
 
-        
+            console.log(errorCode, errorMessage);
+        });
+
+
     };
 
 
