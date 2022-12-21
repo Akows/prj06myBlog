@@ -7,7 +7,7 @@ import Home from './Pages/Home';
 import DailyRecord from './Pages/DailyRecord';
 import MyStudyRecord from './Pages/MyStudyRecord';
 import MyProject from './Pages/MyProject';
-import AppMenu from './Component/AppMenu';
+import AppMenu from './Components/AppMenu';
 import Login from './Pages/Login';
 
 function App() {

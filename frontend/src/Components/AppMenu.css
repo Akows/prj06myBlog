@@ -1,0 +1,133 @@
+.appmenu {
+    width: 1200px;
+    height: 90px;
+
+    background-color: #96C7ED;
+
+    opacity: 0.8;
+
+    display: flex;
+    flex-direction: row;
+
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+.appmenulogo {
+    width: 200px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+    .appmenulogo > a  {
+        width: 150px;
+        height: 100%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+.appmenubutton {
+    width: calc(100% - 350px);
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+    .appmenubutton > a {
+        width: 100px;
+        height: 100%;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+.appmenuatag {
+    text-decoration: none;
+    font-family: 'bitbit';
+    font-size: 25px;
+    color: black;
+}
+.appmenuatag:hover {
+    color: red;
+}
+
+.membermenubutton {
+    width: 150px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+}
+    .usericon {
+        width: 50px;
+        height: 50px;
+
+        background-image: url('../Assets/userB.png');
+        background-size: 50px 50px;
+
+        display: none;
+    }
+    .usericon:hover {
+        background-image: url('../Assets/userW.png');
+    }
+
+@media screen and (max-width: 1200px) {
+    .appmenu {
+        width: 90%;
+        height: 70px;
+    }
+    .appmenulogo {
+        width: 150px;
+    }
+    .appmenubutton {
+        width: calc(100% - 205px);
+    }
+    .membermenubutton {
+        width: 55px;
+    }
+    .appmenuatag {
+        font-size: 21px;
+    }
+    .appmenuatag > p {
+        display: none;
+    }
+    .usericon {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .appmenubutton > a {
+        font-size: 24px;
+    }
+
+    .usericon {
+        width: 40px;
+        height: 40px;
+        background-size: 40px 40px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .appmenulogo {
+        width: 120px;
+    }
+    .appmenubutton {
+        width: calc(100% - 175px);
+    }
+    .appmenubutton > a {
+        font-size: 22px;
+    }
+}

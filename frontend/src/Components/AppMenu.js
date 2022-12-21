@@ -14,19 +14,21 @@ const AppMenu = () => {
 
             <div className='appmenubutton'>
                 <Link className='appmenuatag' to={'/dailyrecord'}>
-                    메뉴 1
+                    하루일지
                 </Link>
                 <Link className='appmenuatag' to={'/mystudyrecord'}>
-                    메뉴 2
+                    공부기록
                 </Link>
                 <Link className='appmenuatag' to={'/myproject'}>
-                    메뉴 3
+                    프로젝트
                 </Link>
             </div>
 
             <div className='membermenubutton'>
                 <Link className='appmenuatag' to={'/login'}>
-                    관리자 로그인
+                    <p>관리자 로그인</p>
+
+                    <div className='usericon'/>
                 </Link>
             </div>
         </div>
