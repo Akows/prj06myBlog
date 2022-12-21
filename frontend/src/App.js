@@ -1,6 +1,7 @@
 import './App.css';
 import './ResetStyle.css';
 
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Home from './Pages/Home';
@@ -10,8 +11,27 @@ import MyProject from './Pages/MyProject';
 import AppMenu from './Components/AppMenu';
 import Login from './Pages/Login';
 
+import { getAuth } from "firebase/auth";
+
+export const UserContext = React.createContext();
+
 function App() {
+
+  const [isLogin, setIsLogin] = useState(false);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (user) {
+      setIsLogin(true);
+      console.log(user);
+    };
+  }, []);
+
   return (
+    <UserContext.Provider value={isLogin}>
+
     <BrowserRouter>
       <div className='app'>
         <AppMenu/>
@@ -24,6 +44,8 @@ function App() {
         </Routes>
       </div>
     </BrowserRouter>
+
+    </UserContext.Provider>
   );
 }
 

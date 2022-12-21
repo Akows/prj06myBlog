@@ -2,9 +2,10 @@ import './Login.css';
 import '../ResetStyle.css';
 
 import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8RSSUpHwD6gU_Om4Iyjlk_JnduE_VzPQ",
@@ -15,19 +16,13 @@ const firebaseConfig = {
   appId: "1:231330171061:web:53d2fb772e4fae4ea316fc"
 };
 
+// eslint-disable-next-line
 const app = initializeApp(firebaseConfig);
-
-
-
-
-
-
-
-
 
 const Login = () => {
 
     const ref = useRef();
+    const navigate = useNavigate();
 
     const [inputData, setInputData] = useState({
         ID: '',
@@ -41,58 +36,42 @@ const Login = () => {
         })
     };
 
-    const submitEvent = () => {
+    const loginEvent = () => {
         if (inputData.ID.length < 1 || inputData.PWD.length < 1 ) {
             ref.current.focus();
             return;
         }
 
         const auth = getAuth();
+        signInWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
+          .then((userCredential) => {
+            // const user = userCredential.user;
+            alert('로그인 완료');
+            navigate('/', { replace: true });
+          })
+          .catch((error) => {
+            console.log(error.code, error.message);
+          });
+    };  
+
+    // 회원가입 기능, 테스트 완료.
+    // 본 프로젝트에서 회원가입 기능은 구현하지 않을 것이므로 가입 메소드는 사용하지 않음.
+    // eslint-disable-next-line
+    const joinEvent = () => { 
+        const auth = getAuth();
 
         createUserWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log('회원가입 완료');
+            console.log(user, '회원가입 완료');
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-
-            console.log(errorCode, errorMessage);
+            console.log(error.code, error.message);
         });
-
-
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     return (
         <div className='login'>
-
             <div className='loginform'>
 
                 <p>Login</p>
@@ -105,13 +84,11 @@ const Login = () => {
                     <input name='PWD' type='password' placeholder='비밀번호를 입력해주세요' value={inputData.PWD} ref={ref} onChange={onChangeEvent}/>
                 </div>
 
-                <button className='submitbutton' onClick={submitEvent}>
+                <button className='submitbutton' onClick={loginEvent}>
                     로그인
                 </button>
 
             </div>
- 
-
         </div>
     );
 };
