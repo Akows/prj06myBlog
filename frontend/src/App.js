@@ -22,6 +22,8 @@ function App() {
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
+
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLogin(user);
@@ -32,11 +34,19 @@ function App() {
     }); // eslint-disable-next-line
   }, []);
 
+  const testdd = () => {
+    console.log(auth);
+    console.log(isLogin);
+  }
+
   return (
     <UserContext.Provider value={isLogin}>
 
     <BrowserRouter>
       <div className='app'>
+
+        <div className='ddddd' onClick={testdd}>zzz</div>
+
         <AppMenu/>
         <Routes>
           <Route path='/' element={<Home/>}/>

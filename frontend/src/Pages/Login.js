@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8RSSUpHwD6gU_Om4Iyjlk_JnduE_VzPQ",
@@ -39,14 +39,22 @@ const Login = () => {
     const loginEvent = () => {
         if (inputData.ID.length < 1 || inputData.PWD.length < 1 ) {
             ref.current.focus();
+            alert('아이디와 비밀번호를 모두 입력해주세요.');
             return;
         }
 
         const auth = getAuth();
-        signInWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
-          .then(() => {
-            alert('로그인 완료');
-            navigate('/', { replace: true });
+
+        setPersistence(auth, browserSessionPersistence)
+        .then(() => {
+            signInWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
+            .then(() => {
+              alert('로그인 완료!');
+              navigate('/', { replace: true });
+            })
+            .catch((error) => {
+              console.log(error.code, error.message);
+            });
           })
           .catch((error) => {
             console.log(error.code, error.message);
@@ -62,7 +70,7 @@ const Login = () => {
         createUserWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log(user, '회원가입 완료');
+            console.log(user, '회원가입 완료!');
         })
         .catch((error) => {
             console.log(error.code, error.message);

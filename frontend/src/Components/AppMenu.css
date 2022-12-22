@@ -34,7 +34,7 @@
     }
 
 .appmenubutton {
-    width: calc(100% - 350px);
+    width: calc(100% - 320px);
     height: 100%;
 
     display: flex;
@@ -62,7 +62,7 @@
 }
 
 .membermenubutton {
-    width: 150px;
+    width: 120px;
     height: 100%;
 
     display: flex;

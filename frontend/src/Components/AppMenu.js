@@ -59,7 +59,7 @@ const AppMenu = () => {
                     : 
                     <>
                         <Link className='appmenuatag' to={'/login'}>
-                            <p>관리자 로그인</p>
+                            <p>로그인</p>
 
                             <div className='usericon'/>
                         </Link>
