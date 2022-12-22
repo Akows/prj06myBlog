@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8RSSUpHwD6gU_Om4Iyjlk_JnduE_VzPQ",
@@ -44,8 +44,7 @@ const Login = () => {
 
         const auth = getAuth();
         signInWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
-          .then((userCredential) => {
-            // const user = userCredential.user;
+          .then(() => {
             alert('로그인 완료');
             navigate('/', { replace: true });
           })

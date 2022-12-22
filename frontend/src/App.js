@@ -11,22 +11,25 @@ import MyProject from './Pages/MyProject';
 import AppMenu from './Components/AppMenu';
 import Login from './Pages/Login';
 
-import { getAuth } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export const UserContext = React.createContext();
 
 function App() {
 
+  const auth = getAuth();
+
   const [isLogin, setIsLogin] = useState(false);
 
   useEffect(() => {
-    const auth = getAuth();
-    const user = auth.currentUser;
-
-    if (user) {
-      setIsLogin(true);
-      console.log(user);
-    };
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLogin(user);
+      }
+      else {
+        setIsLogin(false);
+      }
+    }); // eslint-disable-next-line
   }, []);
 
   return (
