@@ -9,7 +9,7 @@ const DailyRecord = () => {
                 <div className='dailyrecordutil'>
 
                     <div className='dailyrecordpagenation'>
-                        11월, 12월, 1월 버튼 보이는 영역
+                        11월, 12월, 1월 등을 나누는 버튼이 보이는 영역
                     </div>
 
                 </div>
