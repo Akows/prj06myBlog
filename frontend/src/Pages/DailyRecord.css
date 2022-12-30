@@ -1,6 +1,6 @@
 .dailyrecord {
-    width: 100%;
-    height: 100vh;
+    width: 1200px;
+    height: 100%;
 
     margin-top: 90px;
 
@@ -8,3 +8,61 @@
     flex-direction: column;
     align-items: center;
 }
+
+
+.dailyrecordboard {
+    width: 100%;
+    height: 2000px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background-color: #7DA5E1;
+}
+
+
+.dailyrecordutil {
+    width: 90%;
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    background-color: white;
+}
+    .dailyrecordpagenation {
+        width: 600px;
+        height: 100px;
+
+        background-color: gray;
+    }    
+
+.dailyrecorditems {
+    width: 90%;
+    height: 1800px;
+
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    background-color: white;
+}
+    .dailyrecorditem {
+        width: 90%;
+        height: 55px;
+    
+        margin-top: 5px;
+
+        
+    
+        background-color: aquamarine;
+    }
