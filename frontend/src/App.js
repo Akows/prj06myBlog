@@ -11,7 +11,7 @@ import MyProject from './Pages/MyProject';
 import AppMenu from './Components/AppMenu';
 import Login from './Pages/Login';
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export const UserContext = React.createContext();
 
@@ -53,6 +53,6 @@ function App() {
 
     </UserContext.Provider>
   );
-}
+};
 
 export default App;
