@@ -5,7 +5,7 @@ import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC8RSSUpHwD6gU_Om4Iyjlk_JnduE_VzPQ",
@@ -64,18 +64,18 @@ const Login = () => {
     // 회원가입 기능, 테스트 완료.
     // 본 프로젝트에서 회원가입 기능은 구현하지 않을 것이므로 가입 메소드는 사용하지 않음.
     // eslint-disable-next-line
-    const joinEvent = () => { 
-        const auth = getAuth();
+    // const joinEvent = () => { 
+    //     const auth = getAuth();
 
-        createUserWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
-        .then((userCredential) => {
-            const user = userCredential.user;
-            console.log(user, '회원가입 완료!');
-        })
-        .catch((error) => {
-            console.log(error.code, error.message);
-        });
-    };
+    //     createUserWithEmailAndPassword(auth, inputData.ID, inputData.PWD)
+    //     .then((userCredential) => {
+    //         const user = userCredential.user;
+    //         console.log(user, '회원가입 완료!');
+    //     })
+    //     .catch((error) => {
+    //         console.log(error.code, error.message);
+    //     });
+    // };
 
     return (
         <div className='login'>
