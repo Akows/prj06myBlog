@@ -10,9 +10,10 @@ import MyStudyRecord from './pages/MyStudyRecord';
 import MyProject from './pages/MyProject';
 import AppMenu from './components/AppMenu';
 import Login from './pages/Login';
-import RecordItem from './components/RecordItem';
+import RecordItem from './pages/RecordItem';
 
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import RecordEditor from './pages/RecordEditor';
 
 
 export const UserContext = React.createContext();
@@ -51,6 +52,7 @@ function App() {
           <Route path='/login' element={<Login/>}/>
 
           <Route path='/recorditem' element={<RecordItem/>}/>
+          <Route path='/recordeditor' element={<RecordEditor/>}/>
         </Routes>
       </div>
     </BrowserRouter>

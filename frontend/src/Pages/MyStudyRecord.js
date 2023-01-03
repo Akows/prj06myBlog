@@ -33,7 +33,7 @@ const MyStudyRecord = () => {
 
                     </div>
 
-                    <div className='mystudyrecordwritebtu' onClick={() => {navigate('/recorditem');}}>
+                    <div className='mystudyrecordwritebtu' onClick={() => {navigate('/recordeditor');}}>
                         <div className='writeicon'/>
                     </div>
 
@@ -41,7 +41,7 @@ const MyStudyRecord = () => {
 
                 <div className='mystudyrecorditems'>
 
-                    <div className='mystudyrecorditem'>
+                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <div className='mystudyrecorditemicon'>
                             <div className='jsicon'/>
                         </div>
@@ -51,7 +51,7 @@ const MyStudyRecord = () => {
                         </div>
                     </div>
 
-                    <div className='mystudyrecorditem'>
+                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <div className='mystudyrecorditemicon'>
                             <div className='algorithmicon'/>
                         </div>
@@ -61,7 +61,7 @@ const MyStudyRecord = () => {
                         </div>
                     </div>
 
-                    <div className='mystudyrecorditem'>
+                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <div className='mystudyrecorditemicon'>
                             <div className='reacticon'/>
                         </div>
@@ -71,7 +71,7 @@ const MyStudyRecord = () => {
                         </div>
                     </div>
 
-                    <div className='mystudyrecorditem'>
+                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <div className='mystudyrecorditemicon'>
                             <div className='jsicon'/>
                         </div>
@@ -81,7 +81,7 @@ const MyStudyRecord = () => {
                         </div>
                     </div>
 
-                    <div className='mystudyrecorditem'>
+                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <div className='mystudyrecorditemicon'>
                             <div className='upcyclingicon'/>
                         </div>

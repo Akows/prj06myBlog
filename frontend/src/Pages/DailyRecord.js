@@ -30,7 +30,7 @@ const DailyRecord = () => {
 
                     </div>
 
-                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/recorditem');}}>
+                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/recordeditor');}}>
                         <div className='writeicon'/>
                     </div>
 
@@ -38,15 +38,15 @@ const DailyRecord = () => {
 
                 <div className='dailyrecorditems'>
 
-                    <div className='dailyrecorditem'>
+                    <div className='dailyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <p>11월 01일</p>
                     </div>
 
-                    <div className='dailyrecorditem'>
+                    <div className='dailyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <p>11월 02일</p>
                     </div>
 
-                    <div className='dailyrecorditem'>
+                    <div className='dailyrecorditem' onClick={() => {navigate('/recorditem');}}>
                         <p>11월 03일</p>
                     </div>
 
