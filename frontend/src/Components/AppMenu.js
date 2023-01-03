@@ -36,13 +36,13 @@ const AppMenu = () => {
 
             <div className='appmenubutton'>
                 <Link className='appmenuatag' to={'/dailyrecord'}>
-                    하루일지
+                    <p>하루일지</p> <div className='dailyrecordicon'/>
                 </Link>
                 <Link className='appmenuatag' to={'/mystudyrecord'}>
-                    공부기록
+                    <p>공부기록</p> <div className='mystudyrecordicon'/>
                 </Link>
                 <Link className='appmenuatag' to={'/myproject'}>
-                    프로젝트
+                    <p>프로젝트</p> <div className='myprojecticon'/>
                 </Link>
             </div>
 

@@ -31,6 +31,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
+
+        text-align: center;
     }
 
 .appmenubutton {
@@ -56,9 +58,45 @@
     font-family: 'bitbit';
     font-size: 25px;
     color: black;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 .appmenuatag:hover {
     color: red;
+}
+
+.dailyrecordicon {
+    width: 45px;
+    height: 45px;
+
+    background-image: url('../Assets/calendar.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: none;
+}
+.mystudyrecordicon {
+    width: 45px;
+    height: 45px;
+
+    background-image: url('../Assets/document.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: none;
+}
+.myprojecticon {
+    width: 45px;
+    height: 45px;
+    
+    background-image: url('../Assets/project.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: none;
 }
 
 .membermenubutton {
@@ -86,13 +124,13 @@
 @media screen and (max-width: 1200px) {
     .appmenu {
         width: 90%;
-        height: 70px;
+        height: 80px;
     }
     .appmenulogo {
-        width: 150px;
+        width: 70px;
     }
     .appmenubutton {
-        width: calc(100% - 205px);
+        width: calc(100% - 125px);
     }
     .membermenubutton {
         width: 55px;
@@ -106,49 +144,13 @@
     .usericon {
         display: block;
     }
-}
-
-@media screen and (max-width: 450px) {
-    .appmenubutton > a {
-        font-size: 24px;
+    .dailyrecordicon {
+        display: block;
     }
-
-    .usericon {
-        width: 40px;
-        height: 40px;
-        background-size: 40px 40px;
+    .mystudyrecordicon {
+        display: block;
     }
-}
-
-@media screen and (max-width: 400px) {
-    .appmenulogo {
-        width: 115px;
-    }
-    .appmenubutton {
-        width: calc(100% - 170px);
-    }
-    .appmenubutton > a {
-        font-size: 18px;
-    }
-}
-
-@media screen and (max-width: 360px) {
-    .appmenulogo {
-        width: 110px;
-    }
-    .appmenubutton {
-        width: calc(100% - 165px);
-    }
-}
-
-@media screen and (max-width: 300px) {
-    .appmenulogo {
-        width: 110px;
-    }
-    .appmenubutton {
-        width: calc(100% - 165px);
-    }
-    .appmenubutton > a {
-        font-size: 17px;
+    .myprojecticon {
+        display: block;
     }
 }
