@@ -1,7 +1,12 @@
-import './MyStudyRecord.css';
+import '../styles/MyStudyRecord.css';
 import '../ResetStyle.css';
 
+import { useNavigate } from 'react-router-dom';
+
 const MyStudyRecord = () => {
+    
+    const navigate = useNavigate();
+
     return (
         <div className='mystudyrecord'>
             <div className='mystudyrecordboard'>
@@ -28,7 +33,7 @@ const MyStudyRecord = () => {
 
                     </div>
 
-                    <div className='mystudyrecordwritebtu'>
+                    <div className='mystudyrecordwritebtu' onClick={() => {navigate('/recorditem');}}>
                         <div className='writeicon'/>
                     </div>
 

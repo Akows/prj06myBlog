@@ -1,4 +1,4 @@
-import './Home.css';
+import '../styles/Home.css';
 import '../ResetStyle.css';
 
 const Home = () => {

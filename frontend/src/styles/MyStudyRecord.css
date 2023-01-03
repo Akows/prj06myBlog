@@ -97,7 +97,7 @@
             width: 64px;
             height: 64px;
     
-            background-image: url('../Assets/write.png');
+            background-image: url('../assets/write.png');
             background-size: 64px 64px;
         }
 
@@ -148,7 +148,7 @@
         width: 64px;
         height: 64px;
 
-        background-image: url('../Assets/js.png');
+        background-image: url('../assets/js.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -156,7 +156,7 @@
         width: 75px;
         height: 64px;
 
-        background-image: url('../Assets/react.png');
+        background-image: url('../assets/react.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -164,7 +164,7 @@
         width: 64px;
         height: 64px;
 
-        background-image: url('../Assets/algorithm.png');
+        background-image: url('../assets/algorithm.png');
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -172,7 +172,7 @@
         width: 64px;
         height: 64px;
 
-        background-image: url('../Assets/upcycling.png');
+        background-image: url('../assets/upcycling.png');
         background-repeat: no-repeat;
         background-size: cover;
     }

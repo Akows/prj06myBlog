@@ -1,4 +1,4 @@
-import './AppMenu.css';
+import '../styles/AppMenu.css';
 import '../ResetStyle.css';
 
 import { useContext } from 'react';

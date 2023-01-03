@@ -72,7 +72,7 @@
     width: 45px;
     height: 45px;
 
-    background-image: url('../Assets/calendar.png');
+    background-image: url('../assets/calendar.png');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -82,7 +82,7 @@
     width: 45px;
     height: 45px;
 
-    background-image: url('../Assets/document.png');
+    background-image: url('../assets/document.png');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -92,7 +92,7 @@
     width: 45px;
     height: 45px;
     
-    background-image: url('../Assets/project.png');
+    background-image: url('../assets/project.png');
     background-repeat: no-repeat;
     background-size: cover;
 
@@ -112,13 +112,13 @@
         width: 50px;
         height: 50px;
 
-        background-image: url('../Assets/userB.png');
+        background-image: url('../assets/userB.png');
         background-size: 50px 50px;
 
         display: none;
     }
     .usericon:hover {
-        background-image: url('../Assets/userW.png');
+        background-image: url('../assets/userW.png');
     }
 
 @media screen and (max-width: 1200px) {

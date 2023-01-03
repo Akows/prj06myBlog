@@ -1,4 +1,4 @@
-import './MyProject.css';
+import '../styles/MyProject.css';
 import '../ResetStyle.css';
 
 const MyProject = () => {

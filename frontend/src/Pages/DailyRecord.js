@@ -1,7 +1,12 @@
-import './DailyRecord.css';
+import '../styles/DailyRecord.css';
 import '../ResetStyle.css';
 
+import { useNavigate } from 'react-router-dom';
+
 const DailyRecord = () => {
+
+    const navigate = useNavigate();
+
     return (
         <div className='dailyrecord'>
             <div className='dailyrecordboard'>
@@ -25,7 +30,7 @@ const DailyRecord = () => {
 
                     </div>
 
-                    <div className='dailyrecordwritebtu'>
+                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/recorditem');}}>
                         <div className='writeicon'/>
                     </div>
 

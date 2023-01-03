@@ -1,4 +1,4 @@
-import './Login.css';
+import '../styles/Login.css';
 import '../ResetStyle.css';
 
 import { useRef, useState } from 'react';
