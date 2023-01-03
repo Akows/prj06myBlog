@@ -122,12 +122,33 @@
 
 @media screen and (max-width: 400px) {
     .appmenulogo {
-        width: 120px;
+        width: 115px;
     }
     .appmenubutton {
-        width: calc(100% - 175px);
+        width: calc(100% - 170px);
     }
     .appmenubutton > a {
-        font-size: 22px;
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .appmenulogo {
+        width: 110px;
+    }
+    .appmenubutton {
+        width: calc(100% - 165px);
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .appmenulogo {
+        width: 110px;
+    }
+    .appmenubutton {
+        width: calc(100% - 165px);
+    }
+    .appmenubutton > a {
+        font-size: 17px;
     }
 }
