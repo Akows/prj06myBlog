@@ -9,7 +9,6 @@
     align-items: center;
 }
 
-
 .mystudyrecordboard {
     width: 100%;
     height: 100%;
@@ -19,11 +18,10 @@
     align-items: center;
     justify-content: center;
 
-    border-radius: 20px;
+    border-radius: 5px;
 
     background-color: #7DA5E1;
 }
-
 
 .mystudyrecordutil {
     width: 90%;
@@ -32,29 +30,239 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-
+    justify-content: center;
 }
     .mystudyrecordpagenation {
-        width: 800px;
-        height: 120px;
+        width: 80%;
+        height: 100px;
 
-        background-color: gray;
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }    
+        .mystudyrecordpagenation > div {
+            width: 90px;
+            height: 80px;
+
+            background-color: #dcdcdc;
+            border-radius: 5px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin: 3px;
+
+            font-family: 'bitbit';
+            font-size: 25px;
+        }    
+        .mystudyrecordpagenation > div:hover {
+            background-color: #bebebe;
+        }
+        .mystudyrecordpagenation > div:active {
+            color: red;
+        }
+            .year {
+                font-size: 15px;
+            }
+
+    .mystudyrecordwritebtu {
+        width: 20%;
+        height: 100px;
+
+        margin-left: 20px;
+
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        font-family: 'bitbit';
+        font-size: 25px;
+    }
+        .mystudyrecordwritebtu:hover {
+            background-color: #bebebe;
+        }
+        .mystudyrecordwritebtu:active {
+            color: red;
+        }
+        .writeicon {
+            width: 64px;
+            height: 64px;
+    
+            background-image: url('../Assets/write.png');
+            background-size: 64px 64px;
+        }
 
 .mystudyrecorditems {
     width: 90%;
+    height: 100%;
 
-    margin-top: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
 }
     .mystudyrecorditem {
-        width: 235px;
-        height: 260px;
+        width: 265px;
+        height: 350px;
     
-        margin: 5px;
+        margin-top: 5px;
+        margin-left: 5px;
 
-        background-color: aquamarine;
+        background-color: white;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
     }
+    .mystudyrecorditemicon {
+        width: 90%;
+        height: 195px;
+
+        margin-top: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #d2d2d2;
+        border-radius: 5px;
+    }
+
+    .jsicon {
+        width: 64px;
+        height: 64px;
+
+        background-image: url('../Assets/js.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .reacticon {
+        width: 75px;
+        height: 64px;
+
+        background-image: url('../Assets/react.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .algorithmicon {
+        width: 64px;
+        height: 64px;
+
+        background-image: url('../Assets/algorithm.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .upcyclingicon {
+        width: 64px;
+        height: 64px;
+
+        background-image: url('../Assets/upcycling.png');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+
+
+
+
+
+
+
+    .mystudyrecorditemtitle {
+        width: 90%;
+        height: 145px;
+
+        margin-top: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .mystudyrecorditemtitle > p {
+        font-family: 'bitbit';
+        font-size: 20px;
+    }
+    .mystudyrecorditem:hover {
+        background-color: #dcdcdc;
+    }
+    .mystudyrecorditem:active > .mystudyrecorditemtitle > p {
+        color: red;
+    }
+
+
+@media screen and (max-width: 1200px) {
+    .mystudyrecord {
+        width: 90%;
+    }
+    .mystudyrecordpagenation > div {
+        width: 70px;
+        font-size: 21px;
+    }
+    .mystudyrecorditem {
+        width: 32.5%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mystudyrecordutil {
+        height: 100px;
+    }
+    .mystudyrecordpagenation {
+        height: 80px;
+    }    
+        .mystudyrecordpagenation > div {
+            height: 60px;
+            font-size: 18px;
+        }    
+        .mystudyrecordpagenation > div:nth-child(1) {
+            width: 40px;
+        }  
+        .mystudyrecordpagenation > div:nth-child(2) {
+            width: 50px;
+        }   
+    .mystudyrecordwritebtu {
+        height: 80px;
+    }
+    
+    .writeicon {
+        width: 51px;
+        height: 51px;
+
+        background-size: 51px 51px;
+    }
+
+    .mystudyrecorditem {
+        width: 49%;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .mystudyrecorditem {
+        width: 98%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .mystudyrecordpagenation > div {
+        width: 80px;
+        font-size: 15px;
+    }    
+
+}
