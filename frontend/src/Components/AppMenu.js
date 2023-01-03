@@ -42,7 +42,7 @@ const AppMenu = () => {
                     <p>공부기록</p> <div className='mystudyrecordicon'/>
                 </Link>
                 <Link className='appmenuatag' to={'/myproject'}>
-                    <p>프로젝트</p> <div className='myprojecticon'/>
+                    <p>포트폴리오</p> <div className='myprojecticon'/>
                 </Link>
             </div>
 
