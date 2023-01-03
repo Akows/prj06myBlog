@@ -9,7 +9,24 @@ const DailyRecord = () => {
                 <div className='dailyrecordutil'>
 
                     <div className='dailyrecordpagenation'>
-                        11월, 12월, 1월 등을 나누는 버튼이 보이는 영역
+
+                        <div>
+                            11월
+                        </div>
+                        <div>
+                            12월
+                        </div>
+                        <div>
+                            <p className='year'>2023.</p>1월
+                        </div>
+                        <div>
+                            2월
+                        </div>
+
+                    </div>
+
+                    <div className='dailyrecordwritebtu'>
+                        <div className='writeicon'/>
                     </div>
 
                 </div>
@@ -17,15 +34,15 @@ const DailyRecord = () => {
                 <div className='dailyrecorditems'>
 
                     <div className='dailyrecorditem'>
-                        게시글 예시
+                        <p>11월 01일</p>
                     </div>
 
                     <div className='dailyrecorditem'>
-                        게시글 예시
+                        <p>11월 02일</p>
                     </div>
 
                     <div className='dailyrecorditem'>
-                        게시글 예시
+                        <p>11월 03일</p>
                     </div>
 
                 </div>
