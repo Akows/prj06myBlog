@@ -6,7 +6,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, signOut } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, where } from 'firebase/firestore';
 
 import AppMenu from './components/AppMenu';
 import Home from './pages/Home';
@@ -125,11 +125,26 @@ function App() {
     setData(data);
   };
 
+  // 게시판 데이터 조회 함수. 
+  const boardItemLoad = async (id) => {
+    const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'), where('id', '==', id));
+
+    const data = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    setData(data);
+  };
+
+  let today = new Date();
+  let dateFormat = today.getFullYear() + '년 ' + (today.getMonth() + 1) + '월 ' + today.getDate() + '일 ';
+
   // 게시판 데이터 생성 함수. 
   const boardCreate = async () => {
     try {
       await addDoc(collection(fireStoreDB, 'DailyRecord'), {
-        Create_date: '',
+        Create_date: new Date(dateFormat),
         Title: dailyRecordData.Title,
         Text: dailyRecordData.Text,
         Writer: ''
@@ -167,7 +182,7 @@ function App() {
 
   return (
     <LoginContext.Provider value={{loginEvent, logoutEvent, loginData, setLoginData, isLogin}}>
-      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, data, setData}}>
+      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, boardItemLoad, data, setData}}>
         <div className='app'>
           <AppMenu/>
           <Routes>
@@ -176,8 +191,8 @@ function App() {
             <Route path='/mystudyrecord' element={<MyStudyRecord/>}/>
             <Route path='/myproject' element={<MyProject/>}/>
             <Route path='/login' element={<Login/>}/>
-            <Route path='/recorditem' element={<RecordItem/>}/>
-            <Route path='/recordeditor' element={<RecordEditor/>}/>
+            <Route path='/recorditem/:id' element={<RecordItem/>}/>
+            <Route path='/recordeditor/:id' element={<RecordEditor/>}/>
           </Routes>
         </div>
       </DatebaseContext.Provider>
