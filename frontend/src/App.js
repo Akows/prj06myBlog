@@ -6,6 +6,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, signOut } from 'firebase/auth';
+import { getFirestore, collection, addDoc } from 'firebase/firestore';
 
 import AppMenu from './components/AppMenu';
 import Home from './pages/Home';
@@ -16,7 +17,8 @@ import Login from './pages/Login';
 import RecordItem from './pages/RecordItem';
 import RecordEditor from './pages/RecordEditor';
 
-export const FirebaseContext = React.createContext();
+export const LoginContext = React.createContext();
+export const DatebaseContext = React.createContext();
 
 function App() {
 
@@ -36,10 +38,11 @@ function App() {
     appId: '1:231330171061:web:53d2fb772e4fae4ea316fc'
   };
   // 파이어베이스 - 정렬.
-  // eslint-disable-next-line
   const app = initializeApp(firebaseConfig);
   // 파이어베이스 - 인증 기능 관련 함수 호출.
   const auth = getAuth();
+
+  const fireStoreDB = getFirestore(app);
 
   ////////////////////////////////////////////
   ////////////////////////////////////////////
@@ -64,6 +67,14 @@ function App() {
 
   // 로그인 여부 값 제어.
   const [isLogin, setIsLogin] = useState(false);
+
+  // 입력된 일일기록 데이터 제어.
+  const [dailyRecordData, setDailyRecordData] = useState({
+    Create_date: '',
+    Title: '',
+    Text: '',
+    Writer: ''
+  });
 
   ////////////////////////////////////////////
   ////////////////////////////////////////////
@@ -101,6 +112,28 @@ function App() {
       });
   };
 
+  // 게시판 데이터 조회 함수. 
+  // const boardInit = () => {
+
+  // };
+
+  // 게시판 데이터 생성 함수. 
+  const boardCreate = async () => {
+    try {
+      const docRef = await addDoc(collection(fireStoreDB, 'DailyRecord'), {
+        Create_date: '',
+        Title: dailyRecordData.Title,
+        Text: dailyRecordData.Text,
+        Writer: ''
+      });
+      alert('글이 작성되었습니다.');
+      navigate('/', { replace: true });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+
   ////////////////////////////////////////////
   ////////////////////////////////////////////
 
@@ -111,6 +144,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        console.log(user);
         setIsLogin(user);
       }
       else {
@@ -124,20 +158,22 @@ function App() {
   ////////////////////////////////////////////
 
   return (
-    <FirebaseContext.Provider value={{loginEvent, logoutEvent, loginData, setLoginData, isLogin}}>
-      <div className='app'>
-        <AppMenu/>
-        <Routes>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/dailyrecord' element={<DailyRecord/>}/>
-          <Route path='/mystudyrecord' element={<MyStudyRecord/>}/>
-          <Route path='/myproject' element={<MyProject/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/recorditem' element={<RecordItem/>}/>
-          <Route path='/recordeditor' element={<RecordEditor/>}/>
-        </Routes>
-      </div>
-    </FirebaseContext.Provider>
+    <LoginContext.Provider value={{loginEvent, logoutEvent, loginData, setLoginData, isLogin}}>
+      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData}}>
+        <div className='app'>
+          <AppMenu/>
+          <Routes>
+            <Route path='/' element={<Home/>}/>
+            <Route path='/dailyrecord' element={<DailyRecord/>}/>
+            <Route path='/mystudyrecord' element={<MyStudyRecord/>}/>
+            <Route path='/myproject' element={<MyProject/>}/>
+            <Route path='/login' element={<Login/>}/>
+            <Route path='/recorditem' element={<RecordItem/>}/>
+            <Route path='/recordeditor' element={<RecordEditor/>}/>
+          </Routes>
+        </div>
+      </DatebaseContext.Provider>
+    </LoginContext.Provider>
   );
 };
 

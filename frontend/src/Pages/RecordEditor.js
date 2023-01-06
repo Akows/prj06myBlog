@@ -1,7 +1,24 @@
 import '../styles/RecordEditor.css';
 import '../ResetStyle.css';
 
+import { useContext } from 'react';
+import { DatebaseContext } from '../App';
+
 const RecordEditor = () => {
+
+    const datebaseContext = useContext(DatebaseContext);
+
+    const onChangeEvent = (event) => {
+        datebaseContext.setDailyRecordData({
+            ...datebaseContext.dailyRecordData,
+            [event.target.name] : event.target.value
+        })
+    };
+
+    const onSubmit = () => {
+        datebaseContext.boardCreate();
+    };
+
     return (
         <div className='recordeditor'>
             <div className='recordeditorboard'>
@@ -17,19 +34,15 @@ const RecordEditor = () => {
                         </div>
                     </div>
 
-                    <div className='recordeditorwritebtu'>
+                    <div className='recordeditorwritebtu' onClick={onSubmit}>
                         <div className='writeicon'/>
                     </div>
 
                 </div>
 
                 <div className='recordeditoritems'>
-
-                    <input className='recordeditorinputtitle' placeholder='제목을 입력해주세요'/>
-
-                    <input className='recordeditorinputtext' placeholder='본문을 입력해주세요'/>
-
-
+                    <input name='Title' type='text' className='recordeditorinputtitle' placeholder='제목을 입력해주세요' value={datebaseContext.dailyRecordData.Title} onChange={onChangeEvent}/>
+                    <input name='Text' type='text' className='recordeditorinputtext' placeholder='본문을 입력해주세요' value={datebaseContext.dailyRecordData.Text} onChange={onChangeEvent}/>
                 </div>
 
             </div>

@@ -2,11 +2,11 @@ import '../styles/Login.css';
 import '../ResetStyle.css';
 
 import { useContext } from 'react';
-import { FirebaseContext } from '../App';
+import { LoginContext } from '../App';
 
 const Login = () => {
 
-    const loginContext = useContext(FirebaseContext);
+    const loginContext = useContext(LoginContext);
 
     const onChangeEvent = (event) => {
         loginContext.setLoginData({

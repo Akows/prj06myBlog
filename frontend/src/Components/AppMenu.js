@@ -4,11 +4,11 @@ import '../ResetStyle.css';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-import { FirebaseContext } from '../App';
+import { LoginContext } from '../App';
 
 const AppMenu = () => {
 
-    const loginContext = useContext(FirebaseContext);
+    const loginContext = useContext(LoginContext);
 
     return (
         <div className='appmenu'>
