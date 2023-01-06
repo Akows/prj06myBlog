@@ -6,7 +6,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, signOut } from 'firebase/auth';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 
 import AppMenu from './components/AppMenu';
 import Home from './pages/Home';
@@ -76,6 +76,8 @@ function App() {
     Writer: ''
   });
 
+  const [data, setData] = useState([]);
+
   ////////////////////////////////////////////
   ////////////////////////////////////////////
 
@@ -113,14 +115,20 @@ function App() {
   };
 
   // 게시판 데이터 조회 함수. 
-  // const boardInit = () => {
+  const boardLoad = async () => {
+    const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'));
+    const data = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data()
+    }));
 
-  // };
+    setData(data);
+  };
 
   // 게시판 데이터 생성 함수. 
   const boardCreate = async () => {
     try {
-      const docRef = await addDoc(collection(fireStoreDB, 'DailyRecord'), {
+      await addDoc(collection(fireStoreDB, 'DailyRecord'), {
         Create_date: '',
         Title: dailyRecordData.Title,
         Text: dailyRecordData.Text,
@@ -128,9 +136,9 @@ function App() {
       });
       alert('글이 작성되었습니다.');
       navigate('/', { replace: true });
-      console.log("Document written with ID: ", docRef.id);
-    } catch (e) {
-      console.error("Error adding document: ", e);
+    } 
+    catch (e) {
+      console.error(e);
     }
   };
 
@@ -144,7 +152,7 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
+        // console.log(user);
         setIsLogin(user);
       }
       else {
@@ -159,7 +167,7 @@ function App() {
 
   return (
     <LoginContext.Provider value={{loginEvent, logoutEvent, loginData, setLoginData, isLogin}}>
-      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData}}>
+      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, data, setData}}>
         <div className='app'>
           <AppMenu/>
           <Routes>

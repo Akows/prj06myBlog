@@ -2,10 +2,21 @@ import '../styles/DailyRecord.css';
 import '../ResetStyle.css';
 
 import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { DatebaseContext } from '../App';
 
 const DailyRecord = () => {
 
     const navigate = useNavigate();
+
+    const datebaseContext = useContext(DatebaseContext);
+
+    useEffect(() => {
+        datebaseContext.boardLoad();
+
+        console.log(datebaseContext.data);
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <div className='dailyrecord'>
@@ -37,19 +48,11 @@ const DailyRecord = () => {
                 </div>
 
                 <div className='dailyrecorditems'>
-
-                    <div className='dailyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <p>11월 01일</p>
-                    </div>
-
-                    <div className='dailyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <p>11월 02일</p>
-                    </div>
-
-                    <div className='dailyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <p>11월 03일</p>
-                    </div>
-
+                    {datebaseContext.data.map((item) => (
+                        <div className='dailyrecorditem' onClick={() => {navigate('/recorditem');}} key={item.id}>
+                            <p>{item.Title}</p>
+                        </div>
+                    ))}
                 </div>
 
             </div>
