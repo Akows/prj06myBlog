@@ -14,7 +14,7 @@ const DailyRecord = () => {
     useEffect(() => {
         datebaseContext.boardLoad();
 
-        console.log(datebaseContext.data);
+        // console.log(datebaseContext.data);
         // eslint-disable-next-line
     }, []);
 
@@ -41,7 +41,7 @@ const DailyRecord = () => {
 
                     </div>
 
-                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/recordeditor');}}>
+                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/recordeditor/write');}}>
                         <div className='writeicon'/>
                     </div>
 
@@ -50,7 +50,7 @@ const DailyRecord = () => {
                 <div className='dailyrecorditems'>
                     {datebaseContext.data.map((item) => (
                         <div className='dailyrecorditem' key={item.id} onClick={() => {navigate(`/recorditem/${item.id}`);}}>
-                            <p>{item.Title}</p>
+                            <p>{item.Create_date}</p> <p>{item.Title}</p>
                         </div>
                     ))}
                 </div>
