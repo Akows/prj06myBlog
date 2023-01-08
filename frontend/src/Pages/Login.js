@@ -1,10 +1,15 @@
 import '../styles/Login.css';
 import '../ResetStyle.css';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { LoginContext } from '../App';
 
 const Login = () => {
+
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '로그인';
+    }, []);
 
     const loginContext = useContext(LoginContext);
 

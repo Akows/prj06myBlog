@@ -1,7 +1,15 @@
 import '../styles/MyProject.css';
 import '../ResetStyle.css';
 
+import { useEffect } from 'react';
+
 const MyProject = () => {
+
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '내 프로젝트';
+    }, []);
+
     return (
         <div className='myproject'>
             <div className='myprojectboard'>

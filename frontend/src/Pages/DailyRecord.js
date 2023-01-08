@@ -12,11 +12,16 @@ const DailyRecord = () => {
     const datebaseContext = useContext(DatebaseContext);
 
     useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '일일기록';
+
         datebaseContext.boardLoad();
 
         // console.log(datebaseContext.data);
         // eslint-disable-next-line
     }, []);
+
+
 
     return (
         <div className='dailyrecord'>

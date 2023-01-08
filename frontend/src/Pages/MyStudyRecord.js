@@ -2,8 +2,14 @@ import '../styles/MyStudyRecord.css';
 import '../ResetStyle.css';
 
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const MyStudyRecord = () => {
+
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '공부기록';
+    }, []);
     
     const navigate = useNavigate();
 

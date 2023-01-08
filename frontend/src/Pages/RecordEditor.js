@@ -1,10 +1,15 @@
 import '../styles/RecordEditor.css';
 import '../ResetStyle.css';
 
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { DatebaseContext } from '../App';
 
 const RecordEditor = () => {
+
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '글 작성/수정';
+    }, []);
 
     const datebaseContext = useContext(DatebaseContext);
 

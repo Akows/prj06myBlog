@@ -1,7 +1,15 @@
 import '../styles/Home.css';
 import '../ResetStyle.css';
 
+import { useEffect } from 'react';
+
 const Home = () => {
+
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '이유승 블로그';
+    }, []);
+
     return (
         <div className='home'>
 
