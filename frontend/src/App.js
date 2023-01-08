@@ -148,17 +148,27 @@ function App() {
     }
   };
 
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = today.getMonth() + 1;
-  const day = today.getDate();
-  const now = year + '년 ' + month + '월 ' + day + '일';
+  const setTimeinfo = () => {
+    const today = new Date();
+
+    const time = {
+        year: today.getFullYear(),  // 년도
+        month: today.getMonth() + 1, // 월
+        date: today.getDate(), // 날짜
+        // hours: today.getHours(), // 시간
+        // minutes: today.getMinutes(), // 분
+    };
+
+    const now = `${time.year}년 ${time.month}월 ${time.date}일`;
+
+    return now;
+  };
 
   // 게시판 데이터 생성 함수. 
   const boardCreate = async () => {
     try {
       await addDoc(collection(fireStoreDB, 'DailyRecord'), {
-        Create_date: now,
+        Create_date: setTimeinfo(),
         Title: dailyRecordData.Title,
         Text: dailyRecordData.Text,
         Writer: isLogin.email
@@ -183,7 +193,7 @@ function App() {
       if (user) {
         // console.log(user);
         // console.log(user.email);
-        console.log(now);
+        console.log(setTimeinfo());
         
         setIsLogin(user);
       }

@@ -25,7 +25,7 @@ const RecordItem = () => {
 
                     <div className='recorditemdesc'>
                         <div>
-                            글 조회 페이지d
+                            글 조회 페이지
                         </div>
                         <div>
                             작성일은<p className='todaytime'>2023년 01월 01일</p>입니다.
