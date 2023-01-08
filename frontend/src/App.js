@@ -6,7 +6,7 @@ import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, signOut } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs, where } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc } from 'firebase/firestore';
 
 import AppMenu from './components/AppMenu';
 import Home from './pages/Home';
@@ -135,13 +135,11 @@ function App() {
   // 게시판 데이터 조회 함수. 
   const boardItemLoad = async (id) => {
     try {
-      const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'), where('id', '==', id));
-      const data = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-  
-      setData(data);
+      const docRef = doc(fireStoreDB, 'DailyRecord', id);
+
+      const docSnap = await getDoc(docRef);
+
+      setData(docSnap.data());
     } 
     catch (error) {
       console.log(error);  
@@ -193,7 +191,7 @@ function App() {
       if (user) {
         // console.log(user);
         // console.log(user.email);
-        console.log(setTimeinfo());
+        // console.log(setTimeinfo());
         
         setIsLogin(user);
       }

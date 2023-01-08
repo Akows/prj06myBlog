@@ -53,7 +53,7 @@ const DailyRecord = () => {
                 </div>
 
                 <div className='dailyrecorditems'>
-                    {datebaseContext.data.map((item) => (
+                    {datebaseContext.data?.map((item) => (
                         <div className='dailyrecorditem' key={item.id} onClick={() => {navigate(`/recorditem/${item.id}`);}}>
                             <p>{item.Create_date}</p> <p>{item.Title}</p>
                         </div>
