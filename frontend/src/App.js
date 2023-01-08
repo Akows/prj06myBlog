@@ -94,6 +94,8 @@ function App() {
           navigate('/', { replace: true });
         })
         .catch((error) => {
+          alert('아이디 혹은 비밀번호를 확인해주세요.');
+          navigate('/login', { replace: true });
           console.log(error.code, error.message);
         });
       })
@@ -116,38 +118,50 @@ function App() {
 
   // 게시판 데이터 조회 함수. 
   const boardLoad = async () => {
-    const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'));
-    const data = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-
-    setData(data);
+    try {
+      const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+  
+      setData(data);
+    } 
+    catch (error) {
+      console.log(error);
+    }
   };
 
   // 게시판 데이터 조회 함수. 
   const boardItemLoad = async (id) => {
-    const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'), where('id', '==', id));
-
-    const data = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data()
-    }));
-
-    setData(data);
+    try {
+      const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'), where('id', '==', id));
+      const data = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+  
+      setData(data);
+    } 
+    catch (error) {
+      console.log(error);  
+    }
   };
 
-  let today = new Date();
-  let dateFormat = today.getFullYear() + '년 ' + (today.getMonth() + 1) + '월 ' + today.getDate() + '일 ';
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1;
+  const day = today.getDate();
+  const now = year + '년 ' + month + '월 ' + day + '일';
 
   // 게시판 데이터 생성 함수. 
   const boardCreate = async () => {
     try {
       await addDoc(collection(fireStoreDB, 'DailyRecord'), {
-        Create_date: new Date(dateFormat),
+        Create_date: now,
         Title: dailyRecordData.Title,
         Text: dailyRecordData.Text,
-        Writer: ''
+        Writer: isLogin.email
       });
       alert('글이 작성되었습니다.');
       navigate('/', { replace: true });
@@ -168,6 +182,9 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // console.log(user);
+        // console.log(user.email);
+        console.log(now);
+        
         setIsLogin(user);
       }
       else {
