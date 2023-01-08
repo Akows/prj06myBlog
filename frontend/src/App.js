@@ -132,7 +132,7 @@ function App() {
     }
   };
 
-  // 게시판 데이터 조회 함수. 
+  // 게시판 데이터 조건조회 함수. 
   const boardItemLoad = async (id) => {
     try {
       const docRef = doc(fireStoreDB, 'DailyRecord', id);
@@ -179,6 +179,24 @@ function App() {
     }
   };
 
+  // 게시판 데이터 수정 함수. 
+  const boardUpdate = async (id) => {
+    try {
+      await addDoc(collection(fireStoreDB, 'DailyRecord'), {
+        Create_date: setTimeinfo(),
+        Title: dailyRecordData.Title,
+        Text: dailyRecordData.Text,
+        Writer: isLogin.email
+      });
+      alert('글이 작성되었습니다.');
+      navigate('/', { replace: true });
+    } 
+    catch (e) {
+      console.error(e);
+    }
+  };
+  
+
   ////////////////////////////////////////////
   ////////////////////////////////////////////
 
@@ -207,7 +225,7 @@ function App() {
 
   return (
     <LoginContext.Provider value={{loginEvent, logoutEvent, loginData, setLoginData, isLogin}}>
-      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, boardItemLoad, data, setData}}>
+      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, boardItemLoad, data, setData, setTimeinfo, boardUpdate}}>
         <div className='app'>
           <AppMenu/>
           <Routes>

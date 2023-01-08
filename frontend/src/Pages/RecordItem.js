@@ -1,18 +1,21 @@
 import '../styles/RecordItem.css';
 import '../ResetStyle.css';
+
 import { useContext, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { DatebaseContext } from '../App';
-import { useParams } from 'react-router-dom';
 
 const RecordItem = () => {
-    const { id } = useParams();
 
+    const { id } = useParams();
+    const navigate = useNavigate();
     const datebaseContext = useContext(DatebaseContext);
 
     useEffect(() => {
         datebaseContext.boardItemLoad(id);
 
-        console.log(datebaseContext.data);
+        // console.log(datebaseContext.data);
         // eslint-disable-next-line
     }, []);
 
@@ -34,7 +37,7 @@ const RecordItem = () => {
 
                     <div className='recorditemwritebtu'>
                         <div className='deleteicon'/>
-                        <div className='updateicon'/>
+                        <div className='updateicon' onClick={() => {navigate(`/recordeditor/${id}`)}}/>
                     </div>
 
                 </div>
