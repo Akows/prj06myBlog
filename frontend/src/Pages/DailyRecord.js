@@ -59,16 +59,16 @@ const DailyRecord = () => {
 
                     <div className='dailyrecordpagenation'>
 
-                        <div onClick={() => {setChoiceMonth(11)}}>
+                        <div className={'month'} onClick={() => {setChoiceMonth(11)}}>
                             11월
                         </div>
-                        <div onClick={() => {setChoiceMonth(12)}}>
+                        <div className={'month'} onClick={() => {setChoiceMonth(12)}}>
                             12월 
                         </div>
-                        <div onClick={() => {setChoiceMonth(1)}}>
+                        <div className={'month'} onClick={() => {setChoiceMonth(1)}}>
                             <p className='year'>2023.</p>1월
                         </div>
-                        <div onClick={() => {setChoiceMonth(2)}}>
+                        <div className={'month'} onClick={() => {setChoiceMonth(2)}}>
                             2월
                         </div>
 

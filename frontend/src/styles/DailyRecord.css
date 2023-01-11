@@ -43,11 +43,10 @@
         flex-direction: row;
         align-items: center;
     }    
-        .dailyrecordpagenation > div {
+        .month {
             width: 80px;
             height: 80px;
 
-            background-color: #dcdcdc;
             border-radius: 5px;
 
             display: flex;
@@ -59,11 +58,11 @@
 
             font-family: 'bitbit';
             font-size: 25px;
-        }    
-        .dailyrecordpagenation > div:hover {
+        }  
+        .month:hover {
             background-color: #bebebe;
         }
-        .dailyrecordpagenation > div:active {
+        .month:active {
             color: red;
         }
             .year {

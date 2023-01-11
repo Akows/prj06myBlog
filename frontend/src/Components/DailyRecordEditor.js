@@ -31,7 +31,6 @@ const RecordEditor = () => {
             const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
             const docSnap = await getDoc(docRef);
             setData(docSnap.data());
-
             setInputRecordData({
                 Title: docSnap.data().Title,
                 Text: docSnap.data().Text
