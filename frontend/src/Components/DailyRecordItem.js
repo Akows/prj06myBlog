@@ -138,9 +138,9 @@ const RecordItem = () => {
 
                 <div className='recorditemcomments'>
                     {commentData.map((item) => (
-                        <div className='recorditemcommenttext'>
+                        <div className='recorditemcommenttext' key={item.id}>
                             <p>{item.Text}</p>
-                            <p className='commentsinfo'>{item.Writer} {item.Create_YMD} {item.Create_HMS}</p>
+                            <p className='commentsinfo'>{item.Writer}, {item.Create_YMD} - {item.Create_HMS}</p>
                         </div>
                     ))}
 
