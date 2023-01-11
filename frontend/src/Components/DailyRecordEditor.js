@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { FirebaseContext, LoginContext } from '../App';
+
 import { addDoc, collection, increment } from 'firebase/firestore';
 
 const RecordEditor = () => {
@@ -40,30 +41,6 @@ const RecordEditor = () => {
             console.error(error);
         }
     };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     const onChangeEvent = (event) => {
         setInputRecordData({
@@ -101,7 +78,7 @@ const RecordEditor = () => {
                                 </>
                             : 
                                 <>
-                                    오늘은<p className='todaytime'>{''}</p>입니다.
+                                    오늘은<p className='todaytime'>{loginContext.Time.now}</p>입니다.
                                 </>
                             }
                         </div>
@@ -116,8 +93,6 @@ const RecordEditor = () => {
                             <div className='writeicon'/>
                         </div>
                     }
-
-
 
                 </div>
 

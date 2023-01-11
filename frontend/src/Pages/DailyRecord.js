@@ -1,9 +1,11 @@
 import '../styles/DailyRecord.css';
 import '../ResetStyle.css';
 
-import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { FirebaseContext } from '../App';
+
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 
 const DailyRecord = () => {
@@ -22,9 +24,9 @@ const DailyRecord = () => {
 
             const querys = query(collectionRef, where('Create_Month', '==', choiceMonth), orderBy('Create_date', 'desc')); 
 
-            const querySnapshot = await getDocs(querys);
+            const querySnap = await getDocs(querys);
 
-            const mappingData = querySnapshot.docs.map((doc) => ({
+            const mappingData = querySnap.docs.map((doc) => ({
                 id: doc.id,
                 ...doc.data()
             }));

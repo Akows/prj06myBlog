@@ -1,17 +1,41 @@
 import '../styles/RecordItem.css';
 import '../ResetStyle.css';
 
-import { useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { FirebaseContext } from '../App';
+
+import { doc, getDoc } from 'firebase/firestore';
 
 const RecordItem = () => {
 
-    const { id } = useParams();
     const navigate = useNavigate();
 
-    useEffect(() => {
+    const firebaseContext = useContext(FirebaseContext);
 
-        // console.log(datebaseContext.data);
+    const { id } = useParams();
+
+    const [data, setData] = useState([]);
+
+    const boardLoad = async (id) => {
+        try {
+            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+
+            const docSnap = await getDoc(docRef);
+
+            setData(docSnap.data());
+        } 
+        catch (error) {
+            console.log(error);  
+        }
+    };
+
+    useEffect(() => {
+        const titleElement = document.getElementsByTagName("title")[0];
+        titleElement.innerHTML = '일일기록';
+
+        boardLoad(id);
         // eslint-disable-next-line
     }, []);
 
@@ -41,11 +65,11 @@ const RecordItem = () => {
                 <div className='recorditemitems'>
 
                     <div className='recorditemitem recorditemtitle'>
-                        <p>{'Title'}</p>
+                        <p>{data.Title}</p>
                     </div>
 
                     <div className='recorditemitem recorditemtext'>
-                        <p>{'Text'}</p>
+                        <p>{data.Text}</p>
                     </div>
 
 
