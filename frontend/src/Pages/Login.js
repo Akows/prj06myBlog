@@ -38,8 +38,6 @@ const Login = () => {
         });
     };
 
-
-
     const onChangeEvent = (event) => {
         setInputLoginData({
             ...inputLoginData,

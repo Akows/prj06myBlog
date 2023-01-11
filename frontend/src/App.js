@@ -9,28 +9,26 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, collection, addDoc, getDocs, getDoc, doc, deleteDoc } from 'firebase/firestore';
 
 import AppMenu from './components/AppMenu';
+
 import Home from './pages/Home';
 import DailyRecord from './pages/DailyRecord';
 import MyStudyRecord from './pages/MyStudyRecord';
 import MyProject from './pages/MyProject';
 import Login from './pages/Login';
-import RecordItem from './pages/RecordItem';
-import RecordEditor from './pages/RecordEditor';
+
+import RecordItem from './components/DailyRecordItem';
+import RecordEditor from './components/DailyRecordEditor';
 
 export const FirebaseContext = React.createContext();
-
 export const LoginContext = React.createContext();
-export const DatebaseContext = React.createContext();
 
 function App() {
 
   ////////////////////////////////////////////
-  ////////////////////////////////////////////
 
-  // 구글 파이어베이스 코드
-  // 구글 파이어베이스 코드
+  // 구글 파이어베이스.
 
-  // 파이어베이스 - 설정.
+  // 설정값.
   const firebaseConfig = {
     apiKey: 'AIzaSyC8RSSUpHwD6gU_Om4Iyjlk_JnduE_VzPQ',
     authDomain: 'myblog-350b6.firebaseapp.com',
@@ -39,141 +37,96 @@ function App() {
     messagingSenderId: '231330171061',
     appId: '1:231330171061:web:53d2fb772e4fae4ea316fc'
   };
-  // 파이어베이스 - 정렬.
+  // 파이어베이스 정렬.
   const app = initializeApp(firebaseConfig);
-  // 파이어베이스 - 인증 기능 관련 함수 호출.
+  // 파이어베이스 인증.
   const auth = getAuth();
-
+  // 파이어스토어 호출.
   const fireStoreDB = getFirestore(app);
 
   ////////////////////////////////////////////
-  ////////////////////////////////////////////
 
-  // 기능 구현을 위한 hook 호출 구문.
-  // 기능 구현을 위한 hook 호출 구문.
-
-  // 이벤트 이후 페이지 이동을 위한 useNavigate.
-  const navigate = useNavigate();
-
-  ////////////////////////////////////////////
-  ////////////////////////////////////////////
-
-  // 기능 구현에 사용되는 각종 변수를 제어하는 useState.
-  // 기능 구현에 사용되는 각종 변수를 제어하는 useState. 
-
-
-  // 로그인 여부 값 제어.
+  // 로그인 상태.
   const [isLogin, setIsLogin] = useState(false);
-
-  // 입력된 일일기록 데이터 제어.
-  const [dailyRecordData, setDailyRecordData] = useState({
-    Create_date: '',
-    Title: '',
-    Text: '',
-    Writer: ''
-  });
-
-  const [data, setData] = useState([]);
+  const [whoLogin, setWhoLogin] = useState('');
 
   ////////////////////////////////////////////
-  ////////////////////////////////////////////
 
-  // 이벤트 함수들.
-  // 이벤트 함수들.
+  const today = new Date();
 
-
-
-  // 게시판 데이터 조회 함수. 
-  const boardLoad = async () => {
-    try {
-      const querySnapshot = await getDocs(collection(fireStoreDB, 'DailyRecord'));
-      const data = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data()
-      }));
-  
-      setData(data);
-    } 
-    catch (error) {
-      console.log(error);
-    }
+  const Time = {
+      year: today.getFullYear(),  // 년도
+      month: today.getMonth() + 1, // 월
+      date: today.getDate(), // 날짜
+      hours: today.getHours(), // 시간
+      minutes: today.getMinutes(), // 분
+      now: today.getFullYear() + '년 ' +  (today.getMonth() + 1) + '월 ' + today.getDate() + '일.' 
   };
+  
+  ////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // 이벤트 함수들.
+
+
 
   // 게시판 데이터 조건조회 함수. 
-  const boardItemLoad = async (id) => {
-    try {
-      const docRef = doc(fireStoreDB, 'DailyRecord', id);
+  // const boardItemLoad = async (id) => {
+  //   try {
+  //     const docRef = doc(fireStoreDB, 'DailyRecord', id);
 
-      const docSnap = await getDoc(docRef);
+  //     const docSnap = await getDoc(docRef);
 
-      setData(docSnap.data());
-    } 
-    catch (error) {
-      console.log(error);  
-    }
-  };
+  //     setData(docSnap.data());
+  //   } 
+  //   catch (error) {
+  //     console.log(error);  
+  //   }
+  // };
 
-  const setTimeinfo = () => {
-    const today = new Date();
 
-    const time = {
-        year: today.getFullYear(),  // 년도
-        month: today.getMonth() + 1, // 월
-        date: today.getDate(), // 날짜
-        // hours: today.getHours(), // 시간
-        // minutes: today.getMinutes(), // 분
-    };
 
-    const now = `${time.year}년 ${time.month}월 ${time.date}일`;
 
-    return now;
-  };
+  // // 게시판 데이터 수정 함수. 
+  // const boardUpdate = async (id) => {
+  //   try {
+  //     await addDoc(collection(fireStoreDB, 'DailyRecord'), {
+  //       Create_date: setTimeinfo(),
+  //       Title: dailyRecordData.Title,
+  //       Text: dailyRecordData.Text,
+  //       Writer: isLogin.email
+  //     });
+  //     alert('글이 수정되었습니다.');
+  //     navigate('/', { replace: true });
+  //   } 
+  //   catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
-  // 게시판 데이터 생성 함수. 
-  const boardCreate = async () => {
-    try {
-      await addDoc(collection(fireStoreDB, 'DailyRecord'), {
-        Create_date: setTimeinfo(),
-        Title: dailyRecordData.Title,
-        Text: dailyRecordData.Text,
-        Writer: isLogin.email
-      });
-      alert('글이 작성되었습니다.');
-      navigate('/', { replace: true });
-    } 
-    catch (e) {
-      console.error(e);
-    }
-  };
-
-  // 게시판 데이터 수정 함수. 
-  const boardUpdate = async (id) => {
-    try {
-      await addDoc(collection(fireStoreDB, 'DailyRecord'), {
-        Create_date: setTimeinfo(),
-        Title: dailyRecordData.Title,
-        Text: dailyRecordData.Text,
-        Writer: isLogin.email
-      });
-      alert('글이 수정되었습니다.');
-      navigate('/', { replace: true });
-    } 
-    catch (e) {
-      console.error(e);
-    }
-  };
-
-    // 게시판 데이터 삭제 함수. 
-    const boardDelete = async (id) => {
-      try {
-        await deleteDoc(doc(fireStoreDB, 'DailyRecord', id));
-        alert('글이 삭제되었습니다.');
-        navigate('/', { replace: true });
-      } 
-      catch (e) {
-        console.error(e);
-      }
-    };
+  //   // 게시판 데이터 삭제 함수. 
+  //   const boardDelete = async (id) => {
+  //     try {
+  //       await deleteDoc(doc(fireStoreDB, 'DailyRecord', id));
+  //       alert('글이 삭제되었습니다.');
+  //       navigate('/', { replace: true });
+  //     } 
+  //     catch (e) {
+  //       console.error(e);
+  //     }
+  //   };
   
 
   ////////////////////////////////////////////
@@ -186,11 +139,8 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // console.log(user);
-        // console.log(user.email);
-        // console.log(setTimeinfo());
-        
-        setIsLogin(user);
+        setWhoLogin(user.email);
+        setIsLogin(true);
       }
       else {
         setIsLogin(false);
@@ -205,10 +155,8 @@ function App() {
   return (
 
     <FirebaseContext.Provider value={{auth, fireStoreDB}}>
-    <LoginContext.Provider value={{isLogin}}>
+      <LoginContext.Provider value={{isLogin, whoLogin, Time}}>
 
-
-      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, boardItemLoad, data, setData, setTimeinfo, boardUpdate, boardDelete}}>
         <div className='app'>
           <AppMenu/>
           <Routes>
@@ -221,10 +169,8 @@ function App() {
             <Route path='/recordeditor/:id' element={<RecordEditor/>}/>
           </Routes>
         </div>
-      </DatebaseContext.Provider>
 
-
-    </LoginContext.Provider>
+      </LoginContext.Provider>
     </FirebaseContext.Provider>
   );
 };
