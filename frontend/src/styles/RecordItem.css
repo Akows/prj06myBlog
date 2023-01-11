@@ -179,6 +179,94 @@
         background-color: #dcdcdc;
     }
 
+.recorditemcomments {
+    width: 90%;
+    height: 100%;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.recorditemcommenttext {
+    width: 90%;
+    height: 50px;
+
+    margin-top: 5px;
+
+    background-color: white;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    font-family: 'bitbit';
+    font-size: 25px;
+}
+    .recorditemcommenttext > p {
+        margin-left: 30px;
+    }
+    .commentsinfo {
+        font-size: 20px;
+    }
+
+.recorditemcommentutil {
+    width: 90%;
+    height: 50px;
+
+    margin-top: 5px;
+
+    background-color: white;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}    
+    .recorditemcommentinput {
+        width: 90%;
+        height: 100%;
+
+        border: none;
+        border-radius: 5px;
+        background-color: #9DA5AB;
+
+        text-align: center;
+
+        font-family: 'bitbit';
+        font-size: 30px;
+    }
+    .commentsubmitbtu {
+        width: 100px;
+        height: 50px;
+
+        background-color: #BEC8CF;
+        border: none;
+        border-radius: 5px;
+
+        margin-left: 30px;
+        margin-right: 5px;
+
+        font-family: 'bitbit';
+        font-size: 25px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+    .commentsubmitbtu:hover {
+        background-color: #9DA5AB;
+    }
+
+
 
 
 @media screen and (max-width: 1200px) {

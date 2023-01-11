@@ -60,6 +60,7 @@ function App() {
       date: today.getDate(), // 날짜
       hours: today.getHours(), // 시간
       minutes: today.getMinutes(), // 분
+      seconds: today.getSeconds(), // 초
       now: today.getFullYear() + '년 ' +  (today.getMonth() + 1) + '월 ' + today.getDate() + '일' 
   };
   
