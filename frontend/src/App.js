@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, setPersistence, browserSessionPersistence, signOut } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc } from 'firebase/firestore';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc, deleteDoc } from 'firebase/firestore';
 
 import AppMenu from './components/AppMenu';
 import Home from './pages/Home';
@@ -16,6 +16,8 @@ import MyProject from './pages/MyProject';
 import Login from './pages/Login';
 import RecordItem from './pages/RecordItem';
 import RecordEditor from './pages/RecordEditor';
+
+export const FirebaseContext = React.createContext();
 
 export const LoginContext = React.createContext();
 export const DatebaseContext = React.createContext();
@@ -59,11 +61,6 @@ function App() {
   // 기능 구현에 사용되는 각종 변수를 제어하는 useState.
   // 기능 구현에 사용되는 각종 변수를 제어하는 useState. 
 
-  // 입력된 로그인 데이터 제어.
-  const [loginData, setLoginData] = useState({
-    ID: '',
-    PWD: ''
-  });
 
   // 로그인 여부 값 제어.
   const [isLogin, setIsLogin] = useState(false);
@@ -84,37 +81,7 @@ function App() {
   // 이벤트 함수들.
   // 이벤트 함수들.
 
-  // 로그인 함수.
-  const loginEvent = () => {
-    setPersistence(auth, browserSessionPersistence)
-    .then(() => {
-        signInWithEmailAndPassword(auth, loginData.ID, loginData.PWD)
-        .then(() => {
-          alert('로그인 완료!');
-          navigate('/', { replace: true });
-        })
-        .catch((error) => {
-          alert('아이디 혹은 비밀번호를 확인해주세요.');
-          navigate('/login', { replace: true });
-          console.log(error.code, error.message);
-        });
-      })
-      .catch((error) => {
-        console.log(error.code, error.message);
-      });
-  };
 
-  // 로그아웃 함수.
-  const logoutEvent = () => {
-    signOut(auth)
-      .then(() => {
-          alert('로그아웃 되었습니다.');
-          navigate('/', { replace: true });
-      })
-      .catch((error) => {
-          console.log(error);
-      });
-  };
 
   // 게시판 데이터 조회 함수. 
   const boardLoad = async () => {
@@ -188,13 +155,25 @@ function App() {
         Text: dailyRecordData.Text,
         Writer: isLogin.email
       });
-      alert('글이 작성되었습니다.');
+      alert('글이 수정되었습니다.');
       navigate('/', { replace: true });
     } 
     catch (e) {
       console.error(e);
     }
   };
+
+    // 게시판 데이터 삭제 함수. 
+    const boardDelete = async (id) => {
+      try {
+        await deleteDoc(doc(fireStoreDB, 'DailyRecord', id));
+        alert('글이 삭제되었습니다.');
+        navigate('/', { replace: true });
+      } 
+      catch (e) {
+        console.error(e);
+      }
+    };
   
 
   ////////////////////////////////////////////
@@ -224,8 +203,12 @@ function App() {
   ////////////////////////////////////////////
 
   return (
-    <LoginContext.Provider value={{loginEvent, logoutEvent, loginData, setLoginData, isLogin}}>
-      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, boardItemLoad, data, setData, setTimeinfo, boardUpdate}}>
+
+    <FirebaseContext.Provider value={{auth, fireStoreDB}}>
+    <LoginContext.Provider value={{isLogin}}>
+
+
+      <DatebaseContext.Provider value={{boardCreate, dailyRecordData, setDailyRecordData, boardLoad, boardItemLoad, data, setData, setTimeinfo, boardUpdate, boardDelete}}>
         <div className='app'>
           <AppMenu/>
           <Routes>
@@ -239,7 +222,10 @@ function App() {
           </Routes>
         </div>
       </DatebaseContext.Provider>
+
+
     </LoginContext.Provider>
+    </FirebaseContext.Provider>
   );
 };
 

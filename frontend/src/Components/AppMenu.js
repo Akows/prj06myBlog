@@ -2,13 +2,29 @@ import '../styles/AppMenu.css';
 import '../ResetStyle.css';
 
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { LoginContext } from '../App';
+import { FirebaseContext, LoginContext } from '../App';
+
+import { signOut } from 'firebase/auth';
 
 const AppMenu = () => {
 
+    const firebaseContext = useContext(FirebaseContext);
     const loginContext = useContext(LoginContext);
+
+    const navigate = useNavigate();
+
+    const logoutEvent = () => {
+        signOut(firebaseContext.auth)
+        .then(() => {
+            alert('로그아웃 되었습니다.');
+            navigate('/', { replace: true });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    };
 
     return (
         <div className='appmenu'>
@@ -34,7 +50,7 @@ const AppMenu = () => {
 
                 {loginContext.isLogin ? 
                     <>
-                        <div className='appmenuatag' onClick={loginContext.logoutEvent}>
+                        <div className='appmenuatag' onClick={logoutEvent}>
                             <p>로그아웃</p>
 
                             <div className='usericon'/>
