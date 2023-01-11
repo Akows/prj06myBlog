@@ -4,7 +4,7 @@ import '../ResetStyle.css';
 import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { FirebaseContext } from '../App';
-import { collection, getDocs, query, where } from 'firebase/firestore';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 
 const DailyRecord = () => {
 
@@ -20,7 +20,7 @@ const DailyRecord = () => {
         try {
             const collectionRef = collection(firebaseContext.fireStoreDB, 'DailyRecord');
 
-            const querys = query(collectionRef, where('Create_Month', '==', choiceMonth)); 
+            const querys = query(collectionRef, where('Create_Month', '==', choiceMonth), orderBy('Create_date', 'desc')); 
 
             const querySnapshot = await getDocs(querys);
 
@@ -41,17 +41,11 @@ const DailyRecord = () => {
         titleElement.innerHTML = '일일기록';
 
         boardListLoad(choiceMonth);
-
-        console.log('load');
         // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
-        setData([]);
-
         boardListLoad(choiceMonth);
-
-        console.log('reload');
         // eslint-disable-next-line
     }, [choiceMonth]);
 
