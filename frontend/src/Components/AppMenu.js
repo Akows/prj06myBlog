@@ -1,7 +1,7 @@
 import '../styles/AppMenu.css';
 import '../ResetStyle.css';
 
-import { useContext } from 'react';
+import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { FirebaseContext, LoginContext } from '../App';
@@ -72,4 +72,4 @@ const AppMenu = () => {
     );
 };
 
-export default AppMenu;
+export default React.memo(AppMenu);
