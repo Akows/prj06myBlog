@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { FirebaseContext } from '../App';
 
-import { doc, getDoc } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 
 const RecordItem = () => {
 
@@ -28,6 +28,18 @@ const RecordItem = () => {
         } 
         catch (error) {
             console.log(error);  
+        }
+    };
+
+    const boardDelete = async (id) => {
+        try {
+            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+            await deleteDoc(docRef);
+            alert('글이 삭제되었습니다.');
+            navigate('/dailyrecord', { replace: true });
+        } 
+        catch (error) {
+            console.error(error);
         }
     };
 
@@ -56,7 +68,7 @@ const RecordItem = () => {
                     </div>
 
                     <div className='recorditemwritebtu'>
-                        <div className='deleteicon'/>
+                        <div className='deleteicon' onClick={() => {boardDelete(id)}}/>
                         <div className='updateicon' onClick={() => {navigate(`/recordeditor/${id}`)}}/>
                     </div>
 

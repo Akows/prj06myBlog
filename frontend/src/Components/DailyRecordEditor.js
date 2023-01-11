@@ -6,7 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { FirebaseContext, LoginContext } from '../App';
 
-import { addDoc, collection, increment } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const RecordEditor = () => {
 
@@ -19,15 +19,32 @@ const RecordEditor = () => {
 
     const [isUpdate, setIsUpdate] = useState(false);
 
+    const [data, setData] = useState([]);
+
     const [inputRecordData, setInputRecordData] = useState({
         Title: '',
         Text: ''
     });
 
+    const boardLoad = async (id) => {
+        try {
+            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+            const docSnap = await getDoc(docRef);
+            setData(docSnap.data());
+
+            setInputRecordData({
+                Title: docSnap.data().Title,
+                Text: docSnap.data().Text
+            });
+        } 
+        catch (error) {
+            console.log(error);  
+        }
+    };
+
     const boardCreate = async () => {
         try {
             await addDoc(collection(firebaseContext.fireStoreDB, 'DailyRecord'), {
-                Item_Number: increment(1),
                 Title: inputRecordData.Title,
                 Text: inputRecordData.Text,
                 Create_date: loginContext.Time.now,
@@ -42,6 +59,21 @@ const RecordEditor = () => {
         }
     };
 
+    const boardUpdate = async (id) => {
+        try {
+            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+            await setDoc(docRef, {
+                Title: inputRecordData.Title,
+                Text: inputRecordData.Text
+            }, { merge: true });
+            alert('글이 수정되었습니다.');
+            navigate('/dailyrecord', { replace: true });
+        } 
+        catch (error) {
+            console.error(error);
+        }
+    };
+
     const onChangeEvent = (event) => {
         setInputRecordData({
             ...inputRecordData,
@@ -49,14 +81,18 @@ const RecordEditor = () => {
         })
     };
 
-    const onSubmit = () => {
-        boardCreate();
-    };
-
-
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
-        titleElement.innerHTML = '글 작성/수정';
+        
+        if (id === 'write') {
+            titleElement.innerHTML = '글 작성하기';
+            setIsUpdate(false);
+        }
+        else {
+            titleElement.innerHTML = '글 수정하기';
+            setIsUpdate(true);
+            boardLoad(id);
+        }
 
         // eslint-disable-next-line
     }, []);
@@ -74,7 +110,7 @@ const RecordEditor = () => {
                         <div>
                             {isUpdate ? 
                                 <>
-                                    작성일은<p className='todaytime'>{''}</p>입니다.
+                                    작성일은<p className='todaytime'>{data.Create_date}</p>입니다.
                                 </>
                             : 
                                 <>
@@ -85,11 +121,11 @@ const RecordEditor = () => {
                     </div>
 
                     {isUpdate ? 
-                        <div className='recordeditorwritebtu' onClick={''}>
+                        <div className='recordeditorwritebtu' onClick={() => {boardUpdate(id)}}>
                             <div className='writeicon'/>
                         </div>
                     : 
-                        <div className='recordeditorwritebtu' onClick={onSubmit}>
+                        <div className='recordeditorwritebtu' onClick={() => {boardCreate()}}>
                             <div className='writeicon'/>
                         </div>
                     }

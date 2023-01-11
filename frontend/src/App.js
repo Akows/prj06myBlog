@@ -2,11 +2,11 @@ import './App.css';
 import './ResetStyle.css';
 
 import React, { useEffect, useState } from 'react';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { initializeApp } from 'firebase/app';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs, getDoc, doc, deleteDoc } from 'firebase/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 import AppMenu from './components/AppMenu';
 
