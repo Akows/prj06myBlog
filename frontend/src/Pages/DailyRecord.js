@@ -74,7 +74,7 @@ const DailyRecord = () => {
 
                     </div>
 
-                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/recordeditor/write');}}>
+                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/dailyrecordeditor/write');}}>
                         <div className='writeicon'/>
                     </div>
 
@@ -82,7 +82,7 @@ const DailyRecord = () => {
 
                 <div className='dailyrecorditems'>
                     {data.map((item) => (
-                        <div className='dailyrecorditem' key={item.id} onClick={() => {navigate(`/recorditem/${item.id}`)}}>
+                        <div className='dailyrecorditem' key={item.id} onClick={() => {navigate(`/dailyrecorditem/${item.id}`)}}>
                             <p>{item.Create_date}</p> <p>{item.Title}</p>
                         </div>
                     ))}

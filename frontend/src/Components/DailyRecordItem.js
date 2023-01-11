@@ -85,9 +85,7 @@ const RecordItem = () => {
                 ID: id
             });
             alert('댓글이 작성되었습니다.');
-            window.location.replace(`/recorditem/${id}`);
-
-            // navigate(`/recorditem/${id}`, { replace: true });
+            window.location.replace(`/dailyrecorditem/${id}`);
         } 
         catch (error) {
             console.error(error);
@@ -121,7 +119,7 @@ const RecordItem = () => {
 
                     <div className='recorditemwritebtu'>
                         <div className='deleteicon' onClick={() => {boardDelete(id)}}/>
-                        <div className='updateicon' onClick={() => {navigate(`/recordeditor/${id}`)}}/>
+                        <div className='updateicon' onClick={() => {navigate(`/dailyrecordeditor/${id}`)}}/>
                     </div>
 
                 </div>
