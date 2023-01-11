@@ -27,7 +27,6 @@ function App() {
   ////////////////////////////////////////////
 
   // 구글 파이어베이스.
-
   // 설정값.
   const firebaseConfig = {
     apiKey: 'AIzaSyC8RSSUpHwD6gU_Om4Iyjlk_JnduE_VzPQ',
@@ -46,7 +45,6 @@ function App() {
 
   ////////////////////////////////////////////
 
-  // 로그인 상태.
   const [isLogin, setIsLogin] = useState(false);
   const [whoLogin, setWhoLogin] = useState('');
 
@@ -66,43 +64,6 @@ function App() {
   
   ////////////////////////////////////////////
 
-  // // 게시판 데이터 수정 함수. 
-  // const boardUpdate = async (id) => {
-  //   try {
-  //     await addDoc(collection(fireStoreDB, 'DailyRecord'), {
-  //       Create_date: setTimeinfo(),
-  //       Title: dailyRecordData.Title,
-  //       Text: dailyRecordData.Text,
-  //       Writer: isLogin.email
-  //     });
-  //     alert('글이 수정되었습니다.');
-  //     navigate('/', { replace: true });
-  //   } 
-  //   catch (e) {
-  //     console.error(e);
-  //   }
-  // };
-
-  //   // 게시판 데이터 삭제 함수. 
-  //   const boardDelete = async (id) => {
-  //     try {
-  //       await deleteDoc(doc(fireStoreDB, 'DailyRecord', id));
-  //       alert('글이 삭제되었습니다.');
-  //       navigate('/', { replace: true });
-  //     } 
-  //     catch (e) {
-  //       console.error(e);
-  //     }
-  //   };
-  
-
-  ////////////////////////////////////////////
-  ////////////////////////////////////////////
-
-  // Lifecycle - useEffect().
-  // Lifecycle - useEffect().
-
-  // 페이지 진입 후 1회만 실행. 로그인 유효 여부를 확인.
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -116,7 +77,6 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
-  ////////////////////////////////////////////
   ////////////////////////////////////////////
 
   return (
