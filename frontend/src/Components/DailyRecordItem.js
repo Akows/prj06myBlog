@@ -8,7 +8,7 @@ import { FirebaseContext, LoginContext } from '../App';
 
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 
-const RecordItem = () => {
+const DailyRecordItem = () => {
 
     const navigate = useNavigate();
 
@@ -36,7 +36,17 @@ const RecordItem = () => {
 
             const docSnap = await getDoc(docRef);
 
-            setData(docSnap.data());
+            // 줄 바꿈 인식 문제 해결하던 방법.
+            // pre 태그로 문제를 해결하여 사용하지 않지만, 기록을 위해 남겨둠.
+            // var replaceBr =  docSnap.data().Text.replaceAll('\n', '');
+
+            setData({
+                Create_Month: docSnap.data().Create_Month,
+                Create_date: docSnap.data().Create_date,
+                Text: docSnap.data().Text,
+                Title: docSnap.data().Title,
+                Writer: docSnap.data().Writer,
+            });
         } 
         catch (error) {
             console.log(error);  
@@ -132,12 +142,6 @@ const RecordItem = () => {
                             </div>
                         </>
                     }
-
-
-
-
-
-
                 </div>
 
                 <div className='recorditemitems'>
@@ -146,7 +150,13 @@ const RecordItem = () => {
                     </div>
 
                     <div className='recorditemitem recorditemtext'>
+                        {data.Text}
+
                         <p>{data.Text}</p>
+
+                        {/* <pre>{data.Text}</pre>
+
+                        <textarea className='recorditemout' value={data.Text}/> */}
                     </div>
                 </div>
 
@@ -170,4 +180,4 @@ const RecordItem = () => {
     );
 };
 
-export default RecordItem;
+export default DailyRecordItem;

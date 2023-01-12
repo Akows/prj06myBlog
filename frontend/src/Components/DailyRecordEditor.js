@@ -8,7 +8,7 @@ import { FirebaseContext, LoginContext } from '../App';
 
 import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
-const RecordEditor = () => {
+const DailyRecordEditor = () => {
 
     const { id } = useParams();
 
@@ -43,6 +43,10 @@ const RecordEditor = () => {
 
     const boardCreate = async () => {
         try {
+            // 줄 바꿈 인식 문제 해결하던 방법.
+            // pre 태그로 문제를 해결하여 사용하지 않지만, 기록을 위해 남겨둠.
+            // var replaceBr = inputRecordData.Text.replaceAll('\n', '\r\n');
+
             await addDoc(collection(firebaseContext.fireStoreDB, 'DailyRecord'), {
                 Title: inputRecordData.Title,
                 Text: inputRecordData.Text,
@@ -132,8 +136,8 @@ const RecordEditor = () => {
                 </div>
 
                 <div className='recordeditoritems'>
-                    <input name='Title' type='text' className='recordeditorinputtitle' placeholder='제목을 입력해주세요' value={inputRecordData.Title} onChange={onChangeEvent}/>
-                    <input name='Text' type='text' className='recordeditorinputtext' placeholder='본문을 입력해주세요' value={inputRecordData.Text} onChange={onChangeEvent}/>
+                    <input maxLength={50} name='Title' type='text' className='recordeditorinputtitle' placeholder='제목을 입력해주세요' value={inputRecordData.Title} onChange={onChangeEvent}/>
+                    <textarea name='Text' type='text' className='recordeditorinputtext' placeholder='본문을 입력해주세요' value={inputRecordData.Text} onChange={onChangeEvent}/>
                 </div>
 
             </div>
@@ -141,4 +145,4 @@ const RecordEditor = () => {
     );
 };
 
-export default RecordEditor;
+export default DailyRecordEditor;

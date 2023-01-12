@@ -139,7 +139,7 @@ const MyStudyRecordItem = () => {
                     </div>
 
                     <div className='recorditemitem recorditemtext'>
-                        <p>{data.Text}</p>
+                        <pre>{data.Text}</pre>
                     </div>
                 </div>
 

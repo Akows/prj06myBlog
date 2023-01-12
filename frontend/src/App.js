@@ -16,10 +16,10 @@ import MyStudyRecord from './pages/MyStudyRecord';
 import MyProject from './pages/MyProject';
 import Login from './pages/Login';
 
-import DailyRecordItem from './components/DailyRecordItem';
-import DailyRecordEditor from './components/DailyRecordEditor';
 import MyStudyRecordItem from './components/MyStudyRecordItem';
 import MyStudyRecordEditor from './components/MyStudyRecordEditor';
+import DailyRecordItem from './components/DailyRecordItem';
+import DailyRecordEditor from './components/DailyRecordEditor';
 
 export const FirebaseContext = React.createContext();
 export const LoginContext = React.createContext();
