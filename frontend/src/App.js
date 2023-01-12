@@ -90,7 +90,7 @@ function App() {
 
   return (
 
-    <FirebaseContext.Provider value={{fireStoreDB}}>
+    <FirebaseContext.Provider value={{auth, fireStoreDB}}>
       <LoginContext.Provider value={{isLogin, whoLogin, Time}}>
 
         <div className='app'>

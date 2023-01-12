@@ -20,22 +20,27 @@ const Login = () => {
     });
 
     const loginEvent = () => {
-        setPersistence(firebaseContext.auth, browserSessionPersistence)
-        .then(() => {
-            signInWithEmailAndPassword(firebaseContext.auth, inputLoginData.ID, inputLoginData.PWD)
+        try {
+            setPersistence(firebaseContext.auth, browserSessionPersistence)
             .then(() => {
-            alert('로그인 완료!');
-            navigate('/', { replace: true });
+                signInWithEmailAndPassword(firebaseContext.auth, inputLoginData.ID, inputLoginData.PWD)
+                .then(() => {
+                    alert('로그인 완료!');
+                    navigate('/', { replace: true });
+                })
+                .catch((error) => {
+                    alert('아이디 혹은 비밀번호를 확인해주세요.');
+                    navigate('/login', { replace: true });
+                    console.log(error.code, error.message);
+                });
             })
             .catch((error) => {
-            alert('아이디 혹은 비밀번호를 확인해주세요.');
-            navigate('/login', { replace: true });
-            console.log(error.code, error.message);
+                console.log(error.code, error.message);
             });
-        })
-        .catch((error) => {
-            console.log(error.code, error.message);
-        });
+        } 
+        catch (error) {
+            console.log(error);
+        }
     };
 
     const onChangeEvent = (event) => {
