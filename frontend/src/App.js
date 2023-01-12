@@ -66,16 +66,23 @@ function App() {
   
   ////////////////////////////////////////////
 
-  useEffect(() => {
+  const authStateCheck = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setWhoLogin(user.email);
         setIsLogin(true);
       }
       else {
+        setWhoLogin('익명');
         setIsLogin(false);
       }
     });
+  }
+
+  ////////////////////////////////////////////
+
+  useEffect(() => {
+    authStateCheck();
     // eslint-disable-next-line
   }, []);
 
@@ -83,7 +90,7 @@ function App() {
 
   return (
 
-    <FirebaseContext.Provider value={{auth, fireStoreDB}}>
+    <FirebaseContext.Provider value={{fireStoreDB}}>
       <LoginContext.Provider value={{isLogin, whoLogin, Time}}>
 
         <div className='app'>
