@@ -4,7 +4,7 @@ import '../ResetStyle.css';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { FirebaseContext } from '../App';
+import { FirebaseContext, LoginContext } from '../App';
 
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 
@@ -12,6 +12,7 @@ const DailyRecord = () => {
 
     const navigate = useNavigate();
     const firebaseContext = useContext(FirebaseContext);
+    const loginContext = useContext(LoginContext);
 
     const [data, setData] = useState([]);
     const [choiceMonth, setChoiceMonth] = useState(new Date().getMonth() + 1);
@@ -72,9 +73,19 @@ const DailyRecord = () => {
 
                     </div>
 
-                    <div className='dailyrecordwritebtu' onClick={() => {navigate('/dailyrecordeditor/write');}}>
-                        <div className='writeicon'/>
-                    </div>
+                    {loginContext.isLogin ? 
+                        <>
+                            <div className='dailyrecordwritebtu' onClick={() => {navigate('/dailyrecordeditor/write');}}>
+                                <div className='writeicon'/>
+                            </div>
+                        </>
+                    : 
+                        <>
+                            <div className='dailyrecordwritebtu' onClick={() => {alert('블로그 주인만 글을 작성할 수 있습니다.')}}>
+                                <div className='writeicon'/>
+                            </div>
+                        </>
+                    }
 
                 </div>
 

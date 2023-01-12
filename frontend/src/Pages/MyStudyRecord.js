@@ -4,13 +4,15 @@ import '../ResetStyle.css';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { FirebaseContext } from '../App';
+import { FirebaseContext, LoginContext } from '../App';
+
 import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 
 const MyStudyRecord = () => {
 
     const navigate = useNavigate();
     const firebaseContext = useContext(FirebaseContext);
+    const loginContext = useContext(LoginContext);
 
     const [data, setData] = useState([]);
     const [choiceType, setChoiceType] = useState('전체');
@@ -96,9 +98,19 @@ const MyStudyRecord = () => {
 
                     </div>
 
-                    <div className='mystudyrecordwritebtu' onClick={() => {navigate('/mystudyrecordeditor/write');}}>
-                        <div className='writeicon'/>
-                    </div>
+                    {loginContext.isLogin ? 
+                        <>
+                            <div className='mystudyrecordwritebtu' onClick={() => {navigate('/mystudyrecordeditor/write');}}>
+                                <div className='writeicon'/>
+                            </div>
+                        </>
+                    : 
+                        <>
+                            <div className='mystudyrecordwritebtu' onClick={() => {alert('블로그 주인만 글을 작성할 수 있습니다.')}}>
+                                <div className='writeicon'/>
+                            </div>
+                        </>
+                    }
 
                 </div>
 

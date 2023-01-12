@@ -107,7 +107,6 @@ const MyStudyRecordItem = () => {
             <div className='recorditemboard'>
 
                 <div className='recorditemutil'>
-
                     <div className='recorditemdesc'>
                         <div>
                             글 조회 페이지
@@ -117,11 +116,21 @@ const MyStudyRecordItem = () => {
                         </div>
                     </div>
 
-                    <div className='recorditemwritebtu'>
-                        <div className='deleteicon' onClick={() => {boardDelete(id)}}/>
-                        <div className='updateicon' onClick={() => {navigate(`/dailyrecordeditor/${id}`)}}/>
-                    </div>
-
+                    {loginContext.isLogin ? 
+                        <>
+                            <div className='recorditemwritebtu'>
+                                <div className='deleteicon' onClick={() => {boardDelete(id)}}/>
+                                <div className='updateicon' onClick={() => {navigate(`/mystudyrecordeditor/${id}`)}}/>
+                            </div>
+                        </>
+                    : 
+                        <>
+                            <div className='recorditemwritebtu'>
+                                <div className='deleteicon' onClick={() => {alert('블로그 주인만 글을 삭제할 수 있습니다.')}}/>
+                                <div className='updateicon' onClick={() => {alert('블로그 주인만 글을 수정할 수 있습니다.')}}/>
+                            </div>
+                        </>
+                    }
                 </div>
 
                 <div className='recorditemitems'>
