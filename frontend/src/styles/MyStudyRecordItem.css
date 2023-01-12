@@ -1,0 +1,328 @@
+.recorditem {
+    width: 1200px;
+    height: 100%;
+
+    margin-top: 90px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recorditemboard {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #7DA5E1;
+}
+
+.recorditemutil {
+    width: 90%;
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+    .recorditemdesc {
+        width: 80%;
+        height: 100px;
+
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }    
+        .recorditemdesc > div {
+            width: 50%;
+            height: 80px;
+
+            background-color: #dcdcdc;
+            border-radius: 5px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin: 3px;
+
+            font-family: 'bitbit';
+            font-size: 25px;
+        }    
+        .recorditemdesc > div:nth-child(1) {
+            font-size: 50px;
+        }   
+        .recorditemdesc > div:hover {
+            background-color: #bebebe;
+        }
+        .todaytime {
+            color: #E56D29;
+            margin: 5px;
+        }
+
+
+    .recorditemwritebtu {
+        width: 20%;
+        height: 100px;
+
+        margin-left: 20px;
+
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        font-family: 'bitbit';
+        font-size: 25px;
+    }
+        .deleteicon {
+            width: 64px;
+            height: 64px;
+
+            margin-right: 10px;
+    
+            background-image: url('../assets/delete.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            border-radius: 5px;
+        }
+        .deleteicon:hover {
+            background-color: #bebebe;
+        }
+        .updateicon {
+            width: 64px;
+            height: 64px;
+    
+            background-image: url('../assets/update.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+
+            border-radius: 5px;
+        }
+        .updateicon:hover {
+            background-color: #bebebe;
+        }
+
+.recorditemitems {
+    width: 90%;
+    height: 100%;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+    .recorditemtitle {
+        width: 90%;
+        height: 50px;
+    
+        margin-top: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+    }
+    .recorditemtext {
+        width: 90%;
+        height: 100%;
+    
+        margin-top: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+
+    }
+        .recorditemitem > p {
+            width: 100%;
+            height: 100%;
+
+            margin-top: 5px;
+            margin-left: 30px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+
+            font-family: 'bitbit';
+            font-size: 25px;
+        }
+
+    .recorditemitem:hover {
+        background-color: #dcdcdc;
+    }
+
+.recorditemcomments {
+    width: 90%;
+    height: 100%;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+    .recorditemcommenttext {
+        width: 90%;
+        height: 80px;
+
+        margin-top: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+
+        font-family: 'bitbit';
+        font-size: 25px;
+    }
+        .recorditemcommenttext > p {
+            margin-left: 30px;
+        }
+        .commentsinfo {
+            margin-top: 10px;
+            font-size: 20px;
+        }
+
+    .recorditemcommentutil {
+        width: 90%;
+        height: 50px;
+
+        margin-top: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+    }    
+        .recorditemcommentinput {
+            width: 90%;
+            height: 100%;
+
+            border: none;
+            border-radius: 5px;
+            background-color: #9DA5AB;
+
+            text-align: center;
+
+            font-family: 'bitbit';
+            font-size: 30px;
+        }
+        .commentsubmitbtu {
+            width: 100px;
+            height: 50px;
+
+            background-color: #BEC8CF;
+            border: none;
+            border-radius: 5px;
+
+            margin-left: 30px;
+            margin-right: 5px;
+
+            font-family: 'bitbit';
+            font-size: 25px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .commentsubmitbtu:hover {
+            background-color: #9DA5AB;
+        }
+
+
+
+
+@media screen and (max-width: 1200px) {
+    .recorditem {
+        width: 90%;
+    }
+
+    .recorditemdesc > div {
+        font-size: 120%;
+    }    
+
+    .recorditemdesc > div:nth-child(1) {
+        font-size: 200%;
+    }   
+}
+
+@media screen and (max-width: 900px) {
+    .recorditemwritebtu {
+        flex-direction: column;
+    }
+    .deleteicon {
+        width: 45px;
+        height: 45px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+    .updateicon {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .recorditemcommenttext {
+        height: 100%;
+    }
+    .recorditemcommenttext > p {
+        margin-top: 3px;
+        margin-bottom: 3px;
+        margin-left: 10px;
+    }
+    .recorditemcommentinput {
+        font-size: 20px;
+    }
+    .commentsubmitbtu {
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+    .writeicon {
+        width: 51px;
+        height: 51px;
+
+        background-size: 51px 51px;
+    }
+}

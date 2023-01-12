@@ -1,4 +1,4 @@
-import '../styles/DailyRecordEditor.css';
+import '../styles/MyStudyRecordEditor.css';
 import '../ResetStyle.css';
 
 import { useContext, useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ import { FirebaseContext, LoginContext } from '../App';
 
 import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
 
-const RecordEditor = () => {
+const MyStudyRecordEditor = () => {
 
     const { id } = useParams();
 
@@ -23,17 +23,20 @@ const RecordEditor = () => {
 
     const [inputRecordData, setInputRecordData] = useState({
         Title: '',
-        Text: ''
+        Text: '',
     });
+
+    const [inputRecordSelectData, setInputRecordSelectData] = useState('언어');
 
     const boardLoad = async (id) => {
         try {
-            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+            const docRef = doc(firebaseContext.fireStoreDB, 'MyStudyRecord', id);
             const docSnap = await getDoc(docRef);
             setData(docSnap.data());
             setInputRecordData({
                 Title: docSnap.data().Title,
-                Text: docSnap.data().Text
+                Text: docSnap.data().Text,
+                Type: docSnap.data().Type
             });
         } 
         catch (error) {
@@ -43,15 +46,15 @@ const RecordEditor = () => {
 
     const boardCreate = async () => {
         try {
-            await addDoc(collection(firebaseContext.fireStoreDB, 'DailyRecord'), {
+            await addDoc(collection(firebaseContext.fireStoreDB, 'MyStudyRecord'), {
                 Title: inputRecordData.Title,
                 Text: inputRecordData.Text,
                 Create_date: loginContext.Time.now,
-                Create_Month: loginContext.Time.month,
-                Writer: loginContext.whoLogin
+                Writer: loginContext.whoLogin,
+                Type: inputRecordSelectData
             });
             alert('글이 작성되었습니다.');
-            navigate('/dailyrecord', { replace: true });
+            navigate('/mystudyrecord', { replace: true });
         } 
         catch (error) {
             console.error(error);
@@ -60,13 +63,14 @@ const RecordEditor = () => {
 
     const boardUpdate = async (id) => {
         try {
-            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+            const docRef = doc(firebaseContext.fireStoreDB, 'MyStudyRecord', id);
             await setDoc(docRef, {
                 Title: inputRecordData.Title,
-                Text: inputRecordData.Text
+                Text: inputRecordData.Text,
+                Type: inputRecordSelectData
             }, { merge: true });
             alert('글이 수정되었습니다.');
-            navigate('/dailyrecord', { replace: true });
+            navigate('/mystudyrecord', { replace: true });
         } 
         catch (error) {
             console.error(error);
@@ -79,6 +83,15 @@ const RecordEditor = () => {
             [event.target.name] : event.target.value
         })
     };
+
+    const onChangeSelectEvent = (event) => {
+        setInputRecordSelectData(event.target.value);
+    };
+
+    const test = () => {
+        console.log(inputRecordData);
+        console.log(inputRecordSelectData);
+    }
 
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
@@ -132,6 +145,18 @@ const RecordEditor = () => {
                 </div>
 
                 <div className='recordeditoritems'>
+
+                    <div className='recordeditoritemsselect'>
+                        <select onChange={onChangeSelectEvent}>
+                            <option value='언어'>언어</option>
+                            <option value='리액트'>리액트</option>
+                            <option value='알고리즘'>알고리즘</option>
+                            <option value='프로젝트'>프로젝트</option>
+                        </select>
+                    </div>
+
+                    <div onClick={test}> dasdasd</div>
+
                     <input name='Title' type='text' className='recordeditorinputtitle' placeholder='제목을 입력해주세요' value={inputRecordData.Title} onChange={onChangeEvent}/>
                     <input name='Text' type='text' className='recordeditorinputtext' placeholder='본문을 입력해주세요' value={inputRecordData.Text} onChange={onChangeEvent}/>
                 </div>
@@ -141,4 +166,4 @@ const RecordEditor = () => {
     );
 };
 
-export default RecordEditor;
+export default MyStudyRecordEditor;

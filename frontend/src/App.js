@@ -18,6 +18,8 @@ import Login from './pages/Login';
 
 import DailyRecordItem from './components/DailyRecordItem';
 import DailyRecordEditor from './components/DailyRecordEditor';
+import MyStudyRecordItem from './components/MyStudyRecordItem';
+import MyStudyRecordEditor from './components/MyStudyRecordEditor';
 
 export const FirebaseContext = React.createContext();
 export const LoginContext = React.createContext();
@@ -46,7 +48,7 @@ function App() {
   ////////////////////////////////////////////
 
   const [isLogin, setIsLogin] = useState(false);
-  const [whoLogin, setWhoLogin] = useState('');
+  const [whoLogin, setWhoLogin] = useState('익명');
 
   ////////////////////////////////////////////
 
@@ -94,6 +96,8 @@ function App() {
             <Route path='/login' element={<Login/>}/>
             <Route path='/dailyrecorditem/:id' element={<DailyRecordItem/>}/>
             <Route path='/dailyrecordeditor/:id' element={<DailyRecordEditor/>}/>
+            <Route path='/mystudyrecorditem/:id' element={<MyStudyRecordItem/>}/>
+            <Route path='/mystudyrecordeditor/:id' element={<MyStudyRecordEditor/>}/>
           </Routes>
         </div>
 

@@ -13,10 +13,8 @@ const DailyRecord = () => {
     const navigate = useNavigate();
     const firebaseContext = useContext(FirebaseContext);
 
-    const month = new Date().getMonth() + 1;
-
     const [data, setData] = useState([]);
-    const [choiceMonth, setChoiceMonth] = useState(month);
+    const [choiceMonth, setChoiceMonth] = useState(new Date().getMonth() + 1);
 
     const boardListLoad = async (choiceMonth) => {
         try {

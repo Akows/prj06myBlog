@@ -1,17 +1,74 @@
 import '../styles/MyStudyRecord.css';
 import '../ResetStyle.css';
 
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
+
+import { FirebaseContext } from '../App';
+import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
 
 const MyStudyRecord = () => {
+
+    const navigate = useNavigate();
+    const firebaseContext = useContext(FirebaseContext);
+
+    const [data, setData] = useState([]);
+    const [choiceType, setChoiceType] = useState('전체');
+
+    const boardListLoad = async (choiceType) => {
+
+        if (choiceType === '전체') {
+            try {
+                const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
+    
+                const querys = query(collectionRef, orderBy('Create_date', 'desc')); 
+    
+                const querySnap = await getDocs(querys);
+    
+                const mappingData = querySnap.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+            
+                setData(mappingData);
+            } 
+            catch (error) {
+                console.log(error);
+            }
+        }
+        else {
+            try {
+                const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
+    
+                const querys = query(collectionRef, where('Type', '==', choiceType), orderBy('Create_date', 'desc')); 
+    
+                const querySnap = await getDocs(querys);
+    
+                const mappingData = querySnap.docs.map((doc) => ({
+                    id: doc.id,
+                    ...doc.data()
+                }));
+            
+                setData(mappingData);
+            } 
+            catch (error) {
+                console.log(error);
+            }
+        }
+    };
 
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
         titleElement.innerHTML = '공부기록';
+
+        boardListLoad(choiceType);
+        // eslint-disable-next-line
     }, []);
-    
-    const navigate = useNavigate();
+
+    useEffect(() => {
+        boardListLoad(choiceType);
+        // eslint-disable-next-line
+    }, [choiceType]);
 
     return (
         <div className='mystudyrecord'>
@@ -21,25 +78,25 @@ const MyStudyRecord = () => {
 
                     <div className='mystudyrecordpagenation'>
 
-                        <div>
+                        <div onClick={() => {setChoiceType('전체')}}>
                             전체
                         </div>
-                        <div>
+                        <div onClick={() => {setChoiceType('언어')}}>
                             언어
                         </div>
-                        <div>
+                        <div onClick={() => {setChoiceType('리액트')}}>
                             리액트
                         </div>
-                        <div>
+                        <div onClick={() => {setChoiceType('알고리즘')}}>
                             알고리즘
                         </div>
-                        <div>
+                        <div onClick={() => {setChoiceType('프로젝트')}}>
                             프로젝트
                         </div>
 
                     </div>
 
-                    <div className='mystudyrecordwritebtu' onClick={() => {navigate('/recordeditor');}}>
+                    <div className='mystudyrecordwritebtu' onClick={() => {navigate('/mystudyrecordeditor/write');}}>
                         <div className='writeicon'/>
                     </div>
 
@@ -47,59 +104,20 @@ const MyStudyRecord = () => {
 
                 <div className='mystudyrecorditems'>
 
-                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <div className='mystudyrecorditemicon'>
-                            <div className='jsicon'/>
-                        </div>
+                    {data.map((item) => (
+                        <div className='mystudyrecorditem' key={item.id} onClick={() => {navigate(`/mystudyrecorditem/${item.id}`);}}>
+                            <div className='mystudyrecorditemicon'>
+                                <div className={`${item.Type}_icon`}/>
+                            </div>
 
-                        <div className='mystudyrecorditemtitle'>
-                            <p>자바스크립트 - This</p>
+                            <div className='mystudyrecorditemtitle'>
+                                <p>{item.Type}</p>
+                                <p>{item.Title}</p>
+                            </div>
                         </div>
-                    </div>
-
-                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <div className='mystudyrecorditemicon'>
-                            <div className='algorithmicon'/>
-                        </div>
-
-                        <div className='mystudyrecorditemtitle'>
-                            <p>알고리즘 - 백준 자바스크립트 1246</p>
-                        </div>
-                    </div>
-
-                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <div className='mystudyrecorditemicon'>
-                            <div className='reacticon'/>
-                        </div>
-
-                        <div className='mystudyrecorditemtitle'>
-                            <p>리액트 - useStates</p>
-                        </div>
-                    </div>
-
-                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <div className='mystudyrecorditemicon'>
-                            <div className='jsicon'/>
-                        </div>
-
-                        <div className='mystudyrecorditemtitle'>
-                            <p>자바스크립트 - 클로저</p>
-                        </div>
-                    </div>
-
-                    <div className='mystudyrecorditem' onClick={() => {navigate('/recorditem');}}>
-                        <div className='mystudyrecorditemicon'>
-                            <div className='upcyclingicon'/>
-                        </div>
-
-                        <div className='mystudyrecorditemtitle'>
-                            <p>프로젝트 리메이크 - Prj03</p>
-                        </div>
-                    </div>
-
+                    ))}
 
                 </div>
-
             </div>
         </div>
     );

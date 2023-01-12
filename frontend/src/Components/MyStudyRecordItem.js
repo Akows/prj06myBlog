@@ -1,4 +1,4 @@
-import '../styles/DailyRecordItem.css';
+import '../styles/MyStudyRecordItem.css';
 import '../ResetStyle.css';
 
 import { useContext, useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ import { FirebaseContext, LoginContext } from '../App';
 
 import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 
-const RecordItem = () => {
+const MyStudyRecordItem = () => {
 
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const RecordItem = () => {
 
     const boardLoad = async (id) => {
         try {
-            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+            const docRef = doc(firebaseContext.fireStoreDB, 'MyStudyRecord', id);
 
             const docSnap = await getDoc(docRef);
 
@@ -45,7 +45,7 @@ const RecordItem = () => {
 
     const boardDelete = async (id) => {
         try {
-            const docRef = doc(firebaseContext.fireStoreDB, 'DailyRecord', id);
+            const docRef = doc(firebaseContext.fireStoreDB, 'MyStudyRecord', id);
             await deleteDoc(docRef);
             alert('글이 삭제되었습니다.');
             navigate('/dailyrecord', { replace: true });
@@ -85,7 +85,7 @@ const RecordItem = () => {
                 ID: id
             });
             alert('댓글이 작성되었습니다.');
-            window.location.replace(`/dailyrecorditem/${id}`);
+            window.location.replace(`/mystudyrecorditem/${id}`);
         } 
         catch (error) {
             console.error(error);
@@ -154,4 +154,4 @@ const RecordItem = () => {
     );
 };
 
-export default RecordItem;
+export default MyStudyRecordItem;
