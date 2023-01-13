@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { FirebaseContext, LoginContext } from '../App';
 
-import { collection, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { collection, getCountFromServer, getDocs, orderBy, query, where } from 'firebase/firestore';
 import Pagination from '../components/Pagenation';
 
 const MyStudyRecord = () => {
@@ -16,13 +16,13 @@ const MyStudyRecord = () => {
     const loginContext = useContext(LoginContext);
 
     const [data, setData] = useState([]);
-    const [sliceData, setSliceData] = useState([]);
+
+    const [dataLangth, setDataLangth] = useState(0);
 
     const [choiceType, setChoiceType] = useState('전체');
 
     const [currentPage, setCurrentPage] = useState(1);
     const postPerPage = 12;
-
     const lastItemIndex = currentPage * postPerPage; // 12
     const firstItemIndex = lastItemIndex - postPerPage; // 0
 
@@ -31,7 +31,6 @@ const MyStudyRecord = () => {
     }
 
     const boardListLoad = async (choiceType) => {
-
         if (choiceType === '전체') {
             try {
                 const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
@@ -39,13 +38,17 @@ const MyStudyRecord = () => {
                 const querys = query(collectionRef, orderBy('Create_date', 'desc')); 
     
                 const querySnap = await getDocs(querys);
-    
+
+                const getCounts = await getCountFromServer(querys);
+
+                setDataLangth(getCounts.data().count);
+
                 const mappingData = querySnap.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }));
             
-                setData(mappingData);
+                setData(mappingData.slice(firstItemIndex, lastItemIndex));
             } 
             catch (error) {
                 console.log(error);
@@ -58,13 +61,17 @@ const MyStudyRecord = () => {
                 const querys = query(collectionRef, where('Type', '==', choiceType), orderBy('Create_date', 'desc')); 
     
                 const querySnap = await getDocs(querys);
+
+                const getCounts = await getCountFromServer(querys);
+
+                setDataLangth(getCounts.data().count);
     
                 const mappingData = querySnap.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }));
             
-                setData(mappingData);
+                setData(mappingData.slice(firstItemIndex, lastItemIndex));
             } 
             catch (error) {
                 console.log(error);
@@ -77,13 +84,11 @@ const MyStudyRecord = () => {
         titleElement.innerHTML = '공부기록';
 
         boardListLoad(choiceType);
-        setSliceData(data.slice(firstItemIndex, lastItemIndex));
         // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
         boardListLoad(choiceType);
-        setSliceData(data.slice(firstItemIndex, lastItemIndex));
         // eslint-disable-next-line
     }, [choiceType, currentPage]);
 
@@ -131,7 +136,7 @@ const MyStudyRecord = () => {
 
                 <div className='mystudyrecorditems'>
 
-                    {sliceData.map((item) => (
+                    {data.map((item) => (
                         <div className='mystudyrecorditem' key={item.id} onClick={() => {navigate(`/mystudyrecorditem/${item.id}`);}}>
                             <div className='mystudyrecorditemicon'>
                                 <div className={`${item.Type}_icon`}/>
@@ -148,7 +153,7 @@ const MyStudyRecord = () => {
 
                 <Pagination 
                     postsPerPage={postPerPage} 
-                    totalPosts={data.length}
+                    totalPosts={dataLangth}
                     paginate={paginate}
                 />
 
