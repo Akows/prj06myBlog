@@ -150,13 +150,13 @@ const DailyRecordItem = () => {
                     </div>
 
                     <div className='recorditemitem recorditemtext'>
-                        {data.Text}
+                        {/* {data.Text} */}
 
-                        <p>{data.Text}</p>
+                        {/* <p>{data.Text}</p> */}
 
-                        {/* <pre>{data.Text}</pre>
+                        <pre>{data.Text}</pre>
 
-                        <textarea className='recorditemout' value={data.Text}/> */}
+                        {/* <textarea className='recorditemout' value={data.Text}/> */}
                     </div>
                 </div>
 
