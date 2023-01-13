@@ -88,11 +88,6 @@ const MyStudyRecordEditor = () => {
         setInputRecordSelectData(event.target.value);
     };
 
-    const test = () => {
-        console.log(inputRecordData);
-        console.log(inputRecordSelectData);
-    }
-
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
         
@@ -154,8 +149,6 @@ const MyStudyRecordEditor = () => {
                             <option value='프로젝트'>프로젝트</option>
                         </select>
                     </div>
-
-                    <div onClick={test}> dasdasd</div>
 
                     <input maxLength={50} name='Title' type='text' className='recordeditorinputtitle' placeholder='제목을 입력해주세요' value={inputRecordData.Title} onChange={onChangeEvent}/>
                     <textarea name='Text' type='text' className='recordeditorinputtext' placeholder='본문을 입력해주세요' value={inputRecordData.Text} onChange={onChangeEvent}/>
