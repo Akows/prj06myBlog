@@ -17,7 +17,7 @@ const MyStudyRecord = () => {
 
     const [data, setData] = useState([]);
 
-    const [dataLangth, setDataLangth] = useState(0);
+    const [recordLangth, setRecordLangth] = useState(0);
 
     const [choiceType, setChoiceType] = useState('전체');
 
@@ -41,7 +41,7 @@ const MyStudyRecord = () => {
 
                 const getCounts = await getCountFromServer(querys);
 
-                setDataLangth(getCounts.data().count);
+                setRecordLangth(getCounts.data().count);
 
                 const mappingData = querySnap.docs.map((doc) => ({
                     id: doc.id,
@@ -64,7 +64,7 @@ const MyStudyRecord = () => {
 
                 const getCounts = await getCountFromServer(querys);
 
-                setDataLangth(getCounts.data().count);
+                setRecordLangth(getCounts.data().count);
     
                 const mappingData = querySnap.docs.map((doc) => ({
                     id: doc.id,
@@ -153,7 +153,7 @@ const MyStudyRecord = () => {
 
                 <Pagination 
                     postsPerPage={postPerPage} 
-                    totalPosts={dataLangth}
+                    totalPosts={recordLangth}
                     paginate={paginate}
                 />
 
