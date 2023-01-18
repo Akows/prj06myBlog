@@ -6,42 +6,42 @@ import { useNavigate } from 'react-router-dom';
 
 import { FirebaseContext, LoginContext } from '../App';
 
-import { collection, getCountFromServer, getDocs, orderBy, query, where } from 'firebase/firestore';
+import { collection, getCountFromServer, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
 import Pagination from '../components/Pagenation';
 
 const MyStudyRecord = () => {
 
     const navigate = useNavigate();
+
     const firebaseContext = useContext(FirebaseContext);
     const loginContext = useContext(LoginContext);
 
     const [data, setData] = useState([]);
 
-    const [recordLangth, setRecordLangth] = useState(0);
+    const [dataLangth, setDataLangth] = useState(0);
 
     const [choiceType, setChoiceType] = useState('전체');
 
+    const [itemsPerPage, setItemsPerPage] = useState(12); 
     const [currentPage, setCurrentPage] = useState(1);
+    const [firstDoc, setFirstDoc] = useState([]);
+    const [lastDoc, setLastDoc] = useState([]);
+
+
+
+    
     const postPerPage = 12;
     const lastItemIndex = currentPage * postPerPage; // 12
     const firstItemIndex = lastItemIndex - postPerPage; // 0
 
-    const paginate = (pageNumber) => {
-        setCurrentPage(pageNumber);
-    }
 
     const boardListLoad = async (choiceType) => {
         if (choiceType === '전체') {
             try {
                 const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
-    
                 const querys = query(collectionRef, orderBy('Create_date', 'desc')); 
     
                 const querySnap = await getDocs(querys);
-
-                const getCounts = await getCountFromServer(querys);
-
-                setRecordLangth(getCounts.data().count);
 
                 const mappingData = querySnap.docs.map((doc) => ({
                     id: doc.id,
@@ -57,15 +57,10 @@ const MyStudyRecord = () => {
         else {
             try {
                 const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
-    
                 const querys = query(collectionRef, where('Type', '==', choiceType), orderBy('Create_date', 'desc')); 
     
                 const querySnap = await getDocs(querys);
 
-                const getCounts = await getCountFromServer(querys);
-
-                setRecordLangth(getCounts.data().count);
-    
                 const mappingData = querySnap.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
@@ -79,18 +74,53 @@ const MyStudyRecord = () => {
         }
     };
 
+    const setRecordLangth = async () => {
+        const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
+        const querys = query(collectionRef, orderBy('Create_date', 'desc')); 
+
+        const getCounts = await getCountFromServer(querys);
+
+        setDataLangth(getCounts.data().count);
+    };
+
+    const setPagenationValue = async () => {
+        const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
+        const querys = query(collectionRef, orderBy('Create_date', 'desc'), limit(itemsPerPage)); 
+
+        const documentSnapshots = await getDocs(querys);
+
+        setFirstDoc(documentSnapshots.docs[0]);
+        setLastDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+    };
+
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
         titleElement.innerHTML = '공부기록';
 
         boardListLoad(choiceType);
+
+        setRecordLangth();
+        setPagenationValue();
         // eslint-disable-next-line
     }, []);
 
     useEffect(() => {
         boardListLoad(choiceType);
+
+        setRecordLangth();
+        setPagenationValue()
         // eslint-disable-next-line
     }, [choiceType, currentPage]);
+
+
+
+    const setItemPerPageCount = (event) => {
+        setItemsPerPage(event.target.value);
+    };
+
+    const setPageNumber = (pagenumber) => {
+        setCurrentPage(pagenumber);
+    }
 
     return (
         <div className='mystudyrecord'>
@@ -134,6 +164,17 @@ const MyStudyRecord = () => {
 
                 </div>
 
+                <div className='pagenationutil'>
+                    <div className='recordeditoritemsselect'>
+                        <select onChange={setItemPerPageCount}>
+                            <option value={4}>4개씩</option>
+                            <option value={8}>8개씩</option>
+                            <option value={12}>12개씩</option>
+                            <option value={16}>16개씩</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div className='mystudyrecorditems'>
 
                     {data.map((item) => (
@@ -152,9 +193,9 @@ const MyStudyRecord = () => {
                 </div>
 
                 <Pagination 
-                    postsPerPage={postPerPage} 
-                    totalPosts={recordLangth}
-                    paginate={paginate}
+                    postsPerPage={itemsPerPage} 
+                    totalPosts={dataLangth}
+                    paginate={setPageNumber}
                 />
 
             </div>

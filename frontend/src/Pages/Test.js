@@ -124,7 +124,39 @@ const Test = () => {
         console.log(mappingData);
     };
 
+    const queryPageLast = async () => {
+        console.log('queryPageLast active.');
 
+        // collection 특정, query문 날리기. 
+        const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
+        const querys = query(collectionRef, orderBy('Create_date', 'desc')); 
+
+        // 해당하는 Docs 모두 가져오기.
+        const documentSnapshots = await getDocs(querys);
+
+        // 처음과 마지막에 해당하는 Docs의 값을 계산하여 set.
+
+        console.log((documentSnapshots.docs.length - 1) - itemsPerPage);
+        console.log(documentSnapshots.docs.length - 1);
+
+        setFirstDoc(documentSnapshots.docs[(documentSnapshots.docs.length - 1) - itemsPerPage]);
+        setLastDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+
+        // 마지막에 해당하는 Docs의 값을 기준으로 그 이후 Docs를 가져오는 쿼리문.
+        const nextDocsQuery = query(collectionRef, orderBy('Create_date', 'asc'), startAfter(lastDoc), limit(itemsPerPage));
+
+        // 해당하는 Docs 모두 가져오기.
+        const nextDocumentSnapshots = await getDocs(nextDocsQuery);
+
+        // 받아온 Docs를 map 함수를 이용하여 배열에 풀어놓기.
+        const mappingData = nextDocumentSnapshots.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        // 풀려진 Docs를 출력.
+        console.log(mappingData);
+    };
 
 
 
@@ -232,6 +264,12 @@ const Test = () => {
                 </button>
                 <button onClick={queryPageNext}>
                     queryPageNext
+                </button>
+
+                <br/>
+
+                <button onClick={queryPageLast}>
+                    queryPageLast
                 </button>
 
                 <br/>
