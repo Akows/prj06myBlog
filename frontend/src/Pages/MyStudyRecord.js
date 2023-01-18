@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { FirebaseContext, LoginContext } from '../App';
 
-import { collection, getCountFromServer, getDocs, limit, orderBy, query, where } from 'firebase/firestore';
+import { collection, getCountFromServer, getDocs, limit, orderBy, query, startAt, where } from 'firebase/firestore';
 import Pagination from '../components/Pagenation';
 
 const MyStudyRecord = () => {
@@ -24,8 +24,11 @@ const MyStudyRecord = () => {
 
     const [itemsPerPage, setItemsPerPage] = useState(12); 
     const [currentPage, setCurrentPage] = useState(1);
-    const [firstDoc, setFirstDoc] = useState([]);
-    const [lastDoc, setLastDoc] = useState([]);
+    const [axisDoc, setAxisDoc] = useState([]);
+
+    const lastIndex = currentPage * itemsPerPage;
+
+
 
 
 
@@ -83,14 +86,13 @@ const MyStudyRecord = () => {
         setDataLangth(getCounts.data().count);
     };
 
-    const setPagenationValue = async () => {
+    const setPagenationAxis = async () => {
         const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
         const querys = query(collectionRef, orderBy('Create_date', 'desc'), limit(itemsPerPage)); 
 
         const documentSnapshots = await getDocs(querys);
 
-        setFirstDoc(documentSnapshots.docs[0]);
-        setLastDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+        setAxisDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
     };
 
     useEffect(() => {
@@ -100,7 +102,7 @@ const MyStudyRecord = () => {
         boardListLoad(choiceType);
 
         setRecordLangth();
-        setPagenationValue();
+        setPagenationAxis();
         // eslint-disable-next-line
     }, []);
 
@@ -108,9 +110,9 @@ const MyStudyRecord = () => {
         boardListLoad(choiceType);
 
         setRecordLangth();
-        setPagenationValue()
+        setPagenationAxis();
         // eslint-disable-next-line
-    }, [choiceType, currentPage]);
+    }, [choiceType]);
 
 
 
@@ -118,8 +120,26 @@ const MyStudyRecord = () => {
         setItemsPerPage(event.target.value);
     };
 
-    const setPageNumber = (pagenumber) => {
+    const setPageNumber = async (pagenumber) => {
         setCurrentPage(pagenumber);
+
+        console.log(currentPage);
+
+        const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
+        const docsQuery = query(collectionRef, orderBy('Create_date', 'desc'), startAt(axisDoc[lastIndex]), limit(itemsPerPage));
+
+        const documentSnapshots = await getDocs(docsQuery);
+
+        setAxisDoc(documentSnapshots[documentSnapshots.docs.length - 1]);
+
+
+
+        const mappingData = documentSnapshots.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        console.log(mappingData);
     }
 
     return (
