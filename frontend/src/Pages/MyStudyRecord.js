@@ -24,7 +24,8 @@ const MyStudyRecord = () => {
 
     const [itemsPerPage, setItemsPerPage] = useState(12); 
     const [currentPage, setCurrentPage] = useState(1);
-    const [axisDoc, setAxisDoc] = useState([]);
+    const [firstDoc, setFirstDoc] = useState([]);
+    const [lastDoc, setLastDoc] = useState([]);
 
     const lastIndex = currentPage * itemsPerPage;
 
@@ -86,13 +87,14 @@ const MyStudyRecord = () => {
         setDataLangth(getCounts.data().count);
     };
 
-    const setPagenationAxis = async () => {
+    const setPagenationAxis = async (currentPage) => {
         const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
         const querys = query(collectionRef, orderBy('Create_date', 'desc'), limit(itemsPerPage)); 
 
         const documentSnapshots = await getDocs(querys);
 
-        setAxisDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+        setFirstDoc(documentSnapshots.docs[0]);
+        setLastDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
     };
 
     useEffect(() => {
@@ -102,7 +104,7 @@ const MyStudyRecord = () => {
         boardListLoad(choiceType);
 
         setRecordLangth();
-        setPagenationAxis();
+        setPagenationAxis(currentPage);
         // eslint-disable-next-line
     }, []);
 
@@ -110,7 +112,7 @@ const MyStudyRecord = () => {
         boardListLoad(choiceType);
 
         setRecordLangth();
-        setPagenationAxis();
+        setPagenationAxis(currentPage);
         // eslint-disable-next-line
     }, [choiceType]);
 
@@ -122,24 +124,6 @@ const MyStudyRecord = () => {
 
     const setPageNumber = async (pagenumber) => {
         setCurrentPage(pagenumber);
-
-        console.log(currentPage);
-
-        const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
-        const docsQuery = query(collectionRef, orderBy('Create_date', 'desc'), startAt(axisDoc[lastIndex]), limit(itemsPerPage));
-
-        const documentSnapshots = await getDocs(docsQuery);
-
-        setAxisDoc(documentSnapshots[documentSnapshots.docs.length - 1]);
-
-
-
-        const mappingData = documentSnapshots.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data()
-        }));
-
-        console.log(mappingData);
     }
 
     return (
