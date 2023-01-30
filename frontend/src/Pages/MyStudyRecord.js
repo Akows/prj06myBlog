@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { FirebaseContext, LoginContext } from '../App';
 
-import { collection, getCountFromServer, getDocs, limit, orderBy, query, startAt, where } from 'firebase/firestore';
+import { collection, getCountFromServer, getDocs, orderBy, query, where } from 'firebase/firestore';
 import Pagination from '../components/Pagenation';
 
 const MyStudyRecord = () => {
@@ -24,20 +24,12 @@ const MyStudyRecord = () => {
 
     const [itemsPerPage, setItemsPerPage] = useState(12); 
     const [currentPage, setCurrentPage] = useState(1);
-    const [firstDoc, setFirstDoc] = useState([]);
-    const [lastDoc, setLastDoc] = useState([]);
+    // const [firstDoc, setFirstDoc] = useState([]);
+    // const [lastDoc, setLastDoc] = useState([]);
+    // const lastIndex = currentPage * itemsPerPage;
 
-    const lastIndex = currentPage * itemsPerPage;
-
-
-
-
-
-    
-    const postPerPage = 12;
-    const lastItemIndex = currentPage * postPerPage; // 12
-    const firstItemIndex = lastItemIndex - postPerPage; // 0
-
+    const lastItemIndex = currentPage * itemsPerPage; // 12
+    const firstItemIndex = lastItemIndex - itemsPerPage; // 0
 
     const boardListLoad = async (choiceType) => {
         if (choiceType === '전체') {
@@ -87,15 +79,15 @@ const MyStudyRecord = () => {
         setDataLangth(getCounts.data().count);
     };
 
-    const setPagenationAxis = async (currentPage) => {
-        const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
-        const querys = query(collectionRef, orderBy('Create_date', 'desc'), limit(itemsPerPage)); 
+    // const setPagenationAxis = async (currentPage) => {
+    //     const collectionRef = collection(firebaseContext.fireStoreDB, 'MyStudyRecord');
+    //     const querys = query(collectionRef, orderBy('Create_date', 'desc'), limit(itemsPerPage)); 
 
-        const documentSnapshots = await getDocs(querys);
+    //     const documentSnapshots = await getDocs(querys);
 
-        setFirstDoc(documentSnapshots.docs[0]);
-        setLastDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
-    };
+    //     setFirstDoc(documentSnapshots.docs[0]);
+    //     setLastDoc(documentSnapshots.docs[documentSnapshots.docs.length - 1]);
+    // };
 
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
@@ -104,7 +96,7 @@ const MyStudyRecord = () => {
         boardListLoad(choiceType);
 
         setRecordLangth();
-        setPagenationAxis(currentPage);
+        // setPagenationAxis(currentPage);
         // eslint-disable-next-line
     }, []);
 
@@ -112,9 +104,9 @@ const MyStudyRecord = () => {
         boardListLoad(choiceType);
 
         setRecordLangth();
-        setPagenationAxis(currentPage);
+        // setPagenationAxis(currentPage);
         // eslint-disable-next-line
-    }, [choiceType]);
+    }, [choiceType, itemsPerPage, currentPage]);
 
 
 
