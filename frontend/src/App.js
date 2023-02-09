@@ -21,6 +21,7 @@ import MyStudyRecordEditor from './components/MyStudyRecordEditor';
 import DailyRecordItem from './components/DailyRecordItem';
 import DailyRecordEditor from './components/DailyRecordEditor';
 import Test from './pages/Test';
+import Test2 from './pages/Test2';
 
 export const FirebaseContext = React.createContext();
 export const LoginContext = React.createContext();
@@ -108,6 +109,7 @@ function App() {
             <Route path='/mystudyrecordeditor/:id' element={<MyStudyRecordEditor/>}/>
 
             <Route path='/test' element={<Test/>}/>
+            <Route path='/test2' element={<Test2/>}/>
           </Routes>
         </div>
 
