@@ -233,7 +233,7 @@ const Test = () => {
         <div className='home'>
 
             <div className='hometitle'>
-                <p>개발용 테스트 페이지.</p>
+                <p>개발용 테스트 페이지. ,</p>
 
                 <br/>
                 <br/>
