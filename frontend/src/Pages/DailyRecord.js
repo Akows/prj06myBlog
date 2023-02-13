@@ -65,7 +65,7 @@ const DailyRecord = () => {
                             12월 
                         </div>
                         <div className={'month'} onClick={() => {setChoiceMonth(1)}}>
-                            <p className='year'>2023.</p>1월
+                            <p className='year'>2023.</p>1월1
                         </div>
                         <div className={'month'} onClick={() => {setChoiceMonth(2)}}>
                             2월
