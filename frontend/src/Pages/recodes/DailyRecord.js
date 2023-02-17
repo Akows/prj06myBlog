@@ -16,6 +16,8 @@ export default function DailyRecord () {
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
         titleElement.innerHTML = '일일기록'
+        
+        // console.log(user);
     }, []);
 
     return (

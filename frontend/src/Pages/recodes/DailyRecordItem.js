@@ -27,19 +27,30 @@ const DailyRecordItem = () => {
     };
 
     const onUpdate = () => {
-        if (response.document?.writer === user.displayName) {
-            navigate(`/recordeditor/${id}`);
+        if (user) {
+            if (response.document?.writer === user.displayName) {
+                navigate(`/recordeditor/${id}`);
+            }
+            else {
+                alert('본인이 작성한 글만 수정할 수 있습니다.');
+            }
+
         }
         else {
             alert('본인이 작성한 글만 수정할 수 있습니다.');
         }
     };
     const onDelete = () => {
-        if (response.document?.writer === user.displayName) {
-            deleteDocument(id);
+        if (user) {
+            if (response.document?.writer === user.displayName) {
+                deleteDocument(id);
+            }
+            else {
+                alert('본인이 작성한 글만 삭제할 수 있습니다.');
+            }
         }
         else {
-            alert('본인이 작성한 글만 삭제할 수 있습니다.');
+            alert('본인이 작성한 글만 수정할 수 있습니다.');
         }
     };
 
@@ -54,6 +65,12 @@ const DailyRecordItem = () => {
     }, []);
 
     useEffect(() => {
+        console.log(response.document?.writer);
+
+        // if (user) {
+        //     console.log(user.displayName);
+        // }
+
         // console.log(responseData);
         // console.log(responseData.document?.length);
         // console.log(Array.isArray(responseData.document));
@@ -97,7 +114,12 @@ const DailyRecordItem = () => {
                     </div>
 
                     <div className={styles.recorditemdelwribtn}>
-                        {user ? 
+                        <div className={styles.recorditemwritebtu}>
+                            <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
+                            <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
+                        </div>
+
+                        {/* {user ? 
                             <>
                                 <div className={styles.recorditemwritebtu}>
                                     <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
@@ -110,7 +132,7 @@ const DailyRecordItem = () => {
                                     <div className={styles.button} onClick={() => {alert('블로그 주인만 글을 수정할 수 있습니다.')}}/>
                                 </div>
                             </>
-                        }
+                        } */}
                     </div>
 
                     <div className={styles.recorditemcomments}>

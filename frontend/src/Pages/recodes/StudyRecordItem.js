@@ -27,21 +27,30 @@ const StudyRecordItem = () => {
     };
 
     const onUpdate = () => {
-        if (response.document?.writer === user.displayName) {
-            navigate(`/recordeditorst/${id}`);
+        if (user) {
+            if (response.document?.writer === user.displayName) {
+                navigate(`/recordeditorst/${id}`);
+            }
+            else {
+                alert('본인이 작성한 글만 수정할 수 있습니다.');
+            }
+
         }
         else {
             alert('본인이 작성한 글만 수정할 수 있습니다.');
         }
     };
-
-
     const onDelete = () => {
-        if (response.document?.writer === user.displayName) {
-            deleteDocument(id);
+        if (user) {
+            if (response.document?.writer === user.displayName) {
+                deleteDocument(id);
+            }
+            else {
+                alert('본인이 작성한 글만 삭제할 수 있습니다.');
+            }
         }
         else {
-            alert('본인이 작성한 글만 삭제할 수 있습니다.');
+            alert('본인이 작성한 글만 수정할 수 있습니다.');
         }
     };
 
