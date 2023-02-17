@@ -1,0 +1,237 @@
+.mystudyrecord {
+    width: 1200px;
+    height: 100%;
+
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mystudyrecordboard {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #7DA5E1;
+}
+
+.mystudyrecordutil {
+    width: 90%;
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+    .mystudyrecordpagenation {
+        width: 80%;
+        height: 60px;
+
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }    
+        .mystudyrecordpagenation > div {
+            width: 90px;
+            height: 50px;
+
+            background-color: #dcdcdc;
+            border-radius: 5px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin: 3px;
+
+            font-family: 'bitbit';
+            font-size: 22px;
+        }    
+        .mystudyrecordpagenation > div:hover {
+            background-color: #bebebe;
+        }
+        .mystudyrecordpagenation > div:active {
+            color: red;
+        }
+
+    .mystudyrecordwritebtu {
+        width: 20%;
+        height: 60px;
+
+        margin-left: 20px;
+
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        font-family: 'bitbit';
+        font-size: 25px;
+    }
+        .mystudyrecordwritebtu:hover {
+            background-color: #bebebe;
+        }
+        .mystudyrecordwritebtu:active {
+            color: red;
+        }
+
+.pagenationutil {
+    width: 90%;
+    height: 100%;
+}
+
+
+.mystudyrecorditems {
+    width: 90%;
+    height: 100%;
+
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+    .mystudyrecorditem {
+        width: 265px;
+        height: 350px;
+    
+        margin-top: 5px;
+        margin-left: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+    .mystudyrecorditemicon {
+        width: 80%;
+        height: 150px;
+
+        margin-top: 5px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #d2d2d2;
+        border-radius: 5px;
+    }
+
+    .mystudyrecorditemtitle {
+        width: 90%;
+        height: 160px;
+
+        margin-top: 20px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        font-family: 'bitbit';
+        font-size: 20px;
+    }
+    .mystudyrecorditemtitle > p {
+        width: 100%;
+    }
+
+    .mystudyrecorditemtitle > p:nth-child(1) {
+        color: orange;
+        margin-bottom: 10px;
+    }
+    .mystudyrecorditemtitle > p:nth-child(2) {
+        font-size: 18px;
+    } 
+    .mystudyrecorditemtitle > p:nth-child(3) {
+        font-size: 25px;
+    }
+
+    .mystudyrecorditem:hover {
+        background-color: #dcdcdc;
+    }
+    .mystudyrecorditem:active > .mystudyrecorditemtitle > p {
+        color: red;
+    }
+
+
+@media screen and (max-width: 1200px) {
+    .mystudyrecord {
+        width: 90%;
+    }
+    .mystudyrecordpagenation > div {
+        width: 70px;
+        font-size: 21px;
+    }
+    .mystudyrecorditem {
+        width: 32.5%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .mystudyrecordutil {
+        height: 100px;
+    }
+    .mystudyrecordpagenation {
+        height: 80px;
+    }    
+        .mystudyrecordpagenation > div {
+            height: 60px;
+            font-size: 18px;
+        }    
+        .mystudyrecordpagenation > div:nth-child(1) {
+            width: 40px;
+        }  
+        .mystudyrecordpagenation > div:nth-child(2) {
+            width: 50px;
+        }   
+    .mystudyrecordwritebtu {
+        height: 80px;
+    }
+    
+    .writeicon {
+        width: 51px;
+        height: 51px;
+
+        background-size: 51px 51px;
+    }
+
+    .mystudyrecorditem {
+        width: 49%;
+    }
+}
+
+@media screen and (max-width: 625px) {
+    .mystudyrecorditem {
+        width: 98%;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .mystudyrecordpagenation > div {
+        width: 80px;
+        font-size: 15px;
+    }    
+
+}

@@ -1,0 +1,72 @@
+.login {
+    width: 1200px;
+    height: 100%;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginform {
+    width: 700px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #6C7275;
+    border-radius: 10px;
+}
+    .loginform > p {
+        font-family: 'bitbit';
+        font-size: 35px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    .input {
+        width: 500px;
+        height: 40px;
+        margin-bottom: 20px;
+    }
+    .input > input {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 15px;
+        background-color: #9DA5AB;
+        text-align: center;
+        font-family: 'bitbit';
+        font-size: 25px;
+    }
+    .submitbutton {
+        width: 100px;
+        height: 50px;
+
+        margin-top: 30px;
+
+        background-color: #BEC8CF;
+        border: none;
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        font-family: 'bitbit';
+        font-size: 30px;
+    }
+    .submitbutton:hover {
+        color: red;
+    }
+
+@media screen and (max-width: 650px) {
+    .login {
+        width: 100%;
+    }
+    .loginform {
+        width: 90%;
+    }
+        .input {
+            width: 90%;
+        }
+}

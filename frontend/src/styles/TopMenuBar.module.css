@@ -1,0 +1,144 @@
+.centeralignment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.background {
+    width: 1200px;
+    height: 30px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: #6096B4;
+    transform: translate3d(0, 0, 0);
+    transition: all 0.5s ease;
+}
+
+.titlebutton {
+    width: 20%;
+    height: 100%;    
+    justify-content: center;
+}
+.menubutton {
+    width: 47%;
+    height: 100%;
+    justify-content: left;
+}
+.userbutton {
+    width: 30%;
+    height: 100%;
+    justify-content: right;
+}
+
+.centeralignment > a {
+    width: 100px;
+    font-size: 20px;
+    transition: all 1s ease;
+}
+.centeralignment > a:hover {
+    color: red;
+}
+
+.centeralignment > div {
+    width: 100px;
+    font-size: 20px;
+    color: black;
+    transition: all 1s ease;
+}
+.centeralignment > div:hover {
+    color: red;
+}
+
+.background:hover {
+    height: 80px;
+    transform: translate3d(0, 0, 100%);
+    transition: all 0.5s ease;
+}
+.background:hover .centeralignment > a {
+    width: 120px;
+    font-size: 20px;
+    transition: all 1s ease;
+}
+
+.logoutbutton {
+    width: 80px;
+    border-radius: 10px;
+    font-family: 'bitbit';
+    font-size: 20px;
+    border: none;
+    background-color: #6096B4;
+}
+.logoutbutton:hover {
+    color: red;
+}
+
+@media screen and (max-width: 1200px) {
+    .background {
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .background {
+        height: 50px;
+    }
+
+    .titlebutton {
+        width: 15%;
+    }
+    .menubutton {
+        width: 50%;
+    }
+    .userbutton {
+        width: 35%;
+    }
+
+    .background:hover .centeralignment > a {
+        width: 60px;
+    }
+
+    .menutext {
+        display: none;
+    }
+
+    .centeralignment > a {
+        width: 50px;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .centeralignment > div {
+        width: 50px;
+        height: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .titlebutton > a {
+        background-image: url('../styles/images/letter-l.png');
+        background-size: 40px 40px;
+    }
+
+    .menubutton > a:nth-child(1) {
+        background-image: url('../styles/images/calendar.png');
+        background-size: 40px 40px;
+    }
+    .menubutton > a:nth-child(2) {
+        background-image: url('../styles/images/document.png');
+        background-size: 40px 40px;
+    }
+    .menubutton > div {
+        background-image: url('../styles/images/project.png');
+        background-size: 40px 40px;
+    }
+
+    .userbutton > a:nth-child(1) {
+        background-image: url('../styles/images/login.png');
+        background-size: 40px 40px;
+    }
+    .userbutton > a:nth-child(2) {
+        background-image: url('../styles/images/join.png');
+        background-size: 40px 40px;
+    }
+}

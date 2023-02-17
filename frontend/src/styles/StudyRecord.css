@@ -1,0 +1,32 @@
+.language_icon {
+    width: 64px;
+    height: 64px;
+
+    background-image: url('../styles/images/js.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.react_icon {
+    width: 75px;
+    height: 64px;
+
+    background-image: url('../styles/images/react.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.algorithm_icon {
+    width: 64px;
+    height: 64px;
+
+    background-image: url('../styles/images/algorithm.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.project_icon {
+    width: 64px;
+    height: 64px;
+
+    background-image: url('../styles/images/upcycling.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}

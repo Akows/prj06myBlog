@@ -1,0 +1,218 @@
+.recordeditor {
+    width: 1200px;
+    height: 100%;
+
+    margin-top: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.recordeditorboard {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 5px;
+
+    background-color: #7DA5E1;
+}
+
+.recordeditorutil {
+    width: 80%;
+    height: 150px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+    .recordeditordesc {
+        width: 100%;
+        height: 100px;
+
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }    
+        .recordeditordesc > div {
+            width: 50%;
+            height: 80px;
+
+            background-color: #dcdcdc;
+            border-radius: 5px;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }    
+        .recordeditordesc > div:nth-child(1) {
+            font-size: 50px;
+        }   
+        .recordeditordesc > div:nth-child(2) {
+            font-size: 30px;
+            text-align: center;
+        }   
+        .recordeditordesc > div:hover {
+            background-color: #bebebe;
+        }
+        .todaytime {
+            color: #E56D29;
+            margin: 0px;
+        }
+
+
+    .recordeditorwritebtu {
+        width: 120px;
+        height: 60px;
+
+        margin-top: 15px;
+
+        background-color: #dcdcdc;
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        border: none;
+
+        font-family: 'bitbit';
+        font-size: 30px;
+    }
+    .recordeditorwritebtu:hover {
+        background-color: #bebebe;
+    }
+
+.recordeditoritems {
+    width: 90%;
+    height: 100%;
+
+    margin-bottom: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+    .recordeditoritemsselect {
+        width: 150px;
+        height: 30px;
+    }
+    .recordeditoritemsselect > select {
+        width: 100%;
+        height: 100%;
+
+        font-family: 'bitbit';
+        font-size: 20px;
+
+        border: none;
+        border-radius: 10px;
+    }
+
+    .recordeditorinputtitle {
+        width: 100%;
+        height: 50px;
+    
+        margin-top: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        font-family: 'bitbit';
+        font-size: 25px;
+
+        border: none;
+    }
+
+    .editors {
+        width: 100%;
+        height: 100%;
+    
+        margin-top: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 20px;
+
+        border: none;
+    }
+
+    .upload {
+        width: 100%;
+        height: 33px;
+    
+        margin-top: 5px;
+
+        background-color: white;
+        border-radius: 5px;
+
+        font-family: 'bitbit';
+        font-size: 20px;
+
+        border: none;
+    }
+
+@media screen and (max-width: 1200px) {
+    .recordeditor {
+        width: 95%;
+    }
+    .recordeditorboard {
+        width: 95%;
+    }
+
+    .recordeditorutil {
+        width: 90%;
+    }
+
+    .recordeditordesc  {
+        height: 80px;
+    }    
+    .recordeditordesc > div {
+        font-size: 120%;
+    }    
+
+    .recordeditordesc > div:nth-child(1) {
+        font-size: 200%;
+    }   
+    .recordeditordesc > div:nth-child(2) {
+        font-size: 20px;
+    }   
+}
+
+@media screen and (max-width: 900px) {
+    .recordeditorwritebtu {
+        flex-direction: column;
+    }
+    .deleteicon {
+        width: 45px;
+        height: 45px;
+        margin-right: 0px;
+        margin-bottom: 10px;
+    }
+    .updateicon {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .writeicon {
+        width: 51px;
+        height: 51px;
+
+        background-size: 51px 51px;
+    }
+}

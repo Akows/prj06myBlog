@@ -1,5 +1,4 @@
 import '../styles/Pagination.css';
-import '../ResetStyle.css';
 
 import React from 'react';
 
