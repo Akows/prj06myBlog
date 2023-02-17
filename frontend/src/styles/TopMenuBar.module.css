@@ -37,6 +37,9 @@
     font-size: 20px;
     transition: all 1s ease;
 }
+.centeralignment > a:nth-child(2) {
+    width: 65px;
+}
 .centeralignment > a:hover {
     color: red;
 }
@@ -60,6 +63,9 @@
     width: 120px;
     font-size: 20px;
     transition: all 1s ease;
+}
+.background:hover .centeralignment > a:nth-child(2) {
+    width: 90px;
 }
 
 .logoutbutton {
