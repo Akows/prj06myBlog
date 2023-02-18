@@ -118,21 +118,6 @@ const DailyRecordItem = () => {
                             <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
                             <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
                         </div>
-
-                        {/* {user ? 
-                            <>
-                                <div className={styles.recorditemwritebtu}>
-                                    <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
-                                    <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
-                                </div>
-                            </>
-                        : 
-                            <>
-                                <div className={styles.recorditemwritebtu}>
-                                    <div className={styles.button} onClick={() => {alert('블로그 주인만 글을 수정할 수 있습니다.')}}/>
-                                </div>
-                            </>
-                        } */}
                     </div>
 
                     <div className={styles.recorditemcomments}>

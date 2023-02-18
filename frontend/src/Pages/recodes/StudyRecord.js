@@ -19,7 +19,7 @@ export default function StudyRecord () {
     const [choiceType, setChoiceType] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
 
-    const itemsPerPage = 4; 
+    const itemsPerPage = 12; 
     const lastItemIndex = currentPage * itemsPerPage;
     const firstItemIndex = lastItemIndex - itemsPerPage;
 
