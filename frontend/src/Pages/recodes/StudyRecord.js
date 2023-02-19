@@ -80,17 +80,20 @@ export default function StudyRecord () {
                         <div onClick={() => {setChoiceType('all')}}>
                             전체
                         </div>
-                        <div onClick={() => {setChoiceType('language')}}>
-                            언어
+                        <div onClick={() => {setChoiceType('html')}}>
+                            HTML
+                        </div>
+                        <div onClick={() => {setChoiceType('css')}}>
+                            CSS
+                        </div>
+                        <div onClick={() => {setChoiceType('js')}}>
+                            JS
+                        </div>
+                        <div onClick={() => {setChoiceType('firebase')}}>
+                            Firebase
                         </div>
                         <div onClick={() => {setChoiceType('react')}}>
-                            리액트
-                        </div>
-                        <div onClick={() => {setChoiceType('algorithm')}}>
-                            알고리즘
-                        </div>
-                        <div onClick={() => {setChoiceType('project')}}>
-                            프로젝트
+                            React
                         </div>
                     </div>
                     {user ? 

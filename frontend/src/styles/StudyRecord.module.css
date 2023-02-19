@@ -55,10 +55,19 @@
             align-items: center;
             justify-content: center;
 
-            margin: 3px;
+            margin: 5px;
 
             font-family: 'bitbit';
             font-size: 22px;
+        }    
+        .mystudyrecordpagenation > div:nth-child(3) {
+            width: 50px;
+        }    
+        .mystudyrecordpagenation > div:nth-child(4) {
+            width: 40px;
+        }    
+        .mystudyrecordpagenation > div:nth-child(5) {
+            width: 90px;
         }    
         .mystudyrecordpagenation > div:hover {
             background-color: #bebebe;
@@ -84,6 +93,10 @@
         font-family: 'bitbit';
         font-size: 25px;
     }
+
+
+
+
         .mystudyrecordwritebtu:hover {
             background-color: #bebebe;
         }
@@ -197,17 +210,19 @@
         height: 80px;
     }    
         .mystudyrecordpagenation > div {
-            height: 60px;
-            font-size: 18px;
+            height: 50px;
+            font-size: 17px;
         }    
         .mystudyrecordpagenation > div:nth-child(1) {
             width: 40px;
         }  
-        .mystudyrecordpagenation > div:nth-child(2) {
+        .mystudyrecordpagenation > div:nth-child(5) {
             width: 50px;
         }   
+
     .mystudyrecordwritebtu {
         height: 80px;
+        font-size: 15px;
     }
     
     .writeicon {

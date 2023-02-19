@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuthContext } from "../../customhooks/useAuthContext";
-import { useFirestore } from "../../customhooks/useFirestore";
-import { useFirestoreComt } from "../../customhooks/useFirestoreComt";
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuthContext } from '../../customhooks/useAuthContext';
+import { useFirestore } from '../../customhooks/useFirestore';
+import { useFirestoreComt } from '../../customhooks/useFirestoreComt';
 import styles from '../../styles/DailyRecordItem.module.css'
 
 const StudyRecordItem = () => {
@@ -49,7 +49,7 @@ const StudyRecordItem = () => {
     };
 
     useEffect(() => {
-        const titleElement = document.getElementsByTagName("title")[0];
+        const titleElement = document.getElementsByTagName('title')[0];
         titleElement.innerHTML = '일일기록';
         getDocument(id);
         getComments(id);
@@ -71,13 +71,13 @@ const StudyRecordItem = () => {
                     </div>
                 </div>
                 <div className={styles.recorditemitems}>
-                    <div className={[styles.recorditemitem, styles.recorditemtitle].join(" ")}>
+                    <div className={[styles.recorditemitem, styles.recorditemtitle].join(' ')}>
                         {response.document?.title}
                     </div>
-                    <div className={[styles.recorditemitem, styles.recorditemtext].join(" ")}>
+                    <div className={[styles.recorditemitem, styles.recorditemtext].join(' ')}>
                         <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
                     </div>
-                    <div className={[styles.recorditemitem, styles.recorditemdetech].join(" ")}>
+                    <div className={[styles.recorditemitem, styles.recorditemdetech].join(' ')}>
                         {response.document?.file === 'No file' ?
                             <>
                                 <p>첨부파일 없음.</p>

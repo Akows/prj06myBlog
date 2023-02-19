@@ -18,7 +18,7 @@ export default function RecordEditorSt () {
     const [rawTextData, setRawTextData] = useState(EditorState.createEmpty());
     const [imageData, setImageData] = useState();
     const [timeData, setTimeData] = useState();
-    const [selectData, setSelectData] = useState('language');
+    const [selectData, setSelectData] = useState('html');
     const today = new Date();
     const Time = today.getFullYear() + '년 ' +  (today.getMonth() + 1) + '월 ' + today.getDate() + '일';
     const { id } = useParams();
@@ -172,10 +172,11 @@ export default function RecordEditorSt () {
                     <form onSubmit={onSubmitEvent}>
                         <div className={styles.recordeditoritemsselect}>
                             <select onChange={onChangeSelectEvent}>
-                                <option value='language'>언어</option>
-                                <option value='react'>리액트</option>
-                                <option value='algorithm'>알고리즘</option>
-                                <option value='project'>프로젝트</option>
+                                <option value='html'>HTML</option>
+                                <option value='css'>CSS</option>
+                                <option value='js'>JS</option>
+                                <option value='firebase'>Firebase</option>
+                                <option value='react'>React</option>
                             </select>
                         </div>
                         <input maxLength={50} name='Title' type='text' className={styles.recordeditorinputtitle} placeholder='제목을 입력해주세요' value={titleData} onChange={onChangeTitle}/>

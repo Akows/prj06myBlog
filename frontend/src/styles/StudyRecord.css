@@ -5,11 +5,6 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
-.language_icon {
-    background-image: url('../styles/images/coding-language.png');
-}
-
 .js_icon {
     background-image: url('../styles/images/js.png');
 }
@@ -19,20 +14,21 @@
 .css_icon {
     background-image: url('../styles/images/css.png');
 }
-
 .firebase_icon {
     background-image: url('../styles/images/firebase.png');
 }
-
 .react_icon {
     width: 75px;
     height: 64px;
 
     background-image: url('../styles/images/react.png');
 }
+/* .language_icon {
+    background-image: url('../styles/images/coding-language.png');
+}
 .algorithm_icon {
     background-image: url('../styles/images/algorithm.png');
 }
 .project_icon {
     background-image: url('../styles/images/upcycling.png');
-}
+} */
