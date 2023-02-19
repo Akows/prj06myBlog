@@ -10,22 +10,18 @@ import styles from '../../styles/StudyRecord.module.css'
 import '../../styles/StudyRecord.css'
 
 export default function StudyRecord () {
-
     const { user } = useAuthContext();
     const navigate = useNavigate();
-
     const [data, setData] = useState([]);
     const [dataLangth, setDataLangth] = useState(0);
     const [choiceType, setChoiceType] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
-
     const itemsPerPage = 12; 
     const lastItemIndex = currentPage * itemsPerPage;
     const firstItemIndex = lastItemIndex - itemsPerPage;
 
     const boardListLoad = async (choiceType) => {
         const collectionRef = collection(appFireStore, 'studyrecord');
-
         if (choiceType === 'all') {
             try {
                 const querys = query(collectionRef, orderBy('createdTime', 'desc')); 
@@ -35,7 +31,6 @@ export default function StudyRecord () {
                     id: doc.id,
                     ...doc.data()
                 }));
-            
                 setDataLangth(getCounts.data().count);
                 setData(mappingData.slice(firstItemIndex, lastItemIndex));
             } 
@@ -48,19 +43,17 @@ export default function StudyRecord () {
                 const querys = query(collectionRef, where('type', '==', choiceType), orderBy('createdTime', 'desc')); 
                 const querySnap = await getDocs(querys);
                 const getCounts = await getCountFromServer(querys);
-                
                 const mappingData = querySnap.docs.map((doc) => ({
                     id: doc.id,
                     ...doc.data()
                 }));
-            
                 setDataLangth(getCounts.data().count);
                 setData(mappingData.slice(firstItemIndex, lastItemIndex));
             } 
             catch (error) {
                 console.log(error);
-            }
-        }
+            };
+        };
     };
 
     useEffect(() => {
@@ -82,11 +75,8 @@ export default function StudyRecord () {
     return (
         <div className={styles.mystudyrecord}>
             <div className={styles.mystudyrecordboard}>
-
                 <div className={styles.mystudyrecordutil}>
-
                     <div className={styles.mystudyrecordpagenation}>
-
                         <div onClick={() => {setChoiceType('all')}}>
                             전체
                         </div>
@@ -102,9 +92,7 @@ export default function StudyRecord () {
                         <div onClick={() => {setChoiceType('project')}}>
                             프로젝트
                         </div>
-
                     </div>
-
                     {user ? 
                         <>
                             <div className={styles.mystudyrecordwritebtu} onClick={() => {navigate('/recordeditorst/write');}}>
@@ -118,19 +106,13 @@ export default function StudyRecord () {
                             </div>
                         </>
                     }
-
                 </div>
-
                 <div className={styles.mystudyrecorditems}>
-
                     {data.map((item) => (
                         <div className={styles.mystudyrecorditem} key={item.id} onClick={() => {navigate(`/studyrecord/${item.id}`);}}>
                             <div className={styles.mystudyrecorditemicon}>
-                                <div className={`${styles}.${item.type}_icon`}/>
-
-                                <div className={`${item.type}_icon`}/>
+                                <div className={['default_icon', `${item.type}_icon`].join(" ")}/>
                             </div>
-
                             <div className={styles.mystudyrecorditemtitle}>
                                 <p>{item.type}</p>
                                 <p>{item.writer}</p>
@@ -138,15 +120,12 @@ export default function StudyRecord () {
                             </div>
                         </div>
                     ))}
-
                 </div>
-
                 <Pagination 
                     postsPerPage={itemsPerPage} 
                     totalPosts={dataLangth}
                     paginate={setPageNumber}
                 />
-
             </div>
         </div>
     );

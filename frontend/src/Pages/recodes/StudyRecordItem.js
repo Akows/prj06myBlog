@@ -3,17 +3,13 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuthContext } from "../../customhooks/useAuthContext";
 import { useFirestore } from "../../customhooks/useFirestore";
 import { useFirestoreComt } from "../../customhooks/useFirestoreComt";
-
 import styles from '../../styles/DailyRecordItem.module.css'
 
 const StudyRecordItem = () => {
-    
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const { id } = useParams();
-
     const [commentsData, setCommentsData] = useState('');
-
     const { getDocument, deleteDocument, downloadFile, response } = useFirestore('studyrecord');
     const { getComments, addComments, responseData } = useFirestoreComt('comment');
 
@@ -21,11 +17,9 @@ const StudyRecordItem = () => {
         event.preventDefault();
         addComments({ commentsData, id });
     };
-
     const onChangeEvent = (event) => {
         setCommentsData(event.target.value);
     };
-
     const onUpdate = () => {
         if (user) {
             if (response.document?.writer === user.displayName) {
@@ -57,10 +51,8 @@ const StudyRecordItem = () => {
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
         titleElement.innerHTML = '일일기록';
-
         getDocument(id);
         getComments(id);
-
         // eslint-disable-next-line
     }, []);
 
@@ -78,16 +70,13 @@ const StudyRecordItem = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className={styles.recorditemitems}>
                     <div className={[styles.recorditemitem, styles.recorditemtitle].join(" ")}>
                         {response.document?.title}
                     </div>
-
                     <div className={[styles.recorditemitem, styles.recorditemtext].join(" ")}>
                         <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
                     </div>
-
                     <div className={[styles.recorditemitem, styles.recorditemdetech].join(" ")}>
                         {response.document?.file === 'No file' ?
                             <>
@@ -99,14 +88,12 @@ const StudyRecordItem = () => {
                             </>
                         }
                     </div>
-
                     <div className={styles.recorditemdelwribtn}>
                         <div className={styles.recorditemwritebtu}>
                             <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
                             <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
                         </div>
                     </div>
-
                     <div className={styles.recorditemcomments}>
                         {responseData.document?.length !== 0 ?
                             <>
@@ -122,7 +109,6 @@ const StudyRecordItem = () => {
                                 <p>댓글이 존재하지 않습니다.</p>
                             </>
                         }
-
                         <form onSubmit={onSubmitEvent}>
                             <div className={styles.recorditemcommentutil}> 
                                 <input name='Text' type='text' placeholder='댓글을 입력해주세요' maxLength='30' className={styles.recorditemcommentinput} value={commentsData.text} onChange={onChangeEvent}/> 

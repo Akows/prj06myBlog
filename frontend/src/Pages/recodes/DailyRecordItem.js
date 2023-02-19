@@ -1,19 +1,15 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import { useAuthContext } from "../../customhooks/useAuthContext";
-import { useFirestore } from "../../customhooks/useFirestore";
-import { useFirestoreComt } from "../../customhooks/useFirestoreComt";
-
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAuthContext } from '../../customhooks/useAuthContext';
+import { useFirestore } from '../../customhooks/useFirestore';
+import { useFirestoreComt } from '../../customhooks/useFirestoreComt';
 import styles from '../../styles/DailyRecordItem.module.css'
 
 const DailyRecordItem = () => {
-    
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const { id } = useParams();
-
     const [commentsData, setCommentsData] = useState('');
-
     const { getDocument, deleteDocument, downloadFile, response } = useFirestore('dailyrecord');
     const { getComments, addComments, responseData } = useFirestoreComt('comment');
 
@@ -21,11 +17,9 @@ const DailyRecordItem = () => {
         event.preventDefault();
         addComments({ commentsData, id });
     };
-
     const onChangeEvent = (event) => {
         setCommentsData(event.target.value);
     };
-
     const onUpdate = () => {
         if (user) {
             if (response.document?.writer === user.displayName) {
@@ -55,27 +49,12 @@ const DailyRecordItem = () => {
     };
 
     useEffect(() => {
-        const titleElement = document.getElementsByTagName("title")[0];
+        const titleElement = document.getElementsByTagName('title')[0];
         titleElement.innerHTML = '일일기록';
-
         getDocument(id);
         getComments(id);
-
         // eslint-disable-next-line
     }, []);
-
-    useEffect(() => {
-        console.log(response.document?.writer);
-
-        // if (user) {
-        //     console.log(user.displayName);
-        // }
-
-        // console.log(responseData);
-        // console.log(responseData.document?.length);
-        // console.log(Array.isArray(responseData.document));
-        // eslint-disable-next-line
-    }, [responseData]);
 
     return (
         <div className={styles.recorditem}>
@@ -91,17 +70,14 @@ const DailyRecordItem = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className={styles.recorditemitems}>
-                    <div className={[styles.recorditemitem, styles.recorditemtitle].join(" ")}>
+                    <div className={[styles.recorditemitem, styles.recorditemtitle].join(' ')}>
                         {response.document?.title}
                     </div>
-
-                    <div className={[styles.recorditemitem, styles.recorditemtext].join(" ")}>
+                    <div className={[styles.recorditemitem, styles.recorditemtext].join(' ')}>
                         <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
                     </div>
-
-                    <div className={[styles.recorditemitem, styles.recorditemdetech].join(" ")}>
+                    <div className={[styles.recorditemitem, styles.recorditemdetech].join(' ')}>
                         {response.document?.file === 'No file' ?
                             <>
                                 <p>첨부파일 없음.</p>
@@ -112,14 +88,12 @@ const DailyRecordItem = () => {
                             </>
                         }
                     </div>
-
                     <div className={styles.recorditemdelwribtn}>
                         <div className={styles.recorditemwritebtu}>
                             <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
                             <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
                         </div>
                     </div>
-
                     <div className={styles.recorditemcomments}>
                         {responseData.document?.length !== 0 ?
                             <>
@@ -135,7 +109,6 @@ const DailyRecordItem = () => {
                                 <p>댓글이 존재하지 않습니다.</p>
                             </>
                         }
-
                         <form onSubmit={onSubmitEvent}>
                             <div className={styles.recorditemcommentutil}> 
                                 <input name='Text' type='text' placeholder='댓글을 입력해주세요' maxLength='30' className={styles.recorditemcommentinput} value={commentsData.text} onChange={onChangeEvent}/> 

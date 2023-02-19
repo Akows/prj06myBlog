@@ -21,7 +21,6 @@ const TopMenuBar = () => {
                 <Link to='/dailyrecord'><p className={styles.menutext}>일기</p></Link>
                 <div onClick={onMove}><p className={styles.menutext}>포트폴리오</p></div>
             </div>
-
             {!user &&
                 (<>
                     <div className={[styles.userbutton, styles.centeralignment].join(' ')}>

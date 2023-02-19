@@ -17,7 +17,6 @@ const appFireStore = getFirestore(app);
 const appAuth = getAuth();
 const appStorage = getStorage();
 const storageRef = ref(appStorage);
-
 const timeStamp = Timestamp;
 
 export { appFireStore, appAuth, storageRef, timeStamp }

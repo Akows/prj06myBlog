@@ -1,6 +1,5 @@
 import { useReducer } from 'react'
 import { useNavigate } from 'react-router-dom'
-
 import { appFireStore, storageRef, timeStamp } from '../configs/firebase'
 import { addDoc, collection, deleteDoc, doc, getDoc, setDoc } from 'firebase/firestore'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
@@ -11,7 +10,7 @@ const initState = {
     isPending: false,
     error: null,
     success: false
-}
+};
 
 const storeReducer = (state, action) => {
     switch (action.type) {
@@ -29,33 +28,26 @@ const storeReducer = (state, action) => {
             return { isPending: false, document: null, success: false, error: action.payload }
         default:
             return state
-    }
-}
+    };
+};
 
 export const useFirestore = (transaction) => {
-
     const [response, dispatch] = useReducer(storeReducer, initState);
-
     const navigate = useNavigate();
-
     const colRef = collection(appFireStore, transaction);
-
     const { user } = useAuthContext();
 
     const addDocument = async (doc) => {
         let file = '';
         let fileName = 'No file';
-
         if (doc.imageData) {
             file = doc.imageData;
             fileName = doc.imageData.name;
         }
-
         dispatch({ type: 'isPending' });
         try {
             const createdTime = timeStamp.fromDate(new Date());
             const imagesRef = ref(storageRef, fileName);
-
             const docRef = await addDoc(colRef, { 
                 title: doc.titleData,
                 text: doc.textData,
@@ -64,7 +56,6 @@ export const useFirestore = (transaction) => {
                 createdMonth: createdTime.toDate().getMonth() + 1,
                 createdTime,
             });
-
             if (doc.imageData) {
                 await uploadBytes(imagesRef, file);    
             }
@@ -95,19 +86,15 @@ export const useFirestore = (transaction) => {
     const updateDocument = async ({ id, titleData, textData, imageData }) => {
         let file = '';
         let fileName = 'No file';
-
         if (imageData) {
             file = imageData;
             fileName = imageData.name;
         }
-
         dispatch({ type: 'isPending' });
         try {
             const createdTime = timeStamp.fromDate(new Date());
             const imagesRef = ref(storageRef, fileName);
-
             const docRef = doc(appFireStore, transaction, id);
-            
             await setDoc(docRef, {
                 title: titleData,
                 text: textData,
@@ -115,11 +102,9 @@ export const useFirestore = (transaction) => {
                 createdMonth: createdTime.toDate().getMonth() + 1,
                 createdTime,
             }, { merge: true });
-
             if (doc.imageData) {
                 await uploadBytes(imagesRef, file);    
             }
-
             dispatch({ type: 'updateDoc', payload: docRef });
             alert('글 수정이 완료되었습니다.');
             navigate('/dailyrecord', { replace: true });

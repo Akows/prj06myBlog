@@ -5,7 +5,6 @@ import { useAuthContext } from './useAuthContext';
 import { useNavigate } from 'react-router-dom';
 
 export const useSignup = () => {
-
     const [error, setError] = useState(null);
     const [isPending, setIsPending] = useState(false);
     const { dispatch } = useAuthContext();
@@ -43,6 +42,5 @@ export const useSignup = () => {
                 console.log(err.message);
             });
     };
-
     return { error, isPending, signup };
-}
+};

@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useLogin } from '../../customhooks/useLogin';
-
 import styles from '../../styles/Login.module.css'
 
 export default function Login () {
-
     const { error, isPending, login } = useLogin();
     const [userData, setUserData] = useState({
         id: '',
@@ -15,7 +13,6 @@ export default function Login () {
         event.preventDefault();
         login(userData.id, userData.pwd);
     };    
-
     const onChangeEvent = (event) => {
         setUserData({
             ...userData,

@@ -13,20 +13,16 @@ const colReducer = (state, action) => {
 }
 
 export const useCollection = (transaction, myQuery) => {
-
     const [state, dispatch] = useReducer(colReducer, {
         isReady: false
     });
-
     const [error, setError] = useState(null);
 
     useEffect(() => {
         let que;
-
         if (myQuery) {
             que = query(collection(appFireStore, transaction), where(...myQuery), orderBy('createdTime', 'desc'));
         }
-
         const unsubscribe = onSnapshot((myQuery ? que : query(collection(appFireStore, transaction), orderBy('createdTime', 'desc'))),
             (snapshot) => {
                 let result = []; 
@@ -46,7 +42,7 @@ export const useCollection = (transaction, myQuery) => {
         return unsubscribe;
         
     // eslint-disable-next-line
-    }, [collection]) 
+    }, [collection]); 
 
-    return { error, state }
-}
+    return { error, state };
+};

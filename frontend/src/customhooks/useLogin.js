@@ -13,7 +13,6 @@ export const useLogin = () => {
     const login = (email, password) => {
         setError(null);
         setIsPending(true);
-
         signInWithEmailAndPassword(appAuth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
@@ -33,7 +32,7 @@ export const useLogin = () => {
                 alert('에러가 발생하였습니다.');
                 navigate('/login', { replace: true });
             });
-    }
+    };
 
-    return { error, isPending, login }
-}
+    return { error, isPending, login };
+};

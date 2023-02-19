@@ -1,10 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import TopMenuBar from './components/TopMenuBar';
 import { useAuthContext } from './customhooks/useAuthContext';
 import Main from './pages/main/Main';
 import Login from './pages/user/Login';
-
 import './App.css';
 import Signup from './pages/user/Signup';
 import DailyRecord from './pages/recodes/DailyRecord';
@@ -15,7 +13,6 @@ import RecordEditorSt from './pages/recodes/RecordEditorSt';
 import StudyRecordItem from './pages/recodes/StudyRecordItem';
 
 function App() {
-  
   const { isAuthReady } = useAuthContext();
 
   return (
@@ -30,7 +27,6 @@ function App() {
             <Route path='/dailyrecord' element={<DailyRecord />} />
             <Route path='/dailyrecord/:id' element={<DailyRecordItem />} />
             <Route path='/recordeditor/:id' element={<RecordEditor />} />     
-
             <Route path='/studyrecord' element={<StudyRecord />} />
             <Route path='/recordeditorst/:id' element={<RecordEditorSt />} />     
             <Route path='/studyrecord/:id' element={<StudyRecordItem />} />

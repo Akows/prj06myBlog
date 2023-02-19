@@ -3,7 +3,7 @@ import styles from '../../styles/Main.module.css'
 
 export default function Main () {
     useEffect(() => {
-        const titleElement = document.getElementsByTagName("title")[0];
+        const titleElement = document.getElementsByTagName('title')[0];
         titleElement.innerHTML = '이유승 블로그';
     }, []);
 

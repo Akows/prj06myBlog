@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSignup } from '../../customhooks/useSignup';
-
 import styles from '../../styles/Signup.module.css'
 
 export default function Signup () {

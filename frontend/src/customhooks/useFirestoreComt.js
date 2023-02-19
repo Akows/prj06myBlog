@@ -1,5 +1,4 @@
 import { useReducer } from 'react'
-
 import { appFireStore, timeStamp } from '../configs/firebase'
 import { addDoc, collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { useAuthContext } from './useAuthContext'
@@ -9,7 +8,7 @@ const initState = {
     isPending: false,
     error: null,
     success: false
-}
+};
 
 const storeReducer = (state, action) => {
     switch (action.type) {
@@ -23,14 +22,12 @@ const storeReducer = (state, action) => {
             return { isPending: false, document: null, success: false, error: action.payload }
         default:
             return state
-    }
-}
+    };
+};
 
 export const useFirestoreComt = (transaction) => {
-
     const [responseData, dispatch] = useReducer(storeReducer, initState);
     const colRef = collection(appFireStore, transaction);
-
     const { user } = useAuthContext();
 
     const getComments = async (id) => {

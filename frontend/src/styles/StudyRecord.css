@@ -1,32 +1,38 @@
-.language_icon {
+.default_icon {
     width: 64px;
     height: 64px;
 
-    background-image: url('../styles/images/js.png');
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.language_icon {
+    background-image: url('../styles/images/coding-language.png');
+}
+
+.js_icon {
+    background-image: url('../styles/images/js.png');
+}
+.html_icon {
+    background-image: url('../styles/images/html.png');
+}
+.css_icon {
+    background-image: url('../styles/images/css.png');
+}
+
+.firebase_icon {
+    background-image: url('../styles/images/firebase.png');
+}
+
 .react_icon {
     width: 75px;
     height: 64px;
 
     background-image: url('../styles/images/react.png');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .algorithm_icon {
-    width: 64px;
-    height: 64px;
-
     background-image: url('../styles/images/algorithm.png');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
 .project_icon {
-    width: 64px;
-    height: 64px;
-
     background-image: url('../styles/images/upcycling.png');
-    background-repeat: no-repeat;
-    background-size: cover;
 }
