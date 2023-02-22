@@ -21,6 +21,29 @@ const TopMenuBar = () => {
                 <Link to='/dailyrecord'><p className={styles.menutext}>일기</p></Link>
                 <div onClick={onMove}><p className={styles.menutext}>포트폴리오</p></div>
             </div>
+
+            {/* {user?.isAnonymous && 
+                (
+                    <>
+                        <div className={[styles.userbutton, styles.centeralignment].join(' ')}>
+                            <Link to='/login'><p className={styles.menutext}>로그인</p></Link>
+                            <Link to='/signup'><p className={styles.menutext}>회원가입</p></Link>
+                        </div>
+                    </>
+                )
+            } */}
+            {/* {user.isAnonymous === false && user.displayName !== null ?
+                <div className={[styles.userbutton, styles.centeralignment].join(' ')}>
+                    <Link to='/login'><p className={styles.menutext}>로그인</p></Link>
+                    <Link to='/signup'><p className={styles.menutext}>회원가입</p></Link>
+                </div>
+                :
+                <div className={[styles.userbutton, styles.centeralignment].join(' ')}>
+                    <strong> {user.displayName} 님!</strong>
+                    <button className={styles.logoutbutton} onClick={logout}>Logout</button>
+                </div>
+            } */}
+
             {!user &&
                 (<>
                     <div className={[styles.userbutton, styles.centeralignment].join(' ')}>
@@ -37,6 +60,7 @@ const TopMenuBar = () => {
                     </div>
                 </>)
             }
+
         </div>
     );
 };

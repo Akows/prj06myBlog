@@ -16,6 +16,15 @@ export const useLogout = () => {
             setError(null);
             setIsPending(false);
             alert('로그아웃되었습니다. 방문해주셔서 감사합니다.');
+            // signInAnonymously(appAuth)
+            // .then(() => {
+
+            // })
+            // .catch((error) => {
+            //   const errorCode = error.code;
+            //   const errorMessage = error.message;
+            //   console.log(errorCode, errorMessage);
+            // });
         }).catch((err) => {
             setError(err.message);
             setIsPending(false);

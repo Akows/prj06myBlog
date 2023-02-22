@@ -110,6 +110,7 @@ export default function StudyRecord () {
                         </>
                     }
                 </div>
+
                 <div className={styles.mystudyrecorditems}>
                     {data.map((item) => (
                         <div className={styles.mystudyrecorditem} key={item.id} onClick={() => {navigate(`/studyrecord/${item.id}`);}}>
@@ -124,6 +125,7 @@ export default function StudyRecord () {
                         </div>
                     ))}
                 </div>
+
                 <Pagination 
                     postsPerPage={itemsPerPage} 
                     totalPosts={dataLangth}

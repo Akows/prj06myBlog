@@ -31,6 +31,8 @@ const AuthContextProvider = ({ children }) => {
         return unsubscribe;
     }, []);
 
+    console.log(state);
+
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>
             {children}
