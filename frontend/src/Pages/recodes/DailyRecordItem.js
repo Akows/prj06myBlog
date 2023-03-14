@@ -23,7 +23,7 @@ const DailyRecordItem = () => {
     const onUpdate = () => {
         if (user) {
             if (response.document?.writer === user.displayName) {
-                navigate(`/recordeditor/${id}`);
+                navigate(`/texteditor/dr/${id}`);
             }
             else {
                 alert('본인이 작성한 글만 수정할 수 있습니다.');
@@ -78,7 +78,7 @@ const DailyRecordItem = () => {
                         <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
                     </div>
                     <div className={[styles.recorditemitem, styles.recorditemdetech].join(' ')}>
-                        {response.document?.file === 'No file' ?
+                        {!response.document?.file ?
                             <>
                                 <p>첨부파일 없음.</p>
                             </>

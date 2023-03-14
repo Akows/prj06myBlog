@@ -32,102 +32,159 @@ const storeReducer = (state, action) => {
 };
 
 export const useFirestore = (transaction) => {
-    const [response, dispatch] = useReducer(storeReducer, initState);
+
     const navigate = useNavigate();
+    const [response, dispatch] = useReducer(storeReducer, initState);
     const colRef = collection(appFireStore, transaction);
     const { user } = useAuthContext();
+    const createdTime = timeStamp.fromDate(new Date());
 
     const addDocument = async (doc) => {
-        let file = '';
-        let fileName = 'No file';
-        if (doc.imageData) {
-            file = doc.imageData;
-            fileName = doc.imageData.name;
-        }
+
         dispatch({ type: 'isPending' });
-        try {
-            const createdTime = timeStamp.fromDate(new Date());
-            const imagesRef = ref(storageRef, fileName);
-            const docRef = await addDoc(colRef, { 
-                title: doc.titleData,
-                text: doc.textData,
-                file: fileName,
-                writer: user.displayName,
-                createdMonth: createdTime.toDate().getMonth() + 1,
-                createdTime,
-            });
-            if (doc.imageData) {
-                await uploadBytes(imagesRef, file);    
-            }
-            dispatch({ type: 'addDoc', payload: docRef });
-            alert('글 작성이 완료되었습니다.');
-            navigate('/dailyrecord', { replace: true });
-        } 
-        catch (e) {
-            dispatch({ type: 'error', payload: e.message });
-            console.log(e.message);
-            alert('에러 발생!');
-            navigate('/dailyrecord', { replace: true });
+
+        let fileName = 'No file';
+        if (doc.fileData) {
+            fileName = doc.fileData[0].name;
         }
-    }
+
+        if (doc.type === 'sr') {
+            try {
+                const docRef = await addDoc(colRef, { 
+                    title: doc.titleData,
+                    text: doc.postData,
+                    file: fileName,
+                    writer: user.displayName,
+                    type: doc.selectTypeData,
+                    createdTime,
+                });
+
+                if (doc.fileData) {
+                    const imagesRef = ref(storageRef, fileName);
+                    await uploadBytes(imagesRef, doc.fileData);    
+                }
+
+                dispatch({ type: 'addDoc', payload: docRef });
+                alert('글 작성이 완료되었습니다.');
+                navigate('/studyrecord', { replace: true });
+            } 
+            catch (error) {
+                alert(error.message);
+                navigate('/studyrecord', { replace: true });
+            };
+        }
+        else if (doc.type === 'dr') {
+            try {
+                const docRef = await addDoc(colRef, { 
+                    title: doc.titleData,
+                    text: doc.postData,
+                    writer: user.displayName,
+                    createdMonth: createdTime.toDate().getMonth() + 1,
+                    createdTime,
+                });
+                
+                dispatch({ type: 'addDoc', payload: docRef });
+                alert('글 작성이 완료되었습니다.');
+                navigate('/dailyrecord', { replace: true });
+            }
+            catch (error) {
+                alert(error.message);
+                navigate('/dailyrecord', { replace: true });
+            };
+        };
+    };
 
     const getDocument = async (docid) => {
+        dispatch({ type: 'isPending' });
         try {
             const docRef = doc(colRef, docid);
             const docSnap = await getDoc(docRef);
             dispatch({ type: 'getDoc', payload: docSnap.data() });
         } 
-        catch (e) {
-            dispatch({ type: 'error', payload: e.message });
-            console.log(e.message);
+        catch (error) {
+            dispatch({ type: 'error', payload: error.message });
+            alert(error.message);
         }
     };
 
-    const updateDocument = async ({ id, titleData, textData, imageData }) => {
-        let file = '';
-        let fileName = 'No file';
-        if (imageData) {
-            file = imageData;
-            fileName = imageData.name;
-        }
+    const updateDocument = async (props) => {
+        const docRef = doc(appFireStore, transaction, props.id);
+
         dispatch({ type: 'isPending' });
-        try {
-            const createdTime = timeStamp.fromDate(new Date());
-            const imagesRef = ref(storageRef, fileName);
-            const docRef = doc(appFireStore, transaction, id);
-            await setDoc(docRef, {
-                title: titleData,
-                text: textData,
-                file: fileName,
-                createdMonth: createdTime.toDate().getMonth() + 1,
-                createdTime,
-            }, { merge: true });
-            if (doc.imageData) {
-                await uploadBytes(imagesRef, file);    
-            }
-            dispatch({ type: 'updateDoc', payload: docRef });
-            alert('글 수정이 완료되었습니다.');
-            navigate('/dailyrecord', { replace: true });
-        } 
-        catch (e) {
-            dispatch({ type: 'error', payload: e.message });
-            console.log(e.message);
-            alert('에러 발생!');
-            navigate('/dailyrecord', { replace: true });
+
+        let fileName = 'No file';
+        if (props.fileData) {
+            fileName = props.fileData.fileName;
         }
+
+        if (props.type === 'sr') {
+            try {
+                await setDoc(docRef, {
+                    title: props.titleData,
+                    text: props.postData,
+                    fileName: fileName,
+                    type: props.selectTypeData,
+                    createdTime,
+                }, { merge: true });
+    
+                if (props.fileData) {
+                    const imagesRef = ref(storageRef, fileName);
+                    await uploadBytes(imagesRef, props.fileData);    
+                }
+
+                dispatch({ type: 'updateDoc', payload: docRef });
+                alert('글 수정이 완료되었습니다.');
+                navigate('/studyrecord', { replace: true });
+            } 
+            catch (error) {
+                alert(error.message);
+                dispatch({ type: 'error', payload: error.message });
+                navigate('/studyrecord', { replace: true });
+            };
+        }
+    
+        else if (props.type === 'dr') {
+            try {
+                await setDoc(docRef, {
+                    title: props.titleData,
+                    text: props.postData,
+                    createdMonth: createdTime.toDate().getMonth() + 1,
+                    createdTime,
+                }, { merge: true });
+                dispatch({ type: 'updateDoc', payload: docRef });
+                alert('글 수정이 완료되었습니다.');
+                navigate('/dailyrecord', { replace: true });
+            }
+            catch (error) {
+                alert(error.message);
+                dispatch({ type: 'error', payload: error.message });
+                navigate('/dailyrecord', { replace: true });
+            };
+        };
     };
 
-    const deleteDocument = async (id) => {
+    const deleteDocument = async ({ id, pageType }) => {
         dispatch({ type: 'isPending' });
         try {
             const docRef = await deleteDoc(doc(colRef, id));
             dispatch({ type: 'deleteDoc', payload: docRef });
             alert('글 삭제가 완료되었습니다.');
-            navigate('/dailyrecord', { replace: true });
+            if (pageType === 'sr') {
+                navigate('/studyrecord', { replace: true });
+            }
+            else if (pageType === 'dr') {
+                navigate('/dailyrecord', { replace: true });
+            }
+           
         } catch (e) {
             dispatch({ type: 'error', payload: e.message });
             alert('에러 발생', e.message);
-            navigate('/dailyrecord', { replace: true });
+            if (pageType === 'sr') {
+                navigate('/studyrecord', { replace: true });
+            }
+            else if (pageType === 'dr') {
+                navigate('/dailyrecord', { replace: true });
+            }
         }
     }
 

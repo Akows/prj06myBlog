@@ -151,12 +151,14 @@
         background-color: white;
         border-radius: 5px;
 
+        line-height: normal;
+
         display: flex;
         flex-direction: column;
         align-items: flex-start;
 
         font-family: initial;
-        font-size: 18px;
+        /* font-size: 18px; */
     }
 
     .recorditemdetech {

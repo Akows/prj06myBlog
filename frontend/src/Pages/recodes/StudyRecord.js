@@ -98,7 +98,7 @@ export default function StudyRecord () {
                     </div>
                     {user ? 
                         <>
-                            <div className={styles.mystudyrecordwritebtu} onClick={() => {navigate('/recordeditorst/write');}}>
+                            <div className={styles.mystudyrecordwritebtu} onClick={() => {navigate('/texteditor/sr/write');}}>
                                 글쓰기
                             </div>
                         </>

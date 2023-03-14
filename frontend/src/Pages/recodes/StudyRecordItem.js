@@ -23,7 +23,7 @@ const StudyRecordItem = () => {
     const onUpdate = () => {
         if (user) {
             if (response.document?.writer === user.displayName) {
-                navigate(`/recordeditorst/${id}`);
+                navigate(`/texteditor/sr/${id}`);
             }
             else {
                 alert('본인이 작성한 글만 수정할 수 있습니다.');
@@ -37,7 +37,7 @@ const StudyRecordItem = () => {
     const onDelete = () => {
         if (user) {
             if (response.document?.writer === user.displayName) {
-                deleteDocument(id);
+                deleteDocument(id, 'sr');
             }
             else {
                 alert('본인이 작성한 글만 삭제할 수 있습니다.');

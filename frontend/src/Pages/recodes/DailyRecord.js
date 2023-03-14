@@ -36,7 +36,7 @@ export default function DailyRecord () {
                         </div>
                     </div>
                     {user ? 
-                        <div className={styles.dailyrecordwritebtu} onClick={() => {navigate('/recordeditor/write');}}>
+                        <div className={styles.dailyrecordwritebtu} onClick={() => {navigate('/texteditor/dr/write');}}>
                             글쓰기
                         </div>
                     : 

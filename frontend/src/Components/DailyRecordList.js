@@ -22,7 +22,7 @@ export const DailyRecordList = ({ currentMonth }) => {
                 time: doc.data().createdTime.toDate().toLocaleString(),
                 ...doc.data()
             }));
-            setData(mappingData);
+            setData(mappingData); 
         } 
         catch (error) {
             console.log(error);
