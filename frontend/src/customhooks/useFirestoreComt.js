@@ -48,19 +48,31 @@ export const useFirestoreComt = (transaction) => {
         }
     };
 
-    const addComments = async ({ commentsData, id }) => {
+    const addComments = async (commentsData, id, pageType) => {
         try {
             const createdTime = timeStamp.fromDate(new Date());
+
+            let writerName = user.displayName;
+
+            if (!user.displayName) {
+                writerName = '익명사용자';
+            };
+
             const docRef = await addDoc(colRef, {
                 comments: commentsData,
                 createdTime: createdTime,
-                writer: user.displayName,
+                writer: writerName,
                 targetDoc: id,
             });
-
             dispatch({ type: 'addComment', payload: docRef });
             alert('댓글 작성이 완료되었습니다.');
-            window.location.replace(`/dailyrecord/${id}`);
+
+            if (pageType === 'dr') {
+                window.location.replace(`/dailyrecord/${id}`);
+            }
+            else if (pageType === 'sr') {
+                window.location.replace(`/studyrecord/${id}`);
+            };
         } 
         catch (error) {
             console.error(error);

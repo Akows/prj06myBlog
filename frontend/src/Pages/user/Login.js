@@ -3,7 +3,7 @@ import { useLogin } from '../../customhooks/useLogin';
 import styles from '../../styles/Login.module.css'
 
 export default function Login () {
-    const { error, isPending, login } = useLogin();
+    const { error, isPending, login, anonymousLogin } = useLogin();
     const [userData, setUserData] = useState({
         id: '',
         pwd: ''
@@ -15,7 +15,7 @@ export default function Login () {
     };    
     const anonymousLoginEvent = (event) => {
         event.preventDefault();
-        login(userData.id, userData.pwd);
+        anonymousLogin();
     };  
     const onChangeEvent = (event) => {
         setUserData({

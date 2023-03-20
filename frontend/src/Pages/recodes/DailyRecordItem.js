@@ -10,12 +10,14 @@ const DailyRecordItem = () => {
     const { user } = useAuthContext();
     const { id } = useParams();
     const [commentsData, setCommentsData] = useState('');
-    const { getDocument, deleteDocument, downloadFile, response } = useFirestore('dailyrecord');
+    const { getDocument, deleteDocument, response } = useFirestore('dailyrecord');
     const { getComments, addComments, responseData } = useFirestoreComt('comment');
+
+    const pageType = 'dr';
 
     const onSubmitEvent = (event) => {
         event.preventDefault();
-        addComments({ commentsData, id });
+        addComments(commentsData, id, pageType);
     };
     const onChangeEvent = (event) => {
         setCommentsData(event.target.value);
@@ -77,7 +79,7 @@ const DailyRecordItem = () => {
                     <div className={[styles.recorditemitem, styles.recorditemtext].join(' ')}>
                         <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
                     </div>
-                    <div className={[styles.recorditemitem, styles.recorditemdetech].join(' ')}>
+                    {/* <div className={[styles.recorditemitem, styles.recorditemdetech].join(' ')}>
                         {!response.document?.file ?
                             <>
                                 <p>첨부파일 없음.</p>
@@ -87,12 +89,18 @@ const DailyRecordItem = () => {
                                 <p onClick={() => {downloadFile(response.document?.file)}}>{response.document?.file}</p>
                             </>
                         }
-                    </div>
+                    </div> */}
                     <div className={styles.recorditemdelwribtn}>
-                        <div className={styles.recorditemwritebtu}>
-                            <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
-                            <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
-                        </div>
+                        {user.isAnonymous ? 
+                            <>
+                                
+                            </>
+                        :
+                            <div className={styles.recorditemwritebtu}>
+                                <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
+                                <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
+                            </div>
+                        }
                     </div>
                     <div className={styles.recorditemcomments}>
                         {responseData.document?.length !== 0 ?

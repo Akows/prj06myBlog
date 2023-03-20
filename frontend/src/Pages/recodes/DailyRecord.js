@@ -35,7 +35,7 @@ export default function DailyRecord () {
                             3월
                         </div>
                     </div>
-                    {user ? 
+                    {!user.isAnonymous ? 
                         <div className={styles.dailyrecordwritebtu} onClick={() => {navigate('/texteditor/dr/write');}}>
                             글쓰기
                         </div>

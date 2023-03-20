@@ -179,6 +179,9 @@
         font-family: 'bitbit';
         font-size: 15px;
     }
+    .recorditemdetech:hover {
+        background-color: lightgray;
+    }
 
     .recordcomment {
         width: 80%;
@@ -218,7 +221,6 @@
     width: 90%;
     height: 100%;
 
-    margin-top: 80px;
     margin-bottom: 20px;
 
     display: flex;

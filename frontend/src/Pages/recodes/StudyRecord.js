@@ -96,7 +96,7 @@ export default function StudyRecord () {
                             React
                         </div>
                     </div>
-                    {user ? 
+                    {!user.isAnonymous ? 
                         <>
                             <div className={styles.mystudyrecordwritebtu} onClick={() => {navigate('/texteditor/sr/write');}}>
                                 글쓰기

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { appAuth } from '../configs/firebase'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInAnonymously, signInWithEmailAndPassword } from 'firebase/auth'
 import { useAuthContext } from './useAuthContext'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,14 +23,15 @@ export const useLogin = () => {
                 throw new Error('로그인에 실패했습니다.');
             }
             alert('방문해주셔서 감사합니다.');
-            navigate('/', { replace: true });
+            navigate('/main', { replace: true });
         })
-        .catch((err) => {
-            setError(err.message);
+        .catch((error) => {
+            setError(error.message);
             setIsPending(false);
-            console.log(err.message);
+            console.log(error.message);
             alert('에러가 발생하였습니다.');
-            navigate('/login', { replace: true });
+            window.location.replace('/');
+            // navigate('/', { replace: true });
         });
 
         // signOut(appAuth).then(() => {
@@ -45,5 +46,25 @@ export const useLogin = () => {
         // });
     };
 
-    return { error, isPending, login };
+    const anonymousLogin = () => {
+        setError(null);
+        setIsPending(true);
+        signInAnonymously(appAuth)
+        .then(() => {
+            setError(null);
+            setIsPending(false);
+            alert('방문해주셔서 감사합니다.');
+            navigate('/main', { replace: true });
+        })
+        .catch((error) => {
+            setError(error.message);
+            setIsPending(false);
+            console.log(error.message);
+            alert('에러가 발생하였습니다.');
+            window.location.replace('/');
+            // navigate('/', { replace: true });
+        });
+    };
+
+    return { error, isPending, login, anonymousLogin };
 };

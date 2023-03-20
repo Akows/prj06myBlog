@@ -13,9 +13,11 @@ const StudyRecordItem = () => {
     const { getDocument, deleteDocument, downloadFile, response } = useFirestore('studyrecord');
     const { getComments, addComments, responseData } = useFirestoreComt('comment');
 
+    const pageType = 'sr';
+
     const onSubmitEvent = (event) => {
         event.preventDefault();
-        addComments({ commentsData, id });
+        addComments(commentsData, id, pageType);
     };
     const onChangeEvent = (event) => {
         setCommentsData(event.target.value);
@@ -89,10 +91,16 @@ const StudyRecordItem = () => {
                         }
                     </div>
                     <div className={styles.recorditemdelwribtn}>
-                        <div className={styles.recorditemwritebtu}>
-                            <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
-                            <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
-                        </div>
+                    {user.isAnonymous ? 
+                            <>
+                                
+                            </>
+                        :
+                            <div className={styles.recorditemwritebtu}>
+                                <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
+                                <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
+                            </div>
+                        }
                     </div>
                     <div className={styles.recorditemcomments}>
                         {responseData.document?.length !== 0 ?
