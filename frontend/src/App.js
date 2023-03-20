@@ -1,9 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import TopMenuBar from './components/TopMenuBar';
 import { useAuthContext } from './customhooks/useAuthContext';
 import Main from './pages/main/Main';
 import Login from './pages/user/Login';
-import Signup from './pages/user/Signup';
 import DailyRecord from './pages/recodes/DailyRecord';
 import DailyRecordItem from './pages/recodes/DailyRecordItem';
 import StudyRecord from './pages/recodes/StudyRecord';
@@ -11,29 +10,29 @@ import StudyRecordItem from './pages/recodes/StudyRecordItem';
 
 import TextEditor from './pages/editor/TextEditor';
 
-import RecordEditor from './pages/recodes/RecordEditor';
-import RecordEditorSt from './pages/recodes/RecordEditorSt';
-
-
 import './App.css';
+import { useEffect } from 'react';
 
 
 function App() {
-  const { isAuthReady } = useAuthContext();
+  const { user, isAuthReady } = useAuthContext();
 
-  // useEffect(() => {
-  //   if (!user) {
-  //     signInAnonymously(appAuth)
-  //     .then(() => {
+  useEffect(() => {
+
+    console.log(user);
+
+    // if (!user) {
+    //   signInAnonymously(appAuth)
+    //   .then(() => {
     
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.log(errorCode, errorMessage);
-  //     });
-  //   }
-  // }, []);
+    //   })
+    //   .catch((error) => {
+    //     const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     console.log(errorCode, errorMessage);
+    //   });
+    // }
+  }, []);
 
   return (
     <div className='App'>
@@ -41,9 +40,11 @@ function App() {
         <BrowserRouter>
           <TopMenuBar />
           <Routes>
-            <Route path='/' element={<Main />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/signup' element={<Signup />} />
+            <Route path='/' element={<Login />} />
+
+            <Route path='/main' element={user ? <Main /> : <Navigate to='/' replace={true}/>} />
+
+
             <Route path='/dailyrecord' element={<DailyRecord />} />
             <Route path='/dailyrecord/:id' element={<DailyRecordItem />} />
             
@@ -51,11 +52,6 @@ function App() {
             <Route path='/studyrecord/:id' element={<StudyRecordItem />} />
 
             <Route path='/texteditor/:type/:id' element={<TextEditor />} />
-
-
-            <Route path='/recordeditor/:id' element={<RecordEditor />} />     
-            <Route path='/recordeditorst/:id' element={<RecordEditorSt />} />    
-
           </Routes>
         </BrowserRouter>
       ) : 'loading...'}

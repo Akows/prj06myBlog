@@ -42,6 +42,8 @@
         height: 50px;
 
         margin-top: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
 
         background-color: #BEC8CF;
         border: none;
@@ -57,6 +59,34 @@
     }
     .submitbutton:hover {
         color: red;
+    }
+    .submitbutton2 {
+        width: 100px;
+        height: 50px;
+
+        margin-top: 30px;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        background-color: #BEC8CF;
+        border: none;
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        font-family: 'bitbit';
+        font-size: 22px;
+    }
+    .submitbutton2:hover {
+        color: red;
+    }
+    .loginbutton {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 
 @media screen and (max-width: 650px) {
