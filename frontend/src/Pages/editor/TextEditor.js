@@ -25,7 +25,7 @@ export default function TextEditor () {
     // 글 데이터를 제어할 state.
         // 상단부터 제목, 본문, 첨부파일, 글 종류.
     const [titleData, setTitleData] = useState('');
-    const [postData, setPostData] = useState('내용을 입력해주세요.');
+    const [postData, setPostData] = useState('');
     const [fileData, setFileData] = useState(null);
     const [selectTypeData, setSelectTypeData] = useState('html');
 
@@ -45,9 +45,6 @@ export default function TextEditor () {
     // 에디터에서 글이나 첨부파일을 입력, 등록 했을 때 이를 감지하여 state로 set할 함수.
     const handleOnChangeTitle = (event) => {
         setTitleData(event.target.value);
-    }
-    const handleOnChangePost = (event) => {
-        setPostData(event.target.getContent());
     }
     const handleOnChangeFile = (event) => {
         setFileData(event.target.files);
@@ -168,9 +165,10 @@ export default function TextEditor () {
                             {/* 본문 입력 창 */}
                             <Editor
                                 apiKey={process.env.REACT_APP_EDITOR_API_KEY}
-                                initialValue={postData}
+                                initialValue={'내용을 입력해주세요.'}
+                                value={postData}
                                 init={editorInit}
-                                onChange={handleOnChangePost}
+                                onEditorChange={(newValue) => setPostData(newValue)}
                             />
                         </div>
 
