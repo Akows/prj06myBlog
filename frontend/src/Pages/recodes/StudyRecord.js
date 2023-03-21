@@ -89,12 +89,22 @@ export default function StudyRecord () {
                         <div onClick={() => {setChoiceType('js')}}>
                             JS
                         </div>
+                        <div>
+                            TS
+                        </div>
+                        <div onClick={() => {setChoiceType('react')}}>
+                            React.js
+                        </div>
+                        <div>
+                            Next.js
+                        </div>
+                        <div>
+                            Redux
+                        </div>
                         <div onClick={() => {setChoiceType('firebase')}}>
                             Firebase
                         </div>
-                        <div onClick={() => {setChoiceType('react')}}>
-                            React
-                        </div>
+
                     </div>
                     {!user.isAnonymous ? 
                         <>
@@ -104,8 +114,8 @@ export default function StudyRecord () {
                         </>
                     : 
                         <>
-                            <div className={styles.mystudyrecordwritebtu} onClick={() => {alert('블로그 주인만 글을 작성할 수 있습니다.')}}>
-                                권한없음
+                            <div>
+                                
                             </div>
                         </>
                     }

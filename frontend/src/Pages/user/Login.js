@@ -41,16 +41,12 @@ export default function Login () {
                     <label htmlFor='pwd'>password : </label>
                     <input name='pwd' type='password' required placeholder='비밀번호를 입력해주세요' value={userData.pwd} onChange={onChangeEvent}/>
                 </div>
-
                 <div className={styles.loginbutton}>
                     {!isPending && <button type='submit' className={styles.submitbutton}>로그인</button>}
                     {!isPending && <button className={styles.submitbutton2} onClick={anonymousLoginEvent}>비로그인 접속하기</button>}
                     {isPending && <><br/><strong>로그인이 진행중입니다...</strong></>}
                     {error && <><br/><strong>로그인 에러가 발생하였습니다...</strong></>}
                 </div>
-
-
-
             </form>
         </div>
     );

@@ -15,14 +15,15 @@ const TopMenuBar = () => {
         <>
             {user ? 
                 <div className={styles.background}>
-                <div className={[styles.titlebutton, styles.centeralignment].join(' ')}>
-                    <Link to='/'><p className={styles.menutext}>Lee's Blog</p></Link>
-                </div>
-                <div className={[styles.menubutton, styles.centeralignment].join(' ')}>
-                    <Link to='/studyrecord'><p className={styles.menutext}>공부기록</p></Link>
-                    <Link to='/dailyrecord'><p className={styles.menutext}>일기</p></Link>
-                    <div onClick={onMove}><p className={styles.menutext}>포트폴리오</p></div>
-                </div>
+                    <div className={[styles.titlebutton, styles.centeralignment].join(' ')}>
+                        <Link to='/'><p className={styles.menutext}>Lee's Blog</p></Link>
+                    </div>
+                    <div className={[styles.menubutton, styles.centeralignment].join(' ')}>
+                        <Link to='/questions'><p className={styles.menutext}>공부기록</p></Link>
+                        <Link to='/dailyrecord'><p className={styles.menutext}>일지</p></Link>
+                        <Link to='/studyrecord'><p className={styles.menutext}>내용정리</p></Link>
+                        <div onClick={onMove}><p className={styles.menutext}>포트폴리오</p></div>
+                    </div>
 
                 {/* {user?.isAnonymous && 
                     (

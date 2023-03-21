@@ -40,8 +40,8 @@ export default function DailyRecord () {
                             글쓰기
                         </div>
                     : 
-                        <div className={styles.dailyrecordwritebtu} onClick={() => {alert('블로그 주인만 글을 작성할 수 있습니다.')}}>
-                            권한없음
+                        <div>
+                            
                         </div>
                     }
                 </div>

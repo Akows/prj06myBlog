@@ -1,4 +1,4 @@
-.dailyrecord {
+.questions {
     width: 1200px;
     height: 100%;
     margin-top: 10px;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.dailyrecordboard {
+.questionsboard {
     width: 100%;
     height: 100%;
 
@@ -23,7 +23,7 @@
     background-color: #7DA5E1;
 }
 
-.dailyrecordutil {
+.questionsutil {
     width: 90%;
     height: 90%;
 
@@ -32,7 +32,7 @@
     align-items: flex-start;
     justify-content: center;
 }
-    .dailyrecordpagenation {
+    .questionspagenation {
         width: 100%;
         height: 100%;
 
@@ -46,8 +46,8 @@
         justify-content: center;
         align-items: center; 
     }    
-        .month {
-            width: 70px;
+        .pagenationbtu {
+            width: 80px;
             height: 100%;
 
             border-radius: 5px;
@@ -62,14 +62,14 @@
             font-family: 'bitbit';
             font-size: 20px;
         }  
-        .month:hover {
+        .pagenationbtu:hover {
             background-color: #bebebe;
         }
-        .month:active {
+        .pagenationbtu:active {
             color: red;
         }
 
-    .dailyrecordwritebtu {
+    .questionswritebtu {
         width: 100px;
         height: 60px;
 
@@ -86,21 +86,14 @@
         font-family: 'bitbit';
         font-size: 25px;
     }
-        .dailyrecordwritebtu:hover {
+        .questionswritebtu:hover {
             background-color: #bebebe;
         }
-        .dailyrecordwritebtu:active {
+        .questionswritebtu:active {
             color: red;
         }
-        .writeicon {
-            width: 64px;
-            height: 64px;
-    
-            /* background-image: url('../assets/write.png'); */
-            background-size: 64px 64px;
-        }
 
-.dailyrecorditems {
+.questionsitemlist {
     width: 95%;
     height: 100%;
     
@@ -110,11 +103,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-}
-    .dailyrecorditem {
+}    
+    .questionsitem {
         width: 95%;
         height: 70px;
-    
+
         margin-top: 10px;
 
         padding: 10px;
@@ -128,7 +121,7 @@
         justify-content: center;
 
     }
-    .dailyrecorditeminfo1 {
+    .questionsiteminfo1 {
         width: 60%;
         height: 100%;
         font-size: 25px;
@@ -138,7 +131,7 @@
         align-items: center;
         justify-content: flex-start;
     }
-    .dailyrecorditeminfo2 {
+    .questionsiteminfo2 {
         width: 20%;
         height: 100%;
 
@@ -147,7 +140,7 @@
         align-items: center;
         justify-content: flex-end;
     }
-    .dailyrecorditeminfo3 {
+    .questionsiteminfo3 {
         width: 20%;
         height: 100%;
 
@@ -156,66 +149,41 @@
         align-items: center;
         justify-content: flex-end;
     }
-    .dailyrecorditem:hover {
+    .questionsitem:hover {
         background-color: #dcdcdc;
     }
-    .dailyrecorditem:active > p {
+    .questionsitem:active > p {
         color: red;
     }
 
 
+/* 화면 해상도가 1200px 이하일 경우 */
+/* 화면 최대 가로를 90%로 지정한다. */
+/* 기본 가로는 1200px로 지정했으니 이보다 커지지 않고 */
+/* 1200 이하가 되었을 경우에는 90%가 되도록 한다. */
+
 @media screen and (max-width: 1200px) {
-    .dailyrecord {
+    .questions {
         width: 90%;
     }
 
-    .dailyrecorditem {
+    .questionsitem {
         height: 80px;
         flex-direction: column;
         align-items: flex-start;
     }
-    .dailyrecorditeminfo1 {
-        width: 100%;
-        margin: 3px;
-    }
-
-    .dailyrecorditeminfo2 {
-        width: 100%;
-        text-align: left;
-        margin: 3px;
-    }
-    .dailyrecorditeminfo3 {
-        width: 100%;
-        text-align: left;
-        margin: 3px;
-    }
-}
-
-/* @media screen and (max-width: 400px) {
-    .dailyrecordutil {
-        height: 100px;
-    } 
-    .dailyrecordpagenation {
-        height: 80px;
-    }    
-        .dailyrecordpagenation > div {
-            height: 60px;
-        }    
-    .dailyrecordwritebtu {
-        height: 80px;
-    }
-    
-    .dailyrecordpagenation > div {
-        font-size: 20px;
-    }    
-        .year {
-            font-size: 13px;
+        .questionsiteminfo1 {
+            width: 100%;
+            margin: 3px;
         }
-
-    .writeicon {
-        width: 51px;
-        height: 51px;
-
-        background-size: 51px 51px;
-    }
-} */
+        .questionsiteminfo2 {
+            width: 100%;
+            text-align: left;
+            margin: 3px;
+        }
+        .questionsiteminfo3 {
+            width: 100%;
+            text-align: left;
+            margin: 3px;
+        }
+}

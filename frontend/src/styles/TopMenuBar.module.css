@@ -64,12 +64,19 @@
     font-size: 20px;
     transition: all 1s ease;
 }
+.background:hover .centeralignment > div {
+    width: 120px;
+    font-size: 20px;
+    transition: all 1s ease;
+}
+
 .background:hover .centeralignment > a:nth-child(2) {
     width: 90px;
 }
 
 .logoutbutton {
     width: 80px;
+    height: 100%;
     border-radius: 10px;
     font-family: 'bitbit';
     font-size: 20px;
@@ -92,17 +99,13 @@
     }
 
     .titlebutton {
-        width: 15%;
+        width: 12%;
     }
     .menubutton {
-        width: 50%;
+        width: 56%;
     }
     .userbutton {
-        width: 35%;
-    }
-
-    .background:hover .centeralignment > a {
-        width: 60px;
+        width: 28%;
     }
 
     .menutext {
@@ -110,13 +113,13 @@
     }
 
     .centeralignment > a {
-        width: 50px;
+        width: 40px;
         height: 100%;
         background-position: center;
         background-repeat: no-repeat;
     }
     .centeralignment > div {
-        width: 50px;
+        width: 65px;
         height: 100%;
         background-position: center;
         background-repeat: no-repeat;
@@ -125,18 +128,30 @@
         background-image: url('../styles/images/letter-l.png');
         background-size: 40px 40px;
     }
-
     .menubutton > a:nth-child(1) {
-        background-image: url('../styles/images/calendar.png');
-        background-size: 40px 40px;
+        background-image: url('../styles/images/confused.png');
+        background-size: 35px 35px;
     }
     .menubutton > a:nth-child(2) {
+        background-image: url('../styles/images/calendar.png');
+        background-size: 35px 35px;
+    }
+    .menubutton > a:nth-child(3) {
         background-image: url('../styles/images/document.png');
-        background-size: 40px 40px;
+        background-size: 35px 35px;
     }
     .menubutton > div {
         background-image: url('../styles/images/project.png');
+        background-size: 35px 35px;
+    }
+
+    .logoutbutton {
+        width: 45px;
+        font-size: 0;
+        background-image: url('../styles/images/logout.png');
         background-size: 40px 40px;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 
     .userbutton > a:nth-child(1) {
