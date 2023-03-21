@@ -48,7 +48,32 @@ export const useFirestore = (transaction) => {
             fileName = doc.fileData[0].name;
         }
 
-        if (doc.type === 'sr') {
+        if (doc.type === 'qs') {
+            try {
+                const docRef = await addDoc(colRef, { 
+                    title: doc.titleData,
+                    text: doc.postData,
+                    file: fileName,
+                    writer: user.displayName,
+                    type: doc.selectTypeData,
+                    createdTime,
+                });
+
+                if (doc.fileData) {
+                    const imagesRef = ref(storageRef, fileName);
+                    await uploadBytes(imagesRef, doc.fileData);    
+                }
+
+                dispatch({ type: 'addDoc', payload: docRef });
+                alert('글 작성이 완료되었습니다.');
+                navigate('/questions', { replace: true });
+            } 
+            catch (error) {
+                alert(error.message);
+                navigate('/questions', { replace: true });
+            };
+        }
+        else if (doc.type === 'sr') {
             try {
                 const docRef = await addDoc(colRef, { 
                     title: doc.titleData,
@@ -117,7 +142,33 @@ export const useFirestore = (transaction) => {
             fileName = props.fileData.fileName;
         }
 
-        if (props.type === 'sr') {
+        if (props.type === 'qs') {
+            try {
+                await setDoc(docRef, {
+                    title: props.titleData,
+                    text: props.postData,
+                    fileName: fileName,
+                    type: props.selectTypeData,
+                    createdTime,
+                }, { merge: true });
+    
+                if (props.fileData) {
+                    const imagesRef = ref(storageRef, fileName);
+                    await uploadBytes(imagesRef, props.fileData);    
+                }
+
+                dispatch({ type: 'updateDoc', payload: docRef });
+                alert('글 수정이 완료되었습니다.');
+                navigate('/questions', { replace: true });
+            } 
+            catch (error) {
+                alert(error.message);
+                dispatch({ type: 'error', payload: error.message });
+                navigate('/questions', { replace: true });
+            };
+        }
+
+        else if (props.type === 'sr') {
             try {
                 await setDoc(docRef, {
                     title: props.titleData,

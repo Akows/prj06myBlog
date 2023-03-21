@@ -58,7 +58,7 @@ export default function StudyRecord () {
 
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
-        titleElement.innerHTML = '공부기록';
+        titleElement.innerHTML = '내용정리';
         boardListLoad(choiceType);
         // eslint-disable-next-line
     }, []);
@@ -89,16 +89,16 @@ export default function StudyRecord () {
                         <div onClick={() => {setChoiceType('js')}}>
                             JS
                         </div>
-                        <div>
+                        <div onClick={() => {setChoiceType('ts')}}>
                             TS
                         </div>
                         <div onClick={() => {setChoiceType('react')}}>
                             React.js
                         </div>
-                        <div>
+                        <div onClick={() => {setChoiceType('next')}}>
                             Next.js
                         </div>
-                        <div>
+                        <div onClick={() => {setChoiceType('redux')}}>
                             Redux
                         </div>
                         <div onClick={() => {setChoiceType('firebase')}}>

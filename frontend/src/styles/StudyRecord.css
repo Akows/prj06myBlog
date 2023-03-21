@@ -5,8 +5,12 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-.js_icon {
-    background-image: url('../styles/images/js.png');
+.default2_icon {
+    width: 32px;
+    height: 32px;
+
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .html_icon {
     background-image: url('../styles/images/html.png');
@@ -14,8 +18,11 @@
 .css_icon {
     background-image: url('../styles/images/css.png');
 }
-.firebase_icon {
-    background-image: url('../styles/images/firebase.png');
+.js_icon {
+    background-image: url('../styles/images/js.png');
+}
+.ts_icon {
+    background-image: url('../styles/images/typescript.png');
 }
 .react_icon {
     width: 75px;
@@ -23,6 +30,16 @@
 
     background-image: url('../styles/images/react.png');
 }
+.next_icon {
+    background-image: url('../styles/images/nextjs.png');
+}
+.redux_icon {
+    background-image: url('../styles/images/redux.png');
+}
+.firebase_icon {
+    background-image: url('../styles/images/firebase.png');
+}
+
 /* .language_icon {
     background-image: url('../styles/images/coding-language.png');
 }

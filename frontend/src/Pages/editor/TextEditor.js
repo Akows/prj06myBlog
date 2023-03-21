@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useFirestore } from '../../customhooks/useFirestore';
@@ -73,6 +73,22 @@ export default function TextEditor () {
         // 탭 제목을 제어하기 위해 document의 getElementsByTagName.
         const titleElement = document.getElementsByTagName('title')[0];
 
+        if (type === 'qs') {
+            titleElement.innerHTML = '공부기록';
+            setPageType('questions');
+
+            if (id === 'write') {
+                titleElement.innerHTML += ' - 작성하기';
+                setIsUpdate(false);
+            } 
+            else {
+                titleElement.innerHTML += ' - 수정하기';
+                setIsUpdate(true);
+                getDocument(id);
+            }
+        };
+
+
         if (type === 'dr') {
             titleElement.innerHTML = '일일기록';
             setPageType('dailyrecord');
@@ -89,7 +105,7 @@ export default function TextEditor () {
         }
 
         if (type === 'sr') {
-            titleElement.innerHTML = '공부기록';
+            titleElement.innerHTML = '내용정리';
             setPageType('studyrecord');
 
             if (id === 'write') {
@@ -108,7 +124,11 @@ export default function TextEditor () {
     useEffect(() => {
         // 이전 컴포넌트에서 넘어온 페이지 type을 받아서 조건문 실행.
         // 각 조건문 안에서는 또 글 작성인지 수정인지 여부를 확인.
-        if (type === 'dr' && id !== 'write') {
+        if (type === 'qs' && id !== 'write') {
+            setTitleData(response.document?.title);
+            setPostData(response.document?.text);
+        }
+        else if (type === 'dr' && id !== 'write') {
             setTitleData(response.document?.title);
             setPostData(response.document?.text);
         }
@@ -146,14 +166,31 @@ export default function TextEditor () {
                     <form onSubmit={handleOnSubmit}>
 
                         {/* 글 타입을 선택하는 화면은 공부기록 작성 시에만 보이도록. */}
+                        {pageType === 'questions' &&
+                            <div className={styles.recordeditoritemsselect}>
+                                <select onChange={handleonChangeSelect} value={selectTypeData}>
+                                    <option value='html'>HTML</option>
+                                    <option value='css'>CSS</option>
+                                    <option value='js'>JS</option>
+                                    <option value='js'>TS</option>
+                                    <option value='react'>React.js</option>
+                                    <option value='next'>Next.js</option>
+                                    <option value='redux'>Redux</option>
+                                    <option value='firebase'>Firebase</option>
+                                </select>
+                            </div>  
+                        }
                         {pageType === 'studyrecord' &&
                             <div className={styles.recordeditoritemsselect}>
                                 <select onChange={handleonChangeSelect} value={selectTypeData}>
                                     <option value='html'>HTML</option>
                                     <option value='css'>CSS</option>
                                     <option value='js'>JS</option>
+                                    <option value='js'>TS</option>
+                                    <option value='react'>React.js</option>
+                                    <option value='next'>Next.js</option>
+                                    <option value='redux'>Redux</option>
                                     <option value='firebase'>Firebase</option>
-                                    <option value='react'>React</option>
                                 </select>
                             </div>  
                         }
@@ -173,6 +210,9 @@ export default function TextEditor () {
                         </div>
 
                         {/* 첨부파일 선택은 공부기록 작성 시에만 보이도록. */}
+                        {pageType === 'questions' &&
+                            <input className={styles.upload} type='file' onChange={handleOnChangeFile}/>   
+                        }
                         {pageType === 'studyrecord' &&
                             <input className={styles.upload} type='file' onChange={handleOnChangeFile}/>   
                         }
