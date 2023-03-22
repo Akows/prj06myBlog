@@ -14,11 +14,11 @@ const editorInit = {
     menubar: false,
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
     fontsize_formats: "8pt 9pt 10pt 11pt 12pt 14pt 18pt 24pt 30pt 36pt 48pt 60pt 72pt 96pt",
-    plugins: [ "image", "code", "table", "link", "media", "codesample", "lists", "autoresize" ],
+    plugins: [ "image", "code", "table", "link", "media", "codesample", "lists", "autoresize", "codesample" ],
     toolbar:
         'undo redo | fontsize | bold italic backcolor | ' +
         'alignleft aligncenter alignright alignjustify | ' +
-        'image | bullist numlist | removeformat ',
+        'image | bullist numlist | codesample removeformat ',
 };
 
 export default function TextEditor () {
