@@ -65,7 +65,7 @@
             font-family: 'bitbit';
             font-size: 20px;
         }    
-        .mystudyrecordpagenation > div:nth-child(3) {
+        /* .mystudyrecordpagenation > div:nth-child(3) {
             width: 50px;
         }    
         .mystudyrecordpagenation > div:nth-child(4) {
@@ -73,7 +73,7 @@
         }    
         .mystudyrecordpagenation > div:nth-child(5) {
             width: 90px;
-        }    
+        }     */
         .mystudyrecordpagenation > div:hover {
             background-color: #bebebe;
         }

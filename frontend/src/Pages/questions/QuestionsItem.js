@@ -9,7 +9,7 @@ const QuestionsItem = () => {
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const { id } = useParams();
-    const [commentsData, setCommentsData] = useState('');
+    const [commentsData, setCommentsData] = useState([]);
     const { getDocument, deleteDocument, downloadFile, response } = useFirestore('questions');
     const { getComments, addComments, responseData } = useFirestoreComt('comment');
 
