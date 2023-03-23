@@ -159,6 +159,8 @@
 
         font-family: initial;
         /* font-size: 18px; */
+
+        overflow: scroll;
     }
 
     .recorditemdetech {

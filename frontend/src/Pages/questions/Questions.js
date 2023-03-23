@@ -50,6 +50,7 @@ export default function Questions () {
         const titleElement = document.getElementsByTagName("title")[0];
         titleElement.innerHTML = '공부기록';
         boardListLoad(choiceType);
+
         // eslint-disable-next-line
     }, []);
 
@@ -124,7 +125,7 @@ export default function Questions () {
                         </div>
                     ))}
 
-                    {data && <><br/> 작성한 글이 없습니다.</>}
+                    {data.length === 0 && <><br/> 작성한 글이 없습니다.</>}
                 </div>
             </div>
         </div>
