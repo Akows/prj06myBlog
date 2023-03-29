@@ -58,13 +58,15 @@ export default function TextEditor () {
         // submit 기능의 기본 기능 (새로고침) 발동을 차단조치.
         event.preventDefault();
 
+        console.log(postData);
+
         // isUpdate 여부에 따라서 필요한 함수가 발동되도록.
-        if (!isUpdate) {
-            addDocument({ type, titleData, postData, fileData, selectTypeData });
-        }
-        else {
-            updateDocument({ type, id, titleData, postData, fileData, selectTypeData });
-        }
+        // if (!isUpdate) {
+        //     addDocument({ type, titleData, postData, fileData, selectTypeData });
+        // }
+        // else {
+        //     updateDocument({ type, id, titleData, postData, fileData, selectTypeData });
+        // }
     };
 
     // 컴포넌트 랜더링 이후 1번만 발동될 코드.
