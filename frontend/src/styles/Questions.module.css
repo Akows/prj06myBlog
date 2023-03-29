@@ -106,7 +106,7 @@
 }    
     .questionsitem {
         width: 95%;
-        height: 70px;
+        height: 100%;
 
         margin-top: 10px;
 
@@ -168,7 +168,7 @@
     }
 
     .questionsitem {
-        height: 80px;
+        height: 100%;
         flex-direction: column;
         align-items: flex-start;
     }

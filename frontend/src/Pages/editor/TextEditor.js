@@ -19,6 +19,7 @@ const editorInit = {
         'undo redo | fontsize | bold italic backcolor | ' +
         'alignleft aligncenter alignright alignjustify | ' +
         'image | bullist numlist | codesample removeformat ',
+    // valid_elements: 'b/strong',
 };
 
 export default function TextEditor () {
@@ -61,12 +62,12 @@ export default function TextEditor () {
         console.log(postData);
 
         // isUpdate 여부에 따라서 필요한 함수가 발동되도록.
-        // if (!isUpdate) {
-        //     addDocument({ type, titleData, postData, fileData, selectTypeData });
-        // }
-        // else {
-        //     updateDocument({ type, id, titleData, postData, fileData, selectTypeData });
-        // }
+        if (!isUpdate) {
+            addDocument({ type, titleData, postData, fileData, selectTypeData });
+        }
+        else {
+            updateDocument({ type, id, titleData, postData, fileData, selectTypeData });
+        }
     };
 
     // 컴포넌트 랜더링 이후 1번만 발동될 코드.

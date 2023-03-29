@@ -25,10 +25,10 @@
     background-image: url('../styles/images/typescript.png');
 }
 .react_icon {
-    width: 75px;
-    height: 64px;
+    /* width: 75px;
+    height: 64px; */
 
-    background-image: url('../styles/images/react.png');
+    background-image: url('../styles/images/react.svg');
 }
 .next_icon {
     background-image: url('../styles/images/nextjs.png');
