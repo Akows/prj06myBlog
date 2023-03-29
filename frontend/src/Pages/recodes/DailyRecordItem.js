@@ -23,31 +23,10 @@ const DailyRecordItem = () => {
         setCommentsData(event.target.value);
     };
     const onUpdate = () => {
-        if (user) {
-            if (response.document?.writer === user.displayName) {
-                navigate(`/texteditor/dr/${id}`);
-            }
-            else {
-                alert('본인이 작성한 글만 수정할 수 있습니다.');
-            }
-
-        }
-        else {
-            alert('본인이 작성한 글만 수정할 수 있습니다.');
-        }
+        navigate(`/texteditor/dr/${id}`);
     };
     const onDelete = () => {
-        if (user) {
-            if (response.document?.writer === user.displayName) {
-                deleteDocument(id);
-            }
-            else {
-                alert('본인이 작성한 글만 삭제할 수 있습니다.');
-            }
-        }
-        else {
-            alert('본인이 작성한 글만 수정할 수 있습니다.');
-        }
+        deleteDocument(id, 'dr');
     };
 
     useEffect(() => {

@@ -23,31 +23,10 @@ const StudyRecordItem = () => {
         setCommentsData(event.target.value);
     };
     const onUpdate = () => {
-        if (user) {
-            if (response.document?.writer === user.displayName) {
-                navigate(`/texteditor/sr/${id}`);
-            }
-            else {
-                alert('본인이 작성한 글만 수정할 수 있습니다.');
-            }
-
-        }
-        else {
-            alert('본인이 작성한 글만 수정할 수 있습니다.');
-        }
+        navigate(`/texteditor/sr/${id}`);
     };
     const onDelete = () => {
-        if (user) {
-            if (response.document?.writer === user.displayName) {
-                deleteDocument(id, 'sr');
-            }
-            else {
-                alert('본인이 작성한 글만 삭제할 수 있습니다.');
-            }
-        }
-        else {
-            alert('본인이 작성한 글만 수정할 수 있습니다.');
-        }
+        deleteDocument(id, 'sr');
     };
 
     useEffect(() => {

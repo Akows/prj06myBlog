@@ -214,8 +214,9 @@ export const useFirestore = (transaction) => {
         };
     };
 
-    const deleteDocument = async ({ id, pageType }) => {
+    const deleteDocument = async (id, pageType) => {
         dispatch({ type: 'isPending' });
+
         try {
             const docRef = await deleteDoc(doc(colRef, id));
             dispatch({ type: 'deleteDoc', payload: docRef });
@@ -226,15 +227,21 @@ export const useFirestore = (transaction) => {
             else if (pageType === 'dr') {
                 navigate('/dailyrecord', { replace: true });
             }
-           
-        } catch (e) {
+            else if (pageType === 'qs') {
+                navigate('/questions', { replace: true });
+            }
+        } 
+        catch (e) {
             dispatch({ type: 'error', payload: e.message });
-            alert('에러 발생', e.message);
+            alert('에러 발생', e);
             if (pageType === 'sr') {
                 navigate('/studyrecord', { replace: true });
             }
             else if (pageType === 'dr') {
                 navigate('/dailyrecord', { replace: true });
+            }
+            else if (pageType === 'qs') {
+                navigate('/questions', { replace: true });
             }
         }
     }
