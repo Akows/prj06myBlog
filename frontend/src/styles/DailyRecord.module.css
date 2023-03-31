@@ -59,7 +59,8 @@
 
             margin: 3px;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+            font-weight: 700;
             font-size: 20px;
         }  
         .month:hover {
@@ -83,7 +84,8 @@
         align-items: center;
         justify-content: center;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
+        font-weight: 700;
         font-size: 25px;
     }
         .dailyrecordwritebtu:hover {
@@ -132,6 +134,8 @@
         width: 60%;
         height: 100%;
         font-size: 25px;
+
+        font-weight: 700;
 
         display: flex;
         flex-direction: row;

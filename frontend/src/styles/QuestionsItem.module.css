@@ -56,7 +56,7 @@
 
             margin: 3px;
 
-            font-family: 'bitbit';
+            font-weight: 600;
             font-size: 25px;
         }    
         .questionsdesc > div:nth-child(1) {
@@ -94,7 +94,8 @@
         align-items: center;
         justify-content: space-evenly;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
+        font-weight: 700;
         font-size: 25px;
     }
         .button {
@@ -134,11 +135,16 @@
 
         background-color: white;
         border-radius: 5px;
-
-        font-family: 'bitbit';
+        
+        font-family: 'Noto Sans KR';
+        font-weight: 900;
         font-size: 30px;
 
-        justify-content: space-between !important;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        /* justify-content: space-between !important; */
     }
     .questionstext {
         width: 90%;
@@ -157,7 +163,7 @@
         flex-direction: column;
         align-items: flex-start;
 
-        font-family: initial;
+        font-family: 'Noto Sans KR';
         /* font-size: 18px; */
 
         overflow: scroll;
@@ -178,7 +184,7 @@
         flex-direction: column;
         align-items: flex-start;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
         font-size: 15px;
     }
     .questionsdetech:hover {
@@ -198,13 +204,10 @@
         flex-direction: column;
         align-items: flex-start;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
         font-size: 15px;  
     }
 
-    /* .questionsitem:hover {
-        background-color: #dcdcdc;
-    } */
     .questionsout {
         width: 100%;
         height: 100%;
@@ -212,11 +215,10 @@
         border: none;
         border-radius: 5px;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
         font-size: 25px;
 
         padding: 5px;
-        
     }
 
 .questionscomments {
@@ -275,7 +277,8 @@
 
             text-align: left;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+            font-weight: 600;
             font-size: 20px;
         }
         .commentsubmitbtu {
@@ -289,7 +292,8 @@
             margin-left: 30px;
             margin-right: 5px;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+            font-weight: 800;
             font-size: 25px;
 
             display: flex;

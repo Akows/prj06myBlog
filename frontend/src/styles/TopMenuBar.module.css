@@ -14,17 +14,23 @@
     background-color: #6096B4;
     transform: translate3d(0, 0, 0);
     transition: all 0.5s ease;
+
+    /* font-family: 'bitbit'; */
 }
 
 .titlebutton {
     width: 20%;
     height: 100%;    
     justify-content: center;
+
+    font-weight: 700;
 }
 .menubutton {
     width: 47%;
     height: 100%;
     justify-content: left;
+
+    font-weight: 900;
 }
 .userbutton {
     width: 30%;
@@ -78,8 +84,9 @@
     width: 80px;
     height: 100%;
     border-radius: 10px;
-    font-family: 'bitbit';
+    /* font-family: 'bitbit'; */
     font-size: 20px;
+    font-weight: 600;
     border: none;
     background-color: #6096B4;
 }

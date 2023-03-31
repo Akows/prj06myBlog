@@ -20,9 +20,19 @@
     align-items: center;
     justify-content: center;
 
+    text-align: center;
+
+    line-height: 150%;
+
     font-size: 50px;
 
     animation: fadeInUp 2s;
+
+    /* 드래그 방지 */
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none
 }
 
 @media screen and (max-width: 1200px) {

@@ -56,7 +56,8 @@
 
             margin: 3px;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+            font-weight: 600;
             font-size: 25px;
         }    
         .recorditemdesc > div:nth-child(1) {
@@ -94,7 +95,8 @@
         align-items: center;
         justify-content: space-evenly;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
+        font-weight: 700;
         font-size: 25px;
     }
         .button {
@@ -135,8 +137,9 @@
         background-color: white;
         border-radius: 5px;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
         font-size: 30px;
+        font-weight: 900;
 
         justify-content: space-between !important;
     }
@@ -157,7 +160,7 @@
         flex-direction: column;
         align-items: flex-start;
 
-        font-family: initial;
+        font-family: 'Noto Sans KR';
         /* font-size: 18px; */
 
         overflow: scroll;
@@ -178,7 +181,7 @@
         flex-direction: column;
         align-items: flex-start;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
         font-size: 15px;
     }
     .recorditemdetech:hover {
@@ -198,7 +201,7 @@
         flex-direction: column;
         align-items: flex-start;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
         font-size: 15px;  
     }
 
@@ -212,7 +215,7 @@
         border: none;
         border-radius: 5px;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
         font-size: 25px;
 
         padding: 5px;
@@ -275,7 +278,8 @@
 
             text-align: left;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+            font-weight: 600;
             font-size: 20px;
         }
         .commentsubmitbtu {
@@ -289,7 +293,8 @@
             margin-left: 30px;
             margin-right: 5px;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+            font-weight: 800;
             font-size: 25px;
 
             display: flex;

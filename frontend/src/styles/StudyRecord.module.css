@@ -62,7 +62,9 @@
 
             margin: 5px;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+            font-weight: 700;
+            
             font-size: 20px;
         }    
         /* .mystudyrecordpagenation > div:nth-child(3) {
@@ -95,7 +97,8 @@
         align-items: center;
         justify-content: center;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
+        font-weight: 700;
         font-size: 25px;
     }
         .mystudyrecordwritebtu:hover {
@@ -164,7 +167,8 @@
         align-items: flex-start;
         justify-content: flex-start;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
+        font-weight: 800;
         font-size: 20px;
     }
     .mystudyrecorditemtitle > p {

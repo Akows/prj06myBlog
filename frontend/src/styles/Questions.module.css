@@ -59,7 +59,9 @@
 
             margin: 3px;
 
-            font-family: 'bitbit';
+            /* font-family: 'bitbit'; */
+
+            font-weight: 500;
             font-size: 20px;
         }  
         .pagenationbtu:hover {
@@ -83,7 +85,9 @@
         align-items: center;
         justify-content: center;
 
-        font-family: 'bitbit';
+        /* font-family: 'bitbit'; */
+        font-weight: 600;
+
         font-size: 25px;
     }
         .questionswritebtu:hover {
@@ -130,6 +134,8 @@
         flex-direction: row;
         align-items: center;
         justify-content: flex-start;
+
+        font-weight: 700;
     }
     .questionsiteminfo2 {
         width: 20%;

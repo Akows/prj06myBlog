@@ -52,13 +52,14 @@ const QuestionsItem = () => {
                     </div>
                 </div>
                 <div className={styles.questionsitems}>
-                    <div className={[styles.questionsitem, styles.questionstitle].join(' ')}>
+                    <div className={styles.questionstitle}>
+                        <div className={['default2_icon', `${response.document?.type}_icon`].join(' ')}/>
                         {response.document?.title}
                     </div>
-                    <div className={[styles.questionsitem, styles.questionstext].join(' ')}>
+                    <div className={styles.questionstext}>
                         <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
                     </div>
-                    <div className={[styles.questionsitem, styles.questionsdetech].join(' ')}>
+                    <div className={styles.questionsdetech}>
                         {response.document?.file === 'No file' ?
                             <>
                                 <p>첨부파일 없음.</p>
@@ -98,7 +99,7 @@ const QuestionsItem = () => {
                         }
                         <form onSubmit={onSubmitEvent}>
                             <div className={styles.questionscommentutil}> 
-                                <input name='Text' type='text' placeholder='댓글을 입력해주세요' maxLength='30' className={styles.questionscommentinput} value={commentsData.text} onChange={onChangeEvent}/> 
+                                <input name='Text' type='text' placeholder='댓글을 입력해주세요..' maxLength='30' className={styles.questionscommentinput} value={commentsData.text} onChange={onChangeEvent}/> 
                                 <button type='submit' className={styles.commentsubmitbtu}>
                                     작성
                                 </button>
