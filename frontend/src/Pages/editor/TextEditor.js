@@ -18,7 +18,7 @@ const editorInit = {
     toolbar:
         'undo redo | fontsize | bold italic backcolor | ' +
         'alignleft aligncenter alignright alignjustify | ' +
-        'image | bullist numlist | codesample removeformat ',
+        'image | bullist numlist | codesample removeformat link ',
     // valid_elements: 'b/strong',
 };
 
@@ -58,8 +58,6 @@ export default function TextEditor () {
     const handleOnSubmit = (event) => {
         // submit 기능의 기본 기능 (새로고침) 발동을 차단조치.
         event.preventDefault();
-
-        console.log(postData);
 
         // isUpdate 여부에 따라서 필요한 함수가 발동되도록.
         if (!isUpdate) {
