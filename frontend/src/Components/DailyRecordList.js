@@ -15,15 +15,15 @@ export const DailyRecordList = ({ currentMonth }) => {
     const listUpdate = async (currentMonth) => {
         try {
             const colRef = collection(appFireStore, 'dailyrecord');
-            const querys = query(colRef, where('createdMonth', '==', currentMonth), orderBy('createdTime', 'desc')); 
+            const querys = query(colRef, where('createdMonth', '==', currentMonth), orderBy('createdTime', 'desc'));
             const querySnap = await getDocs(querys);
             const mappingData = querySnap.docs.map((doc) => ({
                 id: doc.id,
                 time: doc.data().createdTime.toDate().toLocaleString(),
                 ...doc.data()
             }));
-            setData(mappingData); 
-        } 
+            setData(mappingData);
+        }
         catch (error) {
             console.log(error);
         }
@@ -41,25 +41,25 @@ export const DailyRecordList = ({ currentMonth }) => {
 
     return (
         <>
-            {state.isReady ? 
+            {state.isReady ?
                 <div className={styles.dailyrecorditems}>
                     {data?.map((item) => (
-                        <div className={styles.dailyrecorditem} key={item.id} onClick={() => {navigate(`/dailyrecord/${item.id}`)}}>
-                           <div className={styles.dailyrecorditeminfo1}>
+                        <div className={styles.dailyrecorditem} key={item.id} onClick={() => { navigate(`/dailyrecord/${item.id}`) }}>
+                            <div className={styles.dailyrecorditeminfo1}>
                                 {item.title}
-                           </div>
-                           <div className={styles.dailyrecorditeminfo2}>
+                            </div>
+                            <div className={styles.dailyrecorditeminfo2}>
                                 {item.writer}
-                           </div>
-                           <div className={styles.dailyrecorditeminfo3}>
+                            </div>
+                            <div className={styles.dailyrecorditeminfo3}>
                                 {item.time}
-                           </div>
+                            </div>
                         </div>
                     ))}
                     {error && <strong>{err}</strong>}
                 </div>
-                : 
-                'loading...' 
+                :
+                'loading...'
             }
         </>
     );

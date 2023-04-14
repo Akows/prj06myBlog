@@ -11,7 +11,7 @@ const authReducer = (state, action) => {
         case 'logout':
             return { ...state, user: null };
         case 'isAuthReady':
-            return { ...state, user: action.payload, isAuthReady: true };   
+            return { ...state, user: action.payload, isAuthReady: true };
         default:
             return state;
     }
@@ -22,16 +22,16 @@ const AuthContextProvider = ({ children }) => {
         user: null,
         isAuthReady: false
     });
-    
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(appAuth, (user) => {
-            dispatch({ type: 'isAuthReady', payload: user }) 
+            dispatch({ type: 'isAuthReady', payload: user })
         });
 
         return unsubscribe;
     }, []);
 
-    console.log(state);
+    // console.log(state);
 
     return (
         <AuthContext.Provider value={{ ...state, dispatch }}>
