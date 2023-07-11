@@ -25,7 +25,7 @@ function App() {
     // if (!user) {
     //   signInAnonymously(appAuth)
     //   .then(() => {
-    
+
     //   })
     //   .catch((error) => {
     //     const errorCode = error.code;
@@ -41,7 +41,24 @@ function App() {
         <>
           <TopMenuBar />
           <Routes>
-            <Route path='/' element={!user ? <Login /> : <Navigate to='/main' replace={true}/>} />
+
+            <Route path='/' element={<Navigate to='/main' replace={true} />} />
+            <Route path='/main' element={<Main />} />
+
+            <Route path='/login' element={!user ? <Login /> : <Navigate to='/' replace={true} />} />
+
+            <Route path='/questions' element={<Questions />} />
+            <Route path='/questions/:id' element={<QuestionsItem />} />
+            <Route path='/dailyrecord' element={<DailyRecord />} />
+            <Route path='/dailyrecord/:id' element={<DailyRecordItem />} />
+            <Route path='/studyrecord' element={<StudyRecord />} />
+            <Route path='/studyrecord/:id' element={<StudyRecordItem />} />
+
+            <Route path='/texteditor/:type/:id' element={user ? <TextEditor /> : <Navigate to='/' replace={true} />} />
+
+
+
+            {/* <Route path='/' element={!user ? <Login /> : <Navigate to='/main' replace={true}/>} />
             <Route path='/main' element={user ? <Main /> : <Navigate to='/' replace={true}/>} />
             <Route path='/questions' element={user ? <Questions /> : <Navigate to='/' replace={true}/>} />
             <Route path='/questions/:id' element={user ? <QuestionsItem /> : <Navigate to='/' replace={true}/>} />
@@ -49,7 +66,7 @@ function App() {
             <Route path='/dailyrecord/:id' element={user ? <DailyRecordItem /> : <Navigate to='/' replace={true}/>} />
             <Route path='/studyrecord' element={user ? <StudyRecord /> : <Navigate to='/' replace={true}/>} />
             <Route path='/studyrecord/:id' element={user ? <StudyRecordItem /> : <Navigate to='/' replace={true}/>} />
-            <Route path='/texteditor/:type/:id' element={user ? <TextEditor /> : <Navigate to='/' replace={true}/>} />
+            <Route path='/texteditor/:type/:id' element={user ? <TextEditor /> : <Navigate to='/' replace={true}/>} /> */}
           </Routes>
         </>
       ) : 'loading...'}

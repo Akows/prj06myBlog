@@ -13,17 +13,16 @@ const TopMenuBar = () => {
 
     return (
         <>
-            {user ? 
-                <div className={styles.background}>
-                    <div className={[styles.titlebutton, styles.centeralignment].join(' ')}>
-                        <Link to='/'><p className={styles.menutext}>Lee's Blog</p></Link>
-                    </div>
-                    <div className={[styles.menubutton, styles.centeralignment].join(' ')}>
-                        <Link to='/questions'><p className={styles.menutext}>공부기록</p></Link>
-                        <Link to='/dailyrecord'><p className={styles.menutext}>일지</p></Link>
-                        <Link to='/studyrecord'><p className={styles.menutext}>내용정리</p></Link>
-                        <div onClick={onMove}><p className={styles.menutext}>포트폴리오</p></div>
-                    </div>
+            <div className={styles.background}>
+                <div className={[styles.titlebutton, styles.centeralignment].join(' ')}>
+                    <Link to='/'><p className={styles.menutext}>Lee's Blog</p></Link>
+                </div>
+                <div className={[styles.menubutton, styles.centeralignment].join(' ')}>
+                    <Link to='/questions'><p className={styles.menutext}>공부기록</p></Link>
+                    <Link to='/dailyrecord'><p className={styles.menutext}>일지</p></Link>
+                    <Link to='/studyrecord'><p className={styles.menutext}>내용정리</p></Link>
+                    <div onClick={onMove}><p className={styles.menutext}>포트폴리오</p></div>
+                </div>
 
                 {/* {user?.isAnonymous && 
                     (
@@ -51,6 +50,38 @@ const TopMenuBar = () => {
                     (<>
                         <div className={[styles.userbutton, styles.centeralignment].join(' ')}>
                             <Link to='/login'><p className={styles.menutext}>로그인</p></Link>
+                            {/* <Link to='/signup'><p className={styles.menutext}>회원가입</p></Link> */}
+                        </div>
+                    </>)
+                }
+                {user &&
+                    (<>
+                        <div className={[styles.userbutton, styles.centeralignment].join(' ')}>
+                            <strong> {user.isAnonymous ? '익명사용자' : <>{user.displayName}</>} 님!</strong>
+                            <button className={styles.logoutbutton} onClick={logout}>Logout</button>
+                        </div>
+                    </>)
+                }
+            </div>
+
+
+            {/* 
+            {user ? 
+                <div className={styles.background}>
+                    <div className={[styles.titlebutton, styles.centeralignment].join(' ')}>
+                        <Link to='/'><p className={styles.menutext}>Lee's Blog</p></Link>
+                    </div>
+                    <div className={[styles.menubutton, styles.centeralignment].join(' ')}>
+                        <Link to='/questions'><p className={styles.menutext}>공부기록</p></Link>
+                        <Link to='/dailyrecord'><p className={styles.menutext}>일지</p></Link>
+                        <Link to='/studyrecord'><p className={styles.menutext}>내용정리</p></Link>
+                        <div onClick={onMove}><p className={styles.menutext}>포트폴리오</p></div>
+                    </div>
+
+                {!user &&
+                    (<>
+                        <div className={[styles.userbutton, styles.centeralignment].join(' ')}>
+                            <Link to='/login'><p className={styles.menutext}>로그인</p></Link>
                             <Link to='/signup'><p className={styles.menutext}>회원가입</p></Link>
                         </div>
                     </>)
@@ -65,7 +96,7 @@ const TopMenuBar = () => {
                 }
             </div>
                 : <> </>
-            }
+            } */}
         </>
     );
 };
