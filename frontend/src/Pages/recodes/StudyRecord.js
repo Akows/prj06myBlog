@@ -9,14 +9,14 @@ import Pagination from '../../components/Pagenation';
 import styles from '../../styles/StudyRecord.module.css'
 import '../../styles/StudyRecord.css'
 
-export default function StudyRecord () {
+export default function StudyRecord() {
     const { user } = useAuthContext();
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [dataLangth, setDataLangth] = useState(0);
     const [choiceType, setChoiceType] = useState('all');
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 12; 
+    const itemsPerPage = 12;
     const lastItemIndex = currentPage * itemsPerPage;
     const firstItemIndex = lastItemIndex - itemsPerPage;
 
@@ -24,7 +24,7 @@ export default function StudyRecord () {
         const collectionRef = collection(appFireStore, 'studyrecord');
         if (choiceType === 'all') {
             try {
-                const querys = query(collectionRef, orderBy('createdTime', 'desc')); 
+                const querys = query(collectionRef, orderBy('createdTime', 'desc'));
                 const querySnap = await getDocs(querys);
                 const getCounts = await getCountFromServer(querys);
                 const mappingData = querySnap.docs.map((doc) => ({
@@ -33,14 +33,14 @@ export default function StudyRecord () {
                 }));
                 setDataLangth(getCounts.data().count);
                 setData(mappingData.slice(firstItemIndex, lastItemIndex));
-            } 
+            }
             catch (error) {
                 console.log(error);
             }
         }
         else {
             try {
-                const querys = query(collectionRef, where('type', '==', choiceType), orderBy('createdTime', 'desc')); 
+                const querys = query(collectionRef, where('type', '==', choiceType), orderBy('createdTime', 'desc'));
                 const querySnap = await getDocs(querys);
                 const getCounts = await getCountFromServer(querys);
                 const mappingData = querySnap.docs.map((doc) => ({
@@ -49,7 +49,7 @@ export default function StudyRecord () {
                 }));
                 setDataLangth(getCounts.data().count);
                 setData(mappingData.slice(firstItemIndex, lastItemIndex));
-            } 
+            }
             catch (error) {
                 console.log(error);
             };
@@ -77,45 +77,45 @@ export default function StudyRecord () {
             <div className={styles.mystudyrecordboard}>
                 <div className={styles.mystudyrecordutil}>
                     <div className={styles.mystudyrecordpagenation}>
-                        <div onClick={() => {setChoiceType('all')}}>
+                        <div onClick={() => { setChoiceType('all') }}>
                             전체
                         </div>
-                        <div onClick={() => {setChoiceType('html')}}>
+                        <div onClick={() => { setChoiceType('html') }}>
                             HTML
                         </div>
-                        <div onClick={() => {setChoiceType('css')}}>
+                        <div onClick={() => { setChoiceType('css') }}>
                             CSS
                         </div>
-                        <div onClick={() => {setChoiceType('js')}}>
+                        <div onClick={() => { setChoiceType('js') }}>
                             JS
                         </div>
-                        <div onClick={() => {setChoiceType('ts')}}>
+                        <div onClick={() => { setChoiceType('ts') }}>
                             TS
                         </div>
-                        <div onClick={() => {setChoiceType('react')}}>
+                        <div onClick={() => { setChoiceType('react') }}>
                             React.js
                         </div>
-                        <div onClick={() => {setChoiceType('next')}}>
+                        <div onClick={() => { setChoiceType('next') }}>
                             Next.js
                         </div>
-                        <div onClick={() => {setChoiceType('redux')}}>
+                        <div onClick={() => { setChoiceType('redux') }}>
                             Redux
                         </div>
-                        <div onClick={() => {setChoiceType('firebase')}}>
+                        <div onClick={() => { setChoiceType('firebase') }}>
                             Firebase
                         </div>
 
                     </div>
-                    {!user.isAnonymous ? 
+                    {user ?
                         <>
-                            <div className={styles.mystudyrecordwritebtu} onClick={() => {navigate('/texteditor/sr/write');}}>
+                            <div className={styles.mystudyrecordwritebtu} onClick={() => { navigate('/texteditor/sr/write'); }}>
                                 글쓰기
                             </div>
                         </>
-                    : 
+                        :
                         <>
                             <div>
-                                
+
                             </div>
                         </>
                     }
@@ -123,9 +123,9 @@ export default function StudyRecord () {
 
                 <div className={styles.mystudyrecorditems}>
                     {data.map((item) => (
-                        <div className={styles.mystudyrecorditem} key={item.id} onClick={() => {navigate(`/studyrecord/${item.id}`);}}>
+                        <div className={styles.mystudyrecorditem} key={item.id} onClick={() => { navigate(`/studyrecord/${item.id}`); }}>
                             <div className={styles.mystudyrecorditemicon}>
-                                <div className={['default_icon', `${item.type}_icon`].join(" ")}/>
+                                <div className={['default_icon', `${item.type}_icon`].join(" ")} />
                             </div>
                             <div className={styles.mystudyrecorditemtitle}>
                                 <p>{item.type}</p>
@@ -136,8 +136,8 @@ export default function StudyRecord () {
                     ))}
                 </div>
 
-                <Pagination 
-                    postsPerPage={itemsPerPage} 
+                <Pagination
+                    postsPerPage={itemsPerPage}
                     totalPosts={dataLangth}
                     paginate={setPageNumber}
                 />

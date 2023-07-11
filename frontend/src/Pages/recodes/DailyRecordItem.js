@@ -56,7 +56,7 @@ const DailyRecordItem = () => {
                         {response.document?.title}
                     </div>
                     <div className={[styles.recorditemitem, styles.recorditemtext].join(' ')}>
-                        <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
+                        <div dangerouslySetInnerHTML={{ __html: response.document?.text }} />
                     </div>
                     {/* <div className={[styles.recorditemitem, styles.recorditemdetech].join(' ')}>
                         {!response.document?.file ?
@@ -70,15 +70,13 @@ const DailyRecordItem = () => {
                         }
                     </div> */}
                     <div className={styles.recorditemdelwribtn}>
-                        {user.isAnonymous ? 
-                            <>
-                                
-                            </>
-                        :
+                        {user ?
                             <div className={styles.recorditemwritebtu}>
-                                <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
-                                <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
+                                <div className={styles.button} onClick={() => { onUpdate() }}>수정</div>
+                                <div className={styles.button} onClick={() => { onDelete() }}>삭제</div>
                             </div>
+                            :
+                            <></>
                         }
                     </div>
                     <div className={styles.recorditemcomments}>
@@ -97,8 +95,8 @@ const DailyRecordItem = () => {
                             </>
                         }
                         <form onSubmit={onSubmitEvent}>
-                            <div className={styles.recorditemcommentutil}> 
-                                <input name='Text' type='text' placeholder='댓글을 입력해주세요' maxLength='30' className={styles.recorditemcommentinput} value={commentsData.text} onChange={onChangeEvent}/> 
+                            <div className={styles.recorditemcommentutil}>
+                                <input name='Text' type='text' placeholder='댓글을 입력해주세요' maxLength='30' className={styles.recorditemcommentinput} value={commentsData.text} onChange={onChangeEvent} />
                                 <button type='submit' className={styles.commentsubmitbtu}>
                                     작성
                                 </button>

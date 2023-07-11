@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLogin } from '../../customhooks/useLogin';
 import styles from '../../styles/Login.module.css'
 
-export default function Login () {
+export default function Login() {
     const { error, isPending, login, anonymousLogin } = useLogin();
     const [userData, setUserData] = useState({
         id: '',
@@ -12,15 +12,18 @@ export default function Login () {
     const loginEvent = (event) => {
         event.preventDefault();
         login(userData.id, userData.pwd);
-    };    
+    };
+
+    // eslint-disable-next-line
     const anonymousLoginEvent = (event) => {
         event.preventDefault();
         anonymousLogin();
-    };  
+    };
+
     const onChangeEvent = (event) => {
         setUserData({
             ...userData,
-            [event.target.name] : event.target.value
+            [event.target.name]: event.target.value
         })
     };
 
@@ -35,17 +38,17 @@ export default function Login () {
                 <p>로그인</p>
                 <div className={styles.input}>
                     <label htmlFor='id'>email : </label>
-                    <input name='id' type='text' required placeholder='이메일을 입력해주세요' value={userData.id} onChange={onChangeEvent}/>
+                    <input name='id' type='text' required placeholder='이메일을 입력해주세요' value={userData.id} onChange={onChangeEvent} />
                 </div>
                 <div className={styles.input}>
                     <label htmlFor='pwd'>password : </label>
-                    <input name='pwd' type='password' required placeholder='비밀번호를 입력해주세요' value={userData.pwd} onChange={onChangeEvent}/>
+                    <input name='pwd' type='password' required placeholder='비밀번호를 입력해주세요' value={userData.pwd} onChange={onChangeEvent} />
                 </div>
                 <div className={styles.loginbutton}>
                     {!isPending && <button type='submit' className={styles.submitbutton}>로그인</button>}
-                    {!isPending && <button className={styles.submitbutton2} onClick={anonymousLoginEvent}>비로그인 접속하기</button>}
-                    {isPending && <><br/><strong>로그인이 진행중입니다...</strong></>}
-                    {error && <><br/><strong>로그인 에러가 발생하였습니다...</strong></>}
+                    {/* {!isPending && <button className={styles.submitbutton2} onClick={anonymousLoginEvent}>비로그인 접속하기</button>} */}
+                    {isPending && <><br /><strong>로그인이 진행중입니다...</strong></>}
+                    {error && <><br /><strong>로그인 에러가 발생하였습니다...</strong></>}
                 </div>
             </form>
         </div>

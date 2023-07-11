@@ -13,11 +13,16 @@ const StudyRecordItem = () => {
     const { getDocument, deleteDocument, downloadFile, response } = useFirestore('studyrecord');
     const { getComments, addComments, responseData } = useFirestoreComt('comment');
 
+    const [commentsList, setCommentsList] = useState([]);
+    const [isReRender, setIsReRender] = useState(false);
+
     const pageType = 'sr';
 
     const onSubmitEvent = (event) => {
         event.preventDefault();
         addComments(commentsData, id, pageType);
+        setCommentsData([]);
+        setIsReRender(true);
     };
     const onChangeEvent = (event) => {
         setCommentsData(event.target.value);
@@ -36,6 +41,26 @@ const StudyRecordItem = () => {
         getComments(id);
         // eslint-disable-next-line
     }, []);
+
+    useEffect(() => {
+        if (Array.isArray(responseData.document)) {
+            setCommentsList(responseData.document);
+        };
+    }, [responseData]);
+
+
+    useEffect(() => {
+        if (isReRender) {
+            getComments(id);
+
+            if (Array.isArray(responseData.document)) {
+                setCommentsList(responseData.document);
+            };
+
+            setIsReRender(false);
+        };
+        // eslint-disable-next-line
+    }, [isReRender]);
 
     return (
         <div className={styles.recorditem}>
@@ -56,35 +81,33 @@ const StudyRecordItem = () => {
                         {response.document?.title}
                     </div>
                     <div className={[styles.recorditemitem, styles.recorditemtext].join(' ')}>
-                        <div dangerouslySetInnerHTML={{ __html:response.document?.text }}/>
+                        <div dangerouslySetInnerHTML={{ __html: response.document?.text }} />
                     </div>
                     <div className={[styles.recorditemitem, styles.recorditemdetech].join(' ')}>
                         {response.document?.file === 'No file' ?
                             <>
                                 <p>첨부파일 없음.</p>
                             </>
-                        :
+                            :
                             <>
-                                <p onClick={() => {downloadFile(response.document?.file)}}>{response.document?.file}</p>
+                                <p onClick={() => { downloadFile(response.document?.file) }}>{response.document?.file}</p>
                             </>
                         }
                     </div>
                     <div className={styles.recorditemdelwribtn}>
-                    {user.isAnonymous ? 
-                            <>
-                                
-                            </>
-                        :
+                        {user ?
                             <div className={styles.recorditemwritebtu}>
-                                <div className={styles.button} onClick={() => {onUpdate()}}>수정</div>
-                                <div className={styles.button} onClick={() => {onDelete()}}>삭제</div>
+                                <div className={styles.button} onClick={() => { onUpdate() }}>수정</div>
+                                <div className={styles.button} onClick={() => { onDelete() }}>삭제</div>
                             </div>
+                            :
+                            <></>
                         }
                     </div>
                     <div className={styles.recorditemcomments}>
-                        {responseData.document?.length !== 0 ?
+                        {commentsList?.length !== 0 ?
                             <>
-                                {responseData.document?.map((item) => (
+                                {commentsList?.map((item) => (
                                     <div className={styles.recorditemcommenttext} key={item.id}>
                                         <p>{item.comments}</p>
                                         <p className={styles.commentsinfo}>{item.writer}, {item.createdTime}</p>
@@ -97,8 +120,8 @@ const StudyRecordItem = () => {
                             </>
                         }
                         <form onSubmit={onSubmitEvent}>
-                            <div className={styles.recorditemcommentutil}> 
-                                <input name='Text' type='text' placeholder='댓글을 입력해주세요' maxLength='30' className={styles.recorditemcommentinput} value={commentsData.text} onChange={onChangeEvent}/> 
+                            <div className={styles.recorditemcommentutil}>
+                                <input name='Text' type='text' placeholder='댓글을 입력해주세요' maxLength='30' className={styles.recorditemcommentinput} value={commentsData.text} onChange={onChangeEvent} />
                                 <button type='submit' className={styles.commentsubmitbtu}>
                                     작성
                                 </button>

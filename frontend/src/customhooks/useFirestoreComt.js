@@ -2,6 +2,7 @@ import { useReducer } from 'react'
 import { appFireStore, timeStamp } from '../configs/firebase'
 import { addDoc, collection, getDocs, orderBy, query, where } from 'firebase/firestore'
 import { useAuthContext } from './useAuthContext'
+import { useNavigate } from 'react-router-dom';
 
 const initState = {
     document: null,
@@ -17,7 +18,7 @@ const storeReducer = (state, action) => {
         case 'addComment':
             return { isPending: false, document: action.payload, success: true, error: null }
         case 'getComment':
-            return { isPending: false, document: action.payload, success: true, error: null }  
+            return { isPending: false, document: action.payload, success: true, error: null }
         case 'error':
             return { isPending: false, document: null, success: false, error: action.payload }
         default:
@@ -30,9 +31,11 @@ export const useFirestoreComt = (transaction) => {
     const colRef = collection(appFireStore, transaction);
     const { user } = useAuthContext();
 
+    const navigate = useNavigate();
+
     const getComments = async (id) => {
         try {
-            const querys = query(colRef, where('targetDoc', '==', id), orderBy('createdTime', 'desc')); 
+            const querys = query(colRef, where('targetDoc', '==', id), orderBy('createdTime', 'desc'));
             const querySnap = await getDocs(querys);
             const mappingData = querySnap.docs.map((doc) => ({
                 comments: doc.data().comments,
@@ -42,9 +45,9 @@ export const useFirestoreComt = (transaction) => {
             }));
 
             dispatch({ type: 'getComment', payload: mappingData });
-        } 
+        }
         catch (error) {
-            console.log(error);  
+            console.log(error);
         }
     };
 
@@ -52,10 +55,13 @@ export const useFirestoreComt = (transaction) => {
         try {
             const createdTime = timeStamp.fromDate(new Date());
 
-            let writerName = user.displayName;
+            let writerName = '';
 
-            if (!user.displayName) {
+            if (!user) {
                 writerName = '익명사용자';
+            }
+            else {
+                writerName = user.displayName;
             };
 
             const docRef = await addDoc(colRef, {
@@ -68,12 +74,17 @@ export const useFirestoreComt = (transaction) => {
             alert('댓글 작성이 완료되었습니다.');
 
             if (pageType === 'dr') {
-                window.location.replace(`/dailyrecord/${id}`);
+                navigate(`/dailyrecord/${id}`, { replace: true });
+
+                // window.location.replace(`/dailyrecord/${id}`);
             }
             else if (pageType === 'sr') {
-                window.location.replace(`/studyrecord/${id}`);
+                navigate(`/studyrecord/${id}`, { replace: true });
+
+
+                // window.location.replace(`/studyrecord/${id}`);
             };
-        } 
+        }
         catch (error) {
             console.error(error);
         }
