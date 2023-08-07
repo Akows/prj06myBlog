@@ -15,19 +15,19 @@ const initState = {
 const storeReducer = (state, action) => {
     switch (action.type) {
         case 'isPending':
-            return { isPending: true, document: null, success: false, error: null }
+            return { isPending: true, document: null, success: false, error: null };
         case 'addDoc':
-            return { isPending: false, document: action.payload, success: true, error: null }
+            return { isPending: false, document: action.payload, success: true, error: null };
         case 'getDoc':
-            return { isPending: false, document: action.payload, success: true, error: null }
+            return { isPending: false, document: action.payload, success: true, error: null };
         case 'updateDoc':
-            return { isPending: false, document: action.payload, success: true, error: null }
+            return { isPending: false, document: action.payload, success: true, error: null };
         case 'deleteDoc':
-            return { isPending: false, document: null, success: true, error: null }
+            return { isPending: false, document: null, success: true, error: null };
         case 'error':
-            return { isPending: false, document: null, success: false, error: action.payload }
+            return { isPending: false, document: null, success: false, error: action.payload };
         default:
-            return state
+            return state;
     };
 };
 
@@ -46,11 +46,11 @@ export const useFirestore = (transaction) => {
         let fileName = 'No file';
         if (doc.fileData) {
             fileName = doc.fileData[0].name;
-        }
+        };
 
         if (doc.type === 'qs') {
             try {
-                const docRef = await addDoc(colRef, { 
+                const docRef = await addDoc(colRef, {
                     title: doc.titleData,
                     text: doc.postData,
                     file: fileName,
@@ -61,13 +61,13 @@ export const useFirestore = (transaction) => {
 
                 if (doc.fileData) {
                     const imagesRef = ref(storageRef, fileName);
-                    await uploadBytes(imagesRef, doc.fileData);    
-                }
+                    await uploadBytes(imagesRef, doc.fileData);
+                };
 
                 dispatch({ type: 'addDoc', payload: docRef });
                 alert('글 작성이 완료되었습니다.');
                 navigate('/questions', { replace: true });
-            } 
+            }
             catch (error) {
                 alert(error.message);
                 navigate('/questions', { replace: true });
@@ -75,7 +75,7 @@ export const useFirestore = (transaction) => {
         }
         else if (doc.type === 'sr') {
             try {
-                const docRef = await addDoc(colRef, { 
+                const docRef = await addDoc(colRef, {
                     title: doc.titleData,
                     text: doc.postData,
                     file: fileName,
@@ -86,13 +86,13 @@ export const useFirestore = (transaction) => {
 
                 if (doc.fileData) {
                     const imagesRef = ref(storageRef, fileName);
-                    await uploadBytes(imagesRef, doc.fileData);    
+                    await uploadBytes(imagesRef, doc.fileData);
                 }
 
                 dispatch({ type: 'addDoc', payload: docRef });
                 alert('글 작성이 완료되었습니다.');
                 navigate('/studyrecord', { replace: true });
-            } 
+            }
             catch (error) {
                 alert(error.message);
                 navigate('/studyrecord', { replace: true });
@@ -100,14 +100,14 @@ export const useFirestore = (transaction) => {
         }
         else if (doc.type === 'dr') {
             try {
-                const docRef = await addDoc(colRef, { 
+                const docRef = await addDoc(colRef, {
                     title: doc.titleData,
                     text: doc.postData,
                     writer: user.displayName,
                     createdMonth: createdTime.toDate().getMonth() + 1,
                     createdTime,
                 });
-                
+
                 dispatch({ type: 'addDoc', payload: docRef });
                 alert('글 작성이 완료되었습니다.');
                 navigate('/dailyrecord', { replace: true });
@@ -125,7 +125,7 @@ export const useFirestore = (transaction) => {
             const docRef = doc(colRef, docid);
             const docSnap = await getDoc(docRef);
             dispatch({ type: 'getDoc', payload: docSnap.data() });
-        } 
+        }
         catch (error) {
             dispatch({ type: 'error', payload: error.message });
             alert(error.message);
@@ -151,16 +151,16 @@ export const useFirestore = (transaction) => {
                     type: props.selectTypeData,
                     createdTime,
                 }, { merge: true });
-    
+
                 if (props.fileData) {
                     const imagesRef = ref(storageRef, fileName);
-                    await uploadBytes(imagesRef, props.fileData);    
+                    await uploadBytes(imagesRef, props.fileData);
                 }
 
                 dispatch({ type: 'updateDoc', payload: docRef });
                 alert('글 수정이 완료되었습니다.');
                 navigate('/questions', { replace: true });
-            } 
+            }
             catch (error) {
                 alert(error.message);
                 dispatch({ type: 'error', payload: error.message });
@@ -177,23 +177,23 @@ export const useFirestore = (transaction) => {
                     type: props.selectTypeData,
                     createdTime,
                 }, { merge: true });
-    
+
                 if (props.fileData) {
                     const imagesRef = ref(storageRef, fileName);
-                    await uploadBytes(imagesRef, props.fileData);    
+                    await uploadBytes(imagesRef, props.fileData);
                 }
 
                 dispatch({ type: 'updateDoc', payload: docRef });
                 alert('글 수정이 완료되었습니다.');
                 navigate('/studyrecord', { replace: true });
-            } 
+            }
             catch (error) {
                 alert(error.message);
                 dispatch({ type: 'error', payload: error.message });
                 navigate('/studyrecord', { replace: true });
             };
         }
-    
+
         else if (props.type === 'dr') {
             try {
                 await setDoc(docRef, {
@@ -230,7 +230,7 @@ export const useFirestore = (transaction) => {
             else if (pageType === 'qs') {
                 navigate('/questions', { replace: true });
             }
-        } 
+        }
         catch (e) {
             dispatch({ type: 'error', payload: e.message });
             alert('에러 발생', e);
@@ -249,24 +249,24 @@ export const useFirestore = (transaction) => {
     const downloadFile = async (fileName) => {
         const imagesRef = ref(storageRef, fileName);
         await getDownloadURL(imagesRef)
-        .then((url) => {
-          const xhr = new XMLHttpRequest();
-          xhr.responseType = 'blob';
-          xhr.onload = () => {
-            const blob = xhr.response;
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = fileName;
-            link.click();
-            URL.revokeObjectURL(link.href);
-          };
-          xhr.open('GET', url);
-          xhr.send();
-        })
-        .catch((error) => {
-            console.log(error.code);
-            console.log(error);
-        });
+            .then((url) => {
+                const xhr = new XMLHttpRequest();
+                xhr.responseType = 'blob';
+                xhr.onload = () => {
+                    const blob = xhr.response;
+                    const link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = fileName;
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                };
+                xhr.open('GET', url);
+                xhr.send();
+            })
+            .catch((error) => {
+                console.log(error.code);
+                console.log(error);
+            });
     };
 
     return { addDocument, getDocument, updateDocument, deleteDocument, downloadFile, response };

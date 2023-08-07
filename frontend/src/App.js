@@ -14,6 +14,7 @@ import StudyRecordItem from './pages/recodes/StudyRecordItem';
 import TextEditor from './pages/editor/TextEditor';
 
 import './App.css';
+import Signup from './pages/user/Signup';
 
 function App() {
   const { user, isAuthReady } = useAuthContext();
@@ -56,6 +57,7 @@ function App() {
 
             <Route path='/texteditor/:type/:id' element={user ? <TextEditor /> : <Navigate to='/' replace={true} />} />
 
+            <Route path='/test' element={<Signup />} />
 
 
             {/* <Route path='/' element={!user ? <Login /> : <Navigate to='/main' replace={true}/>} />

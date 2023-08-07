@@ -3,6 +3,8 @@ import { useLogin } from '../../customhooks/useLogin';
 import styles from '../../styles/Login.module.css'
 
 export default function Login() {
+
+    // useLogin 커스텀 훅으로부터 로그인 기능과 상태를 가져옴
     const { error, isPending, login, anonymousLogin } = useLogin();
     const [userData, setUserData] = useState({
         id: '',
@@ -20,6 +22,7 @@ export default function Login() {
         anonymousLogin();
     };
 
+    // 입력 필드 값 변경 시 호출되는 함수
     const onChangeEvent = (event) => {
         setUserData({
             ...userData,
@@ -27,6 +30,7 @@ export default function Login() {
         })
     };
 
+    // 페이지 타이틀 설정
     useEffect(() => {
         const titleElement = document.getElementsByTagName("title")[0];
         titleElement.innerHTML = '로그인 페이지';

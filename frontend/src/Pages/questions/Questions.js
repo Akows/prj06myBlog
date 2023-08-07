@@ -28,7 +28,7 @@ export default function Questions() {
             }
             catch (error) {
                 console.log(error);
-            }
+            };
         }
         else {
             try {
