@@ -80,7 +80,7 @@ const QuestionsItem = () => {
                 <div className={styles.questionsitems}>
                     <div className={styles.questionstitle}>
                         <div className={['default2_icon', `${response.document?.type}_icon`].join(' ')} />
-                        {response.document?.title}
+                        <div>{response.document?.title}</div>
                     </div>
                     <div className={styles.questionstext}>
                         <div dangerouslySetInnerHTML={{ __html: response.document?.text }} />

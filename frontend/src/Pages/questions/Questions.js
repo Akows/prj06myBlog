@@ -109,12 +109,9 @@ export default function Questions() {
                 <div className={styles.questionsitemlist}>
                     {data.map((item) => (
                         <div className={styles.questionsitem} key={item.id} onClick={() => { navigate(`/questions/${item.id}`); }}>
-                            <div className={styles.questionsitemicon}>
-
-                            </div>
                             <div className={styles.questionsiteminfo1}>
                                 <div className={['default2_icon', `${item.type}_icon`].join(' ')} />
-                                {item.title}
+                                <div>{item.title}</div>
                             </div>
                             <div className={styles.questionsiteminfo2}>
                                 {item.writer}
