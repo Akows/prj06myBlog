@@ -47,9 +47,10 @@
         align-items: center; 
     }    
         .pagenationbtu {
-            width: 80px;
+            width: 90px;
             height: 100%;
 
+            background-color: #dcdcdc;
             border-radius: 5px;
 
             display: flex;
@@ -57,11 +58,11 @@
             align-items: center;
             justify-content: center;
 
-            margin: 3px;
+            margin: 5px;
 
             /* font-family: 'bitbit'; */
-
-            font-weight: 500;
+            font-weight: 700;
+            
             font-size: 20px;
         }  
         .pagenationbtu:hover {

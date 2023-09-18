@@ -77,22 +77,22 @@ export default function StudyRecord() {
             <div className={styles.mystudyrecordboard}>
                 <div className={styles.mystudyrecordutil}>
                     <div className={styles.mystudyrecordpagenation}>
-                        <div onClick={() => { setChoiceType('all') }}>
+                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('all') }}>
                             전체
                         </div>
-                        <div onClick={() => { setChoiceType('html') }}>
+                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('html') }}>
                             HTML
                         </div>
-                        <div onClick={() => { setChoiceType('css') }}>
+                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('css') }}>
                             CSS
                         </div>
-                        <div onClick={() => { setChoiceType('js') }}>
+                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('js') }}>
                             JS
                         </div>
-                        <div onClick={() => { setChoiceType('react') }}>
+                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('react') }}>
                             React.js
                         </div>
-                        <div onClick={() => { setChoiceType('redux') }}>
+                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('redux') }}>
                             Redux
                         </div>
 

@@ -255,3 +255,29 @@
     }    
 
 } */
+
+
+.pagenationbtu {
+    width: 80px;
+    height: 100%;
+
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin: 3px;
+
+    /* font-family: 'bitbit'; */
+
+    font-weight: 500;
+    font-size: 20px;
+}  
+.pagenationbtu:hover {
+    background-color: #bebebe;
+}
+.pagenationbtu:active {
+    color: red;
+}
