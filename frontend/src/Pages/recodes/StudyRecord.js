@@ -89,20 +89,11 @@ export default function StudyRecord() {
                         <div onClick={() => { setChoiceType('js') }}>
                             JS
                         </div>
-                        <div onClick={() => { setChoiceType('ts') }}>
-                            TS
-                        </div>
                         <div onClick={() => { setChoiceType('react') }}>
                             React.js
                         </div>
-                        <div onClick={() => { setChoiceType('next') }}>
-                            Next.js
-                        </div>
                         <div onClick={() => { setChoiceType('redux') }}>
                             Redux
-                        </div>
-                        <div onClick={() => { setChoiceType('firebase') }}>
-                            Firebase
                         </div>
 
                     </div>

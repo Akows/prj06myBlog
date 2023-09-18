@@ -77,20 +77,11 @@ export default function Questions() {
                         <div className={styles.pagenationbtu} onClick={() => { setChoiceType('js') }}>
                             JS
                         </div>
-                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('ts') }}>
-                            TS
-                        </div>
                         <div className={styles.pagenationbtu} onClick={() => { setChoiceType('react') }}>
                             React.js
                         </div>
-                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('next') }}>
-                            Next.js
-                        </div>
                         <div className={styles.pagenationbtu} onClick={() => { setChoiceType('redux') }}>
                             Redux
-                        </div>
-                        <div className={styles.pagenationbtu} onClick={() => { setChoiceType('firebase') }}>
-                            Firebase
                         </div>
 
                     </div>
